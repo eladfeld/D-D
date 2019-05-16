@@ -1,24 +1,48 @@
 package InterfaceLayer;
 
-import LogicLayer.GUnit;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class Proccesor {
+public class Proccesor{
 
-    public static GUnit[][] levelProccesor(File file , int height){
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String st = br.readLine();
-        int length = st.length();
-        GUnit[][] result = new char[height][length];
-        for(int i = 0; i < height ; i++) {
-            st = br.readLine();
+    public static int[] tickProccesor(String path){
+        Path P = Paths.get(path);
+        File file = new File(path);
+        int[] output = null;
+        try{
+            long lines = Files.lines(P).count();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            output =  new int[(int)lines];
+            for(int i = 0; i < lines ; i++) output[i] = Integer.parseInt(br.readLine());
         }
-        return result1;
-
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return output;
     }
+
+    public static String[] moveProccesor(String path){
+        Path P = Paths.get(path);
+        File file = new File(path);
+        String[] output = null;
+        try{
+            long lines = Files.lines(P).count();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            output =  new String[(int)lines];
+            for(int i = 0; i < lines ; i++) output[i] = br.readLine();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+
 
     public static String lifeBar(double HP , double currHp){
         double Hpresentage = 100*currHp/HP;
