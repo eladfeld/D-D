@@ -3,6 +3,16 @@ package LogicLayer;
 public class GUnit extends gameObject{
     String name;
     int y , x ,currHP ,HP ,DP ,AP;
+    boolean isAlive;
+
+    //region Getters and Setters
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
 
     public String getName() {
         return name;
@@ -44,16 +54,12 @@ public class GUnit extends gameObject{
         this.AP = AP;
     }
 
-    public boolean isAlive() {
-        return isAlive;
+
+    //endregion
+
+    public void gameTick(){
+
     }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-    }
-
-    boolean isAlive;
-
 
     public GUnit(int x, int y,String name ,int HP ,int DP , int AP ){
        super(x,y);
@@ -64,10 +70,7 @@ public class GUnit extends gameObject{
         DP = DP;
         AP = AP;
     }
-    public String toString(){
-        if(isAlive)return "@";
-        return "X";
-    }
+
 }
 
 

@@ -4,8 +4,14 @@ public abstract class Player extends GUnit {
 
     int exp;
     int level;
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+
     public Player(int x, int y,String name ,int HP ,int DP , int AP){
         super(x,y,name,HP,DP,AP);
+        isAlive = true;
         exp = 0;
         level = 1;
     }
@@ -19,7 +25,10 @@ public abstract class Player extends GUnit {
         DP = DP + level*2;
 
     }
+
     public String toString(){
-        return "@";
+        if(isAlive)return "@";
+        return "X";
     }
+
 }

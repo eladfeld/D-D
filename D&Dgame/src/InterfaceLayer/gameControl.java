@@ -37,6 +37,12 @@ public static void main(String[]args)throws Exception
         }
         gameLogic GL = new gameLogic(PlayerActions , RandomNums , level, (int)lineCount);
         while(GL.isActiveGame()){
+
+            /*
+            need to add another stop
+            one in case the player is dead
+            second in case the level is finished
+            */
             GL.gameTick();
             System.out.println(GL.toString());
         }

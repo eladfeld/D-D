@@ -2,7 +2,9 @@ package LogicLayer;
 
 public class gameObject {
     int x;
+    int y;
 
+    //region Getters and Setters
     public int getX() {
         return x;
     }
@@ -18,8 +20,8 @@ public class gameObject {
     public void setY(int y) {
         this.y = y;
     }
+    //endregion
 
-    int y;
     public gameObject(int x,int y){
         x=x;
         y=y;
