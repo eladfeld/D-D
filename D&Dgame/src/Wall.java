@@ -1,5 +1,7 @@
-public class Wall extends GUnit{
-    public Wall(int x,int y){
-        super(x,y);
+public class Wall{
+    int x,y;
+    public Wall(int x,int y) {
+        x=x;
+        y=y;
     }
 }

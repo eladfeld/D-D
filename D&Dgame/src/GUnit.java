@@ -1,34 +1,88 @@
-public abstract class GUnit extends GUnit{
+public class GUnit {
     String name;
     int y , x ,currHP ,HP ,DP ,AP;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getCurrHP() {
+        return currHP;
+    }
+
+    public void setCurrHP(int currHP) {
+        this.currHP = currHP;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public int getDP() {
+        return DP;
+    }
+
+    public void setDP(int DP) {
+        this.DP = DP;
+    }
+
+    public int getAP() {
+        return AP;
+    }
+
+    public void setAP(int AP) {
+        this.AP = AP;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     boolean isAlive;
 
 
-    public Player(int x, int y,String name ,int HP ,int DP , int AP ){
-        super(x,y);
+    public GUnit(int x, int y,String name ,int HP ,int DP , int AP ){
+        x=x;
+        y=y;
         isAlive = true;
         name = name;
         HP = HP;
         currHP = HP;
-        level = 1;
-        exp = 0;
         DP = DP;
         AP = AP;
-    }
-    public void levelUp(){
-        exp = exp - level*50;
-        level++;
-        HP = HP + 10*level;
-        currHP = HP;
-        AP = AP + level*5;
-        DP = DP + level*2;
-
     }
     public String toString(){
         if(isAlive)return "@";
         return "X";
     }
-    public abstract void specialAb();
 }
 
-}
+
