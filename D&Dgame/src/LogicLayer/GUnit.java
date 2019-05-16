@@ -1,4 +1,6 @@
-public class GUnit {
+package LogicLayer;
+
+public class GUnit extends gameObject{
     String name;
     int y , x ,currHP ,HP ,DP ,AP;
 
@@ -8,22 +10,6 @@ public class GUnit {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
     }
 
     public int getCurrHP() {
@@ -70,8 +56,7 @@ public class GUnit {
 
 
     public GUnit(int x, int y,String name ,int HP ,int DP , int AP ){
-        x=x;
-        y=y;
+       super(x,y);
         isAlive = true;
         name = name;
         HP = HP;

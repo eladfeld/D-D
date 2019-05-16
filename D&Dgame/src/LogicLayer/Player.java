@@ -1,3 +1,5 @@
+package LogicLayer;
+
 public abstract class Player extends GUnit {
 
     int exp;
@@ -8,9 +10,6 @@ public abstract class Player extends GUnit {
         level = 1;
     }
 
-
-
-
     public void levelUp(){
         exp = exp - level*50;
         level++;
@@ -19,5 +18,8 @@ public abstract class Player extends GUnit {
         AP = AP + level*5;
         DP = DP + level*2;
 
+    }
+    public String toString(){
+        return "@";
     }
 }
