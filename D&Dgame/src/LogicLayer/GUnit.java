@@ -1,11 +1,22 @@
 package LogicLayer;
 
-public class GUnit extends gameObject{
+import InterfaceLayer.Moves.RandomGenerator;
+
+public abstract class GUnit extends gameObject{
     String name;
+    gameObject[][] board;
     int y , x ,currHP ,HP ,DP ,AP;
     boolean isAlive;
 
     //region Getters and Setters
+    public gameObject[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(gameObject[][] board) {
+        this.board = board;
+    }
+
     public boolean isAlive() {
         return isAlive;
     }
@@ -57,11 +68,9 @@ public class GUnit extends gameObject{
 
     //endregion
 
-    public void gameTick(){
+    public abstract void gameTick(RandomGenerator RG);
 
-    }
-
-    public GUnit(int x, int y,String name ,int HP ,int DP , int AP ){
+    public GUnit(int x, int y,String name ,int HP ,int DP , int AP , gameObject[][] board ){
        super(x,y);
         isAlive = true;
         name = name;
@@ -69,6 +78,7 @@ public class GUnit extends gameObject{
         currHP = HP;
         DP = DP;
         AP = AP;
+        board = board;
     }
 
 }

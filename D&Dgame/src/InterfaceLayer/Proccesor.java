@@ -60,4 +60,21 @@ public class Proccesor{
     }
 
 
+    public static char[][] boardProccesor(File level , int height) {
+        char[][] result = null;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(level));
+            String st = br.readLine();
+            int length = st.length();
+            result = new char[height][length];
+            for (int i = 0; i < height; i++) {
+                result[i] = st.toCharArray();
+                st = br.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

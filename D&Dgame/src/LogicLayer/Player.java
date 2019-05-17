@@ -9,8 +9,8 @@ public abstract class Player extends GUnit {
     }
 
 
-    public Player(int x, int y,String name ,int HP ,int DP , int AP){
-        super(x,y,name,HP,DP,AP);
+    public Player(int x, int y,String name ,int HP ,int DP , int AP , gameObject[][] board){
+        super(x,y,name,HP,DP,AP,board);
         isAlive = true;
         exp = 0;
         level = 1;

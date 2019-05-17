@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 public class gameControl {
 public static void main(String[]args)throws Exception
 {
+    System.out.print(Proccesor.lifeBar(40,29));
     String dir = args[0];
 
     long lineCount = 0;
@@ -35,7 +36,8 @@ public static void main(String[]args)throws Exception
             System.out.println("Level " + levelNum + " does not exist" + '\n' +  e.getCause());
             e.printStackTrace();
         }
-        gameLogic GL = new gameLogic(PlayerActions , RandomNums , level, (int)lineCount);
+        char[][] board = Proccesor.boardProccesor(level ,(int) lineCount);
+        gameLogic GL = new gameLogic(PlayerActions , RandomNums , board);
         while(GL.isActiveGame()){
 
             /*
