@@ -1,6 +1,7 @@
-package LogicLayer;
+package LogicLayer.Enemies;
 
 import LogicLayer.Enemies.Enemy;
+import LogicLayer.*;
 
 public class Monster extends Enemy {
 

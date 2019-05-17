@@ -66,7 +66,6 @@ public class Trap extends Enemy {
     }
 
     private void reSpawn(RandomGenerator RG) {
-        int random
 
 
 
