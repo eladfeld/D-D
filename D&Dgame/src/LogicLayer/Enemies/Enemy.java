@@ -18,5 +18,10 @@ public class Enemy extends GUnit {
     public void gameTick(RandomGenerator RG) {
 
     }
+
+    @Override
+    public int invoked(GUnit gUnit) {
+        return 0;
+    }
 }
 

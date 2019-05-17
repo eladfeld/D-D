@@ -1,6 +1,6 @@
 package LogicLayer;
 
-public class gameObject {
+public abstract class gameObject {
     int x;
     int y;
 
@@ -30,4 +30,5 @@ public class gameObject {
         return ".";
    }
 
+    public abstract int invoked(GUnit gUnit);
 }

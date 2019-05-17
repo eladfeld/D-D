@@ -1,5 +1,7 @@
 package LogicLayer.Enemies;
 import InterfaceLayer.Moves.RandomGenerator;
+import LogicLayer.GUnit;
+import LogicLayer.Player;
 import LogicLayer.gameObject;
 
 public class Trap extends Enemy {
@@ -56,8 +58,15 @@ public class Trap extends Enemy {
 
 
     }
+    public int invoked(Enemy enemy){
+        return 1;
+    }
+    public int invoked(Player player){
+        return 2;
+    }
 
     private void reSpawn(RandomGenerator RG) {
+        int random
 
 
 

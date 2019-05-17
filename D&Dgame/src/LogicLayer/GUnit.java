@@ -71,13 +71,16 @@ public abstract class GUnit extends gameObject{
 
     public GUnit(int x, int y,String name ,int HP ,int DP , int AP , gameObject[][] board ){
        super(x,y);
-        isAlive = true;
+        Alive = true;
         name = name;
         HP = HP;
         currHP = HP;
         DP = DP;
         AP = AP;
         board = board;
+    }
+    public int invoke(int x , int y){
+       return board[x][y].invoked(this);
     }
 
 }

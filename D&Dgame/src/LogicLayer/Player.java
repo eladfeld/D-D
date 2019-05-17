@@ -4,14 +4,32 @@ public abstract class Player extends GUnit {
 
     int exp;
     int level;
+
+    //region Getters and Setters
     public boolean isAlive() {
-        return isAlive;
+        return Alive;
     }
 
+    public int getExp() {
+        return exp;
+    }
 
-    public Player(int x, int y,String name ,int HP ,int DP , int AP , gameObject[][] board){
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    //endregion
+
+    public Player(int x, int y, String name , int HP , int DP , int AP , gameObject[][] board){
         super(x,y,name,HP,DP,AP,board);
-        isAlive = true;
+        Alive = true;
         exp = 0;
         level = 1;
     }
@@ -27,7 +45,7 @@ public abstract class Player extends GUnit {
     }
 
     public String toString(){
-        if(isAlive)return "@";
+        if(Alive)return "@";
         return "X";
     }
 
