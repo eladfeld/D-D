@@ -6,7 +6,7 @@ public abstract class GUnit extends gameObject{
     String name;
     gameObject[][] board;
     int y , x ,currHP ,HP ,DP ,AP;
-    boolean isAlive;
+    boolean Alive;
 
     //region Getters and Setters
     public gameObject[][] getBoard() {
@@ -18,11 +18,11 @@ public abstract class GUnit extends gameObject{
     }
 
     public boolean isAlive() {
-        return isAlive;
+        return Alive;
     }
 
     public void setAlive(boolean alive) {
-        isAlive = alive;
+        Alive = alive;
     }
 
     public String getName() {
@@ -68,7 +68,6 @@ public abstract class GUnit extends gameObject{
 
     //endregion
 
-    public abstract void gameTick(RandomGenerator RG);
 
     public GUnit(int x, int y,String name ,int HP ,int DP , int AP , gameObject[][] board ){
        super(x,y);

@@ -14,8 +14,7 @@ public class Enemy extends GUnit {
         tile=tile;
 
     }
-    
-    @Override
+
     public void gameTick(RandomGenerator RG) {
 
     }

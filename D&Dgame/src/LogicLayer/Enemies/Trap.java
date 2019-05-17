@@ -37,7 +37,7 @@ public class Trap extends Enemy {
                 int AP,int expValue , char tile ,int inSight ,
                 int range ,int reSpawn , int visTime , gameObject[][] board)
     {
-        super(x,y,name,HP,DP,AP,expValue,tile,inSight,board);
+        super(x,y,name,HP,DP,AP,expValue,tile,board);
         range=range;
         reSpawn=reSpawn;
         visTime=visTime;
@@ -49,7 +49,7 @@ public class Trap extends Enemy {
         if(wait >= visTime)visible = false;
         if(wait >= reSpawn){
             visible = true;
-            reSpawn();
+            reSpawn(RG);
             wait = 0;
         }
         else wait++;
@@ -57,7 +57,9 @@ public class Trap extends Enemy {
 
     }
 
-    private void reSpawn() {
+    private void reSpawn(RandomGenerator RG) {
+
+
 
     }
 }
