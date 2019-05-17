@@ -13,6 +13,7 @@ public class Monster extends Enemy {
     }
     public int invoked(Enemy enemy){
         return 1;
+
     }
 
 }
