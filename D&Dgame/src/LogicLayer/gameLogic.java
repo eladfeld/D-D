@@ -58,7 +58,38 @@ public class gameLogic {
    }
 
    private gameObject[][] levelProccesor(char[][] board) {
-      //need to implement!!!!
+      char c;
+	  int width =  board.length;
+	  int length = board[0].length;
+	  GameObject[][] output = new GameObject[width][length];
+      for(int i=0 ; i<width ; i++) {
+    	  for(int j=0 ; j<length ; j++) {
+    		  c = board[i][j];
+    		  GameObject GO;
+    		  swicth(c){
+    			  case '.': GO = new FreeSpace(i,j);
+    			  case '#': GO =  new Wall(i,j);
+    			  case '@': GO =  new Player(i,j);
+    			  case 'X': GO =  new DeadPlayer(i,j);
+    			  
+    			  case 's': GO =  new LannisterSoldier(i,j);
+    			  case 'k': GO =  new LannisterKnight(i,j);
+    			  case 'q': GO =  new QueensGuard(i,j);
+    			  case 'z': GO =  new Wright(i,j);
+    			  case 'b': GO =  new BearWright(i,j);
+    			  case 'g': GO =  new GiantWright(i,j);
+    			  case 'w': GO =  new WhiteWalker(i,j);
+    			  case 'M': GO =  new TheMountain(i,j);
+    			  case 'C': GO =  new QueenCersei(i,j);
+    			  case 'K': GO =  new NightsKing(i,j);
+    			  
+    			  case 'B': GO =  new BonusTrap(i,j);
+    			  case 'Q': GO =  new QueensTrap(i,j);
+    			  case 'D': GO =  new DeathTrap(i,j);
+    		  }
+    	  }
+      }
+	   //need to implement!!!!
       return null;
    }
 
