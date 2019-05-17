@@ -10,6 +10,9 @@ public class DeterAction implements ActionReader {
         index = -1;
     }
     @Override
+    public boolean hasNext(){
+        return index < Actions.length -1;
+    }
     public String nextAction() {
         index++;
         return Actions[index];

@@ -19,15 +19,45 @@ public class gameLogic {
    }
 
 
-   public gameLogic(ActionReader AR , RandomGenerator RG ,File level , int height){
+   public gameLogic(ActionReader AR , RandomGenerator RG ,char[][] level , int height){
       enemies = new LinkedList<GUnit>();
       activeGame = true;
       playerMove=AR;
       enemyMove=RG;
-      board=levelProccesor(level , height);
+      board=levelProccesor(char[][] level);
+      player = askForPlayerType(AR);
    }
 
-   private gameObject[][] levelProccesor(File level , int height) {
+   private Player askForPlayerType(ActionReader ar) {
+      int choose;
+      try{
+         choose = Integer.parseInt(ar.nextAction());
+      }catch (Exception e){
+         e.printStackTrace();
+      }
+
+
+      Player output = null;
+      switch (choose){
+            case 1:
+            //need to impliment
+            break;
+            case 2:
+            //need to impliment
+            break;
+
+            case 3:
+            //need to impliment
+            break;
+
+            case 4:
+            //need to impliment
+            break;
+
+      return output;
+   }
+
+   private gameObject[][] levelProccesor(char[][] board) {
       //need to implement!!!!
       return null;
    }

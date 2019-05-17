@@ -1,9 +1,9 @@
 package InterfaceLayer.Moves;
 
-public class DeterTick implements RandomGenerator {
+public class DeterNum implements RandomGenerator {
     int[] Random;
     int index;
-    public DeterTick(int[] Random){
+    public DeterNum(int[] Random){
         Random=Random;
         index=-1;
     }
@@ -11,5 +11,10 @@ public class DeterTick implements RandomGenerator {
     public int nextInt(int n) {
         index++;
         return Random[index];
+    }
+
+    @Override
+    public boolean hasNext() {
+        return index < Random.length -1;
     }
 }
