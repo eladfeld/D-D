@@ -83,7 +83,7 @@ public class gameLogic {
     			  case 'C': GO =  new Monster(i,j, "Queen Cersei", 100, 10, 10, 1000, c, 1);
     			  case 'K': GO =  new Monster(i,j, "Night's King", 5000, 150, 300, 5000, c, 8);
     			  
-    			  case 'B': GO =  new Trap(i,j,"Bonus Trap", 1, 1, 1, 26);
+    			  case 'B': GO =  new Trap(i,j,"Bonus Trap", 1, 1, 1, c, 26);
     			  case 'Q': GO =  new QueensTrap(i,j);
     			  case 'D': GO =  new DeathTrap(i,j);
     		  }
