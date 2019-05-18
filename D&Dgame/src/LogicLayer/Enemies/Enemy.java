@@ -57,6 +57,12 @@ public class Enemy extends GUnit {
     public int invoked(Player player){
         return 2;
     }
+    protected Double distanceFrom(gameObject GO) {
+    	int dx = getX()-GO.getX();
+    	int dy = getX()-GO.getY();
+    	int radicand = (dx*dx)+(dy*dy);
+    	return Math.sqrt(radicand);
+    }
 
 }
 
