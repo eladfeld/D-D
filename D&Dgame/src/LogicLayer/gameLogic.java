@@ -123,7 +123,7 @@ public class gameLogic {
                                     break;
 
                                 case 'B':
-                                    GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, c, 26, output);
+                                    GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, c, 250, 5, 2,6, output);
                                     break;
                                 case 'Q':
                                     GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6, 2, output);
