@@ -74,6 +74,7 @@ public class gameLogic {
                         for (int j = 0; j < length; j++) {
                             c = board[i][j];
                             gameObject GO;
+                            boolean isEnemy = false;
                             switch (c) {
                                 case '.':
                                     GO = new FreeSpace(i, j);
@@ -91,48 +92,48 @@ public class gameLogic {
                                     break;
 
                                 case 's':
-                                    GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output);
+                                    GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output); isEnemy = true;
                                     break;
                                 case 'k':
-                                    GO = new Monster(i, j, "Lannister Knight", 200, 8, 14, 50, c, 4, output);
+                                    GO = new Monster(i, j, "Lannister Knight", 200, 8, 14, 50, c, 4, output); isEnemy = true;
                                     break;
                                 case 'q':
-                                    GO = new Monster(i, j, "Queen's Guard", 400, 15, 20, 100, c, 5, output);
+                                    GO = new Monster(i, j, "Queen's Guard", 400, 15, 20, 100, c, 5, output); isEnemy = true;
                                     break;
                                 case 'z':
-                                    GO = new Monster(i, j, "Wright", 600, 15, 30, 100, c, 3, output);
+                                    GO = new Monster(i, j, "Wright", 600, 15, 30, 100, c, 3, output); isEnemy = true;
                                     break;
                                 case 'b':
-                                    GO = new Monster(i, j, "Bear Wright", 1000, 30, 75, 250, c, 4, output);
+                                    GO = new Monster(i, j, "Bear Wright", 1000, 30, 75, 250, c, 4, output); isEnemy = true;
                                     break;
                                 case 'g':
-                                    GO = new Monster(i, j, "Giant Wright", 1500, 40, 100, 500, c, 5, output);
+                                    GO = new Monster(i, j, "Giant Wright", 1500, 40, 100, 500, c, 5, output); isEnemy = true;
                                     break;
                                 case 'w':
-                                    GO = new Monster(i, j, " White Walker", 2000, 50, 150, 1000, c, 6, output);
+                                    GO = new Monster(i, j, " White Walker", 2000, 50, 150, 1000, c, 6, output); isEnemy = true;
                                     break;
                                 case 'M':
-                                    GO = new Monster(i, j, "The Mountain", 1000, 25, 60, 500, c, 6, output);
+                                    GO = new Monster(i, j, "The Mountain", 1000, 25, 60, 500, c, 6, output); isEnemy = true;
                                     break;
                                 case 'C':
-                                    GO = new Monster(i, j, "Queen Cersei", 100, 10, 10, 1000, c, 1, output);
+                                    GO = new Monster(i, j, "Queen Cersei", 100, 10, 10, 1000, c, 1, output); isEnemy = true;
                                     break;
                                 case 'K':
-                                    GO = new Monster(i, j, "Night's King", 5000, 150, 300, 5000, c, 8, output);
+                                    GO = new Monster(i, j, "Night's King", 5000, 150, 300, 5000, c, 8, output); isEnemy = true;
                                     break;
 
                                 case 'B':
-                                    GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, c, 250, 5, 2,6, output);
+                                    GO = new Trap(i, j, "Bonus Trap", 1, 1, 1,250, c, 5, 2,6, output); isEnemy = true;
                                     break;
                                 case 'Q':
-                                    GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6,  output);
+                                    GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6,  output); isEnemy = true;
                                     break;
                                 case 'D':
-                                    GO = new Trap(i, j, "Death Trap", 500, 20, 100, 250, c, 6, 10, 3, output);
+                                    GO = new Trap(i, j, "Death Trap", 500, 20, 100, 250, c, 6, 10, 3, output); isEnemy = true;
                                     break;
                             }
                             output[i][j] = GO;
-                            if (GO.isEnemy()) enemies.add(GO); //adds to enemy list
+                            if (isEnemy) enemies.add((Enemy)GO); //adds to enemy list
                         }
                     }
                     return output;
