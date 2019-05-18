@@ -2,10 +2,9 @@ package LogicLayer;
 
 import InterfaceLayer.Moves.*;
 import LogicLayer.Enemies.*;
+import LogicLayer.Players.Player;
 
 
-
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -140,13 +139,13 @@ public class gameLogic {
                 }
 
                 public void gameTick (){
-                    player.gameTick();
+                    player.gameTick(playerMove ,enemyMove );
                     for (int i = 0; i < enemies.size(); i++) {
                         GUnit enemy = enemies.get(i);
-                        if (enemy.isAlive) enemy.gameTick();
+                        if (enemy.Alive) enemy.gameTick(enemyMove);
                         else enemies.remove(i);
                     }
-                    activeGame = player.isAlive;
+                    activeGame = player.Alive;
                 }
             }
         }

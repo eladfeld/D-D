@@ -1,8 +1,10 @@
 package LogicLayer;
 
+import InterfaceLayer.Moves.RandomGenerator;
+
 public abstract class gameObject {
-    int x;
-    int y;
+    private int x;
+    private int y;
 
     //region Getters and Setters
     public int getX() {
@@ -26,9 +28,14 @@ public abstract class gameObject {
         x=x;
         y=y;
     }
-   public String toString(){
-        return ".";
-   }
 
     public abstract int invoked(GUnit gUnit);
+
+    public String toString(){
+        return ".";
+    }
+
+    public  void spelled(RandomGenerator RG ,int spellPwr){
+
+    }
 }

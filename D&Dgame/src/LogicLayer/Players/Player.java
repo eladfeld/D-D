@@ -1,14 +1,16 @@
-package LogicLayer;
+package LogicLayer.Players;
+
+import InterfaceLayer.Moves.RandomGenerator;
+import LogicLayer.Enemies.Enemy;
+import LogicLayer.GUnit;
+import LogicLayer.gameObject;
 
 public abstract class Player extends GUnit {
 
-    int exp;
-    int level;
+    private int exp;
+    private int level;
 
     //region Getters and Setters
-    public boolean isAlive() {
-        return Alive;
-    }
 
     public int getExp() {
         return exp;
@@ -29,24 +31,42 @@ public abstract class Player extends GUnit {
 
     public Player(int x, int y, String name , int HP , int DP , int AP , gameObject[][] board){
         super(x,y,name,HP,DP,AP,board);
-        Alive = true;
         exp = 0;
         level = 1;
     }
+    public void defence(GUnit gUnit, int nextInt) {
+
+    }
+
+    public abstract void special(RandomGenerator RG);
 
     public void levelUp(){
         exp = exp - level*50;
         level++;
-        HP = HP + 10*level;
-        currHP = HP;
-        AP = AP + level*5;
-        DP = DP + level*2;
+        setHP(getHP() + 10*level);
+        setCurrHP(getHP());
+        setAP(getAP() + level*5) ;
+        setDP(getDP() + level*2);
 
+    }
+    @Override
+    public int invoked(GUnit gUnit) {
+        return 0;
+    }
+
+    public int invoked(Enemy enemy) {
+        return 2;
     }
 
     public String toString(){
-        if(Alive)return "@";
+        if(isAlive())return "@";
         return "X";
+    }
+    public String getPlayerStatus(){
+        return getName() + "             Health: " +getCurrHP() +
+                "          Attack damage:" + getAP() + "          Defence:" +
+                getDP() + '\n'+  "           level: " + getLevel() + "          Experience" +
+                getExp() + "/" + getLevel()*50;
     }
 
 }
