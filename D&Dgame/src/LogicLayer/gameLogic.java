@@ -26,7 +26,7 @@ public class gameLogic {
     }
 
 
-    public gameLogic(ActionReader AR, RandomGenerator RG, char[][] level, int height) {
+    public gameLogic(ActionReader AR, RandomGenerator RG, char[][] level) {
         enemies = new LinkedList<Enemy>();
         activeGame = true;
         playerMove = AR;
@@ -46,26 +46,26 @@ public class gameLogic {
         switch (choose) {
 
             case 1:
-                player = new Warrior(0,0,"Jon Snow",300,4,30,board,6);
+                player = new Warrior(0, 0, "Jon Snow", 300, 4, 30, board, 6);
                 break;
             case 2:
-                player = new Warrior(0,0,"The hound" , 400,6,20,board,4);
+                player = new Warrior(0, 0, "The hound", 400, 6, 20, board, 4);
                 break;
 
             case 3:
-                player = new Mage(0,0,"Malisandre",160,1,10,board,40,300,30,5,6);
+                player = new Mage(0, 0, "Malisandre", 160, 1, 10, board, 40, 300, 30, 5, 6);
                 break;
             case 4:
-                player = new Mage(0,0,"Thoros of Myr",250 ,3,25,board,15,150,50,3,3);
+                player = new Mage(0, 0, "Thoros of Myr", 250, 3, 25, board, 15, 150, 50, 3, 3);
                 break;
             case 5:
-                player = new Rogue(0,0,"arya stark",150,2,40,board,20);
+                player = new Rogue(0, 0, "arya stark", 150, 2, 40, board, 20);
             case 6:
-                player = new Rogue(0,0,"Bronn",250,3,35,board,60);
-
+                player = new Rogue(0, 0, "Bronn", 250, 3, 35, board, 60);
+        }
     }
 
-                aprivate gameObject[][] levelProccesor (char[][] board, Player player){
+                private gameObject[][] levelProccesor (char[][] board, Player player){
                     char c;
                     int width = board.length;
                     int length = board[0].length;
@@ -125,7 +125,7 @@ public class gameLogic {
                                     GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, c, 250, 5, 2,6, output);
                                     break;
                                 case 'Q':
-                                    GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6, 2, output);
+                                    GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6,  output);
                                     break;
                                 case 'D':
                                     GO = new Trap(i, j, "Death Trap", 500, 20, 100, 250, c, 6, 10, 3, output);

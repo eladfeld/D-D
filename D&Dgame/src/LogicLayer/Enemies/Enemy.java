@@ -2,6 +2,7 @@ package LogicLayer.Enemies;
 
 import InterfaceLayer.Moves.RandomGenerator;
 import LogicLayer.*;
+import LogicLayer.Players.Player;
 
 public class Enemy extends GUnit {
     int expValue;
@@ -50,7 +51,13 @@ public class Enemy extends GUnit {
     public int invoked(GUnit gUnit) {
         return 0;
     }
-
+    public int invoked(Enemy enemy){
+        return 3;
+    }
+    public int invoked(Player player){
+        return 2;
+    }
 
 }
+
 

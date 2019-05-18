@@ -1,5 +1,6 @@
 package LogicLayer.Enemies;
 import InterfaceLayer.Moves.RandomGenerator;
+import LogicLayer.FreeSpace;
 import LogicLayer.Players.Player;
 import LogicLayer.gameObject;
 
