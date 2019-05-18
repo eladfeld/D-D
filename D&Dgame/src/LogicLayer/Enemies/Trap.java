@@ -1,13 +1,12 @@
 package LogicLayer.Enemies;
 import InterfaceLayer.Moves.RandomGenerator;
-import LogicLayer.GUnit;
-import LogicLayer.Player;
+import LogicLayer.Players.Player;
 import LogicLayer.gameObject;
 
 public class Trap extends Enemy {
-    int range , reSpawn, visTime;
-    int wait = 0;
-    boolean visible;
+    private int range , reSpawn, visTime;
+    private int wait = 0;
+    private boolean visible;
 
     //region Getters and Setters
     public int getRange() {
@@ -36,8 +35,8 @@ public class Trap extends Enemy {
     //endregion
 
     public Trap(int x, int y, String name, int HP , int DP ,
-                int AP,int expValue , char tile ,int inSight ,
-                int range ,int reSpawn , int visTime , gameObject[][] board)
+                int AP,int expValue , char tile ,int range ,
+                int reSpawn , int visTime , gameObject[][] board)
     {
         super(x,y,name,HP,DP,AP,expValue,tile,board);
         range=range;
@@ -66,8 +65,21 @@ public class Trap extends Enemy {
     }
 
     private void reSpawn(RandomGenerator RG) {
-
-
-
+        int newX = this.getX();
+        int newY = this.getY();
+        int interaction = 3;
+        while(interaction != 1) {
+            if (RG.hasNext()) newX =this.getX() + RG.nextInt(2 * range) - range;
+            if (RG.hasNext()) newY =this.getY() + RG.nextInt(2 * range) - range;
+            interaction = invoke(newX,newY);
+        }
+        wait=0;
+        visible =true;
+        gameObject[][] board = getBoard();
+        board[getX()][getY()] = new FreeSpace(getY(),getY());
+        setX(newX);
+        setY(newY);
+        board[getX()][getY()] = this;
     }
+
 }

@@ -1,8 +1,11 @@
 package LogicLayer.Enemies;
 
+
 import LogicLayer.Enemies.Enemy;
 import InterfaceLayer.Moves.RandomGenerator;
+
 import LogicLayer.*;
+import LogicLayer.Players.Player;
 
 public class Monster extends Enemy {
 	

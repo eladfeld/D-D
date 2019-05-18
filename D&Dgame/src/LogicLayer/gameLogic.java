@@ -2,10 +2,12 @@ package LogicLayer;
 
 import InterfaceLayer.Moves.*;
 import LogicLayer.Enemies.*;
+import LogicLayer.Players.Mage;
+import LogicLayer.Players.Player;
+import LogicLayer.Players.Rogue;
+import LogicLayer.Players.Warrior;
 
 
-
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,44 +31,41 @@ public class gameLogic {
         activeGame = true;
         playerMove = AR;
         enemyMove = RG;
-        player = askForPlayerType(AR);
+        askForPlayerType(AR);
         board = levelProccesor(level , player);
 
     }
 
-    private Player askForPlayerType(ActionReader ar) {
+    private void askForPlayerType(ActionReader ar) {
         int choose = 0;
         try {
             choose = Integer.parseInt(ar.nextAction());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        Player output = null;
         switch (choose) {
 
             case 1:
-                //need to impliment
+                player = new Warrior(0,0,"Jon Snow",300,4,30,board,6);
                 break;
             case 2:
-                //need to impliment
+                player = new Warrior(0,0,"The hound" , 400,6,20,board,4);
                 break;
 
             case 3:
-                //need to impliment
+                player = new Mage(0,0,"Malisandre",160,1,10,board,40,300,30,5,6);
                 break;
-
             case 4:
-
-                //need to impliment
+                player = new Mage(0,0,"Thoros of Myr",250 ,3,25,board,15,150,50,3,3);
                 break;
+            case 5:
+                player = new Rogue(0,0,"arya stark",150,2,40,board,20);
+            case 6:
+                player = new Rogue(0,0,"Bronn",250,3,35,board,60);
 
-        }
-        return output;
     }
 
-                private gameObject[][] levelProccesor (char[][] board, Player player){
+                aprivate gameObject[][] levelProccesor (char[][] board, Player player){
                     char c;
                     int width = board.length;
                     int length = board[0].length;
@@ -140,13 +139,13 @@ public class gameLogic {
                 }
 
                 public void gameTick (){
-                    player.gameTick();
+                    player.gameTick(playerMove ,enemyMove );
                     for (int i = 0; i < enemies.size(); i++) {
                         GUnit enemy = enemies.get(i);
-                        if (enemy.isAlive) enemy.gameTick();
+                        if (enemy.isAlive()) enemy.gameTick(enemyMove);
                         else enemies.remove(i);
                     }
-                    activeGame = player.isAlive;
+                    activeGame = player.isAlive();
                 }
             }
         }

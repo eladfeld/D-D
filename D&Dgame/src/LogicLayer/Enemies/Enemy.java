@@ -7,7 +7,34 @@ public class Enemy extends GUnit {
     int expValue;
     private char tile;
     int inSight;
-    public Enemy(int x, int y,String name ,int HP ,int DP , int AP , int expValue , char tile, gameObject[][] board ){
+
+    //region Getters and Setters
+    public int getExpValue() {
+        return expValue;
+    }
+
+    public void setExpValue(int expValue) {
+        this.expValue = expValue;
+    }
+
+    public char getTile() {
+        return tile;
+    }
+
+    public void setTile(char tile) {
+        this.tile = tile;
+    }
+
+    public int getInSight() {
+        return inSight;
+    }
+
+    public void setInSight(int inSight) {
+        this.inSight = inSight;
+    }
+    //endregion
+
+    public Enemy(int x, int y, String name , int HP , int DP , int AP , int expValue , char tile, gameObject[][] board ){
         super(x,y,name,HP,DP,AP,board);
         expValue=expValue;
         inSight=inSight;
@@ -23,5 +50,7 @@ public class Enemy extends GUnit {
     public int invoked(GUnit gUnit) {
         return 0;
     }
+
+
 }
 
