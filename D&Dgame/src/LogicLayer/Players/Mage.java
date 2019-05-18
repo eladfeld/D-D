@@ -60,11 +60,11 @@ public class Mage extends Player {
     //endregion
 
     public Mage(int x, int y, String name , int HP , int DP , int AP , gameObject[][] board,
-                int spellPwr , int MP, int currMana, int cost , int hitTimes , int range){
+                int spellPwr , int MP, int cost , int hitTimes , int range){
         super(x,y,name,HP,DP,AP,board);
         spellPwr=spellPwr;
         MP=MP;
-        currMana=currMana;
+        currMana=MP;
         cost=cost;
         hitTimes=hitTimes;
         range=range;
