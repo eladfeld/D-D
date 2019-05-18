@@ -47,7 +47,7 @@ public class Trap extends Enemy {
     }
 
     @Override
-    public void gameTick(RandomGenerator RG) {
+    public void turn(RandomGenerator RG) {
         if(wait >= visTime)visible = false;
         if(wait >= reSpawn){
             visible = true;
@@ -60,9 +60,6 @@ public class Trap extends Enemy {
     }
     public int invoked(Enemy enemy){
         return 1;
-    }
-    public int invoked(Player player){
-        return 2;
     }
 
     private void reSpawn(RandomGenerator RG) {

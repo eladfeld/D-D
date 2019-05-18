@@ -4,7 +4,7 @@ import InterfaceLayer.Moves.RandomGenerator;
 import LogicLayer.*;
 import LogicLayer.Players.Player;
 
-public class Enemy extends GUnit {
+public abstract class Enemy extends GUnit {
     int expValue;
     private char tile;
     int inSight;
@@ -43,10 +43,6 @@ public class Enemy extends GUnit {
 
     }
 
-    public void gameTick(RandomGenerator RG) {
-
-    }
-
     @Override
     public int invoked(GUnit gUnit) {
         return 0;
@@ -57,6 +53,7 @@ public class Enemy extends GUnit {
     public int invoked(Player player){
         return 2;
     }
+    public abstract void turn(RandomGenerator RG);
 
 }
 

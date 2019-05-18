@@ -1,5 +1,6 @@
 package LogicLayer;
 
+import InterfaceLayer.Moves.ActionReader;
 import InterfaceLayer.Moves.RandomGenerator;
 
 public abstract class GUnit extends gameObject{
@@ -82,21 +83,20 @@ public abstract class GUnit extends gameObject{
     public int invoke(int x , int y){
        return board[x][y].invoked(this);
     }
-    public void attack(GUnit defencer,RandomGenerator RG){
-        if(RG.hasNext())
-        defencer.defence(RG,RG.nextInt(AP));
-    }
 
     @Override
     public  void spelled(RandomGenerator RG ,int spellPwr) {
         defence(RG,spellPwr);
+    }
+    public void attack(gameObject defencer,RandomGenerator RG){
+        if(RG.hasNext())
+            defencer.defence(RG,RG.nextInt(AP));
     }
 
     public void defence(RandomGenerator RG ,int attack){
         currHP = currHP -(RG.nextInt(DP)-attack);
         if(currHP <= 0 )Alive = false;
     }
-
 
 
 }

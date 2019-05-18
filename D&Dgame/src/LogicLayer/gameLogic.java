@@ -15,7 +15,7 @@ import java.util.List;
 
 public class gameLogic {
     private ActionReader playerMove;
-    private RandomGenerator enemyMove;
+    private RandomGenerator RandomNum;
     private gameObject[][] board;
     private List<Enemy> enemies;
     private Player player = null;
@@ -30,7 +30,7 @@ public class gameLogic {
         enemies = new LinkedList<Enemy>();
         activeGame = true;
         playerMove = AR;
-        enemyMove = RG;
+        RandomNum = RG;
         askForPlayerType(AR);
         board = levelProccesor(level , player);
 
@@ -139,10 +139,10 @@ public class gameLogic {
                 }
 
                 public void gameTick (){
-                    player.gameTick(playerMove ,enemyMove );
+                    player.turn(playerMove ,randomNum );
                     for (int i = 0; i < enemies.size(); i++) {
                         GUnit enemy = enemies.get(i);
-                        if (enemy.isAlive()) enemy.gameTick(enemyMove);
+                        if (enemy.isAlive()) enemy.turn(randomNum);
                         else enemies.remove(i);
                     }
                     activeGame = player.isAlive();

@@ -35,6 +35,8 @@ public abstract class gameObject {
         return ".";
     }
 
+    public abstract void defence(RandomGenerator RG , int attack);
+
     public  void spelled(RandomGenerator RG ,int spellPwr){
 
     }
