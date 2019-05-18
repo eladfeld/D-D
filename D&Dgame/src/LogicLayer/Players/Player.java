@@ -9,8 +9,8 @@ import LogicLayer.gameObject;
 
 public abstract class Player extends GUnit {
 
-    private int exp;
-    private int level;
+    protected int exp;
+    protected int level;
 
     //region Getters and Setters
 
@@ -60,14 +60,14 @@ public abstract class Player extends GUnit {
     }
 
     public void moveLeft(RandomGenerator RG) {
-        int interaction = invoke(getX() - 1, getY());
+        int interaction = invoke(x - 1, y);
         switch (interaction) {
             case 1:
-                getBoard()[getX()][getY()] = new FreeSpace(getX(), getY());
-                getBoard()[getX() - 1][getY()] = this;
+                board[x][y] = new FreeSpace(x, y);
+                board[x - 1][y] = this;
                 break;
             case 2:
-                attack(getBoard()[getX() - 1][getY()], RG);
+                attack(board[x - 1][y], RG);
                 break;
             case 3:
                 break;
@@ -75,14 +75,14 @@ public abstract class Player extends GUnit {
     }
 
     public void moveRight(RandomGenerator RG) {
-        int interaction = invoke(getX() + 1, getY());
+        int interaction = invoke(x + 1, y);
         switch (interaction) {
             case 1:
-                getBoard()[getX()][getY()] = new FreeSpace(getX(), getY());
-                getBoard()[getX() + 1][getY()] = this;
+                board[x][y] = new FreeSpace(x, y);
+                board[x + 1][y] = this;
                 break;
             case 2:
-                attack(getBoard()[getX() + 1][getY()], RG);
+                attack(board[x + 1][y], RG);
                 break;
             case 3:
                 break;
@@ -90,14 +90,14 @@ public abstract class Player extends GUnit {
     }
 
     public void moveUp(RandomGenerator RG) {
-        int interaction = invoke(getX(), getY() - 1);
+        int interaction = invoke(x, y - 1);
         switch (interaction) {
             case 1:
-                getBoard()[getX()][getY()] = new FreeSpace(getX(), getY());
-                getBoard()[getX()][getY() - 1] = this;
+                board[x][y] = new FreeSpace(x, y);
+                board[x][y - 1] = this;
                 break;
             case 2:
-                attack(getBoard()[getX()][getY() - 1], RG);
+                attack(board[x][y - 1], RG);
                 break;
             case 3:
                 break;
@@ -105,14 +105,14 @@ public abstract class Player extends GUnit {
     }
 
     public void moveDown(RandomGenerator RG) {
-        int interaction = invoke(getX(), getY() + 1);
+        int interaction = invoke(x, y + 1);
         switch (interaction) {
             case 1:
-                getBoard()[getX()][getY()] = new FreeSpace(getX(), getY());
-                getBoard()[getX()][getY() + 1] = this;
+                board[x][y] = new FreeSpace(x, y);
+                board[x][y + 1] = this;
                 break;
             case 2:
-                attack(getBoard()[getX()][getY() + 1], RG);
+                attack(board[x][y + 1], RG);
                 break;
             case 3:
                 break;
@@ -125,10 +125,10 @@ public abstract class Player extends GUnit {
     public void levelUp() {
         exp = exp - level * 50;
         level++;
-        setHP(getHP() + 10 * level);
-        setCurrHP(getHP());
-        setAP(getAP() + level * 5);
-        setDP(getDP() + level * 2);
+        HP = HP + 10 * level;
+        currHP = HP;
+        AP = AP + level * 5;
+        DP = DP + level * 2;
 
     }
 
@@ -142,15 +142,15 @@ public abstract class Player extends GUnit {
     }
 
     public String toString() {
-        if (isAlive()) return "@";
+        if (Alive) return "@";
         return "X";
     }
 
     public String getPlayerStatus() {
-        return getName() + "             Health: " + getCurrHP() +
-                "          Attack damage:" + getAP() + "          Defence:" +
-                getDP() + '\n' + "           level: " + getLevel() + "          Experience" +
-                getExp() + "/" + getLevel() * 50;
+        return name + "             Health: " + currHP +
+                "          Attack damage:" + AP + "         Defence:" +
+                DP + '\n' + "           level: " + level + "          Experience" +
+                exp + "/" + level * 50;
     }
 
 }

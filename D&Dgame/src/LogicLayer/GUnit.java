@@ -4,10 +4,10 @@ import InterfaceLayer.Moves.ActionReader;
 import InterfaceLayer.Moves.RandomGenerator;
 
 public abstract class GUnit extends gameObject{
-    private String name;
-    private gameObject[][] board;
-    private int y , x ,currHP ,HP ,DP ,AP;
-    private boolean Alive;
+    protected String name;
+    protected gameObject[][] board;
+    protected int y , x ,currHP ,HP ,DP ,AP;
+    protected boolean Alive;
 
     //region Getters and Setters
     public gameObject[][] getBoard() {

@@ -30,8 +30,8 @@ public class Monster extends Enemy {
     	Double distance = this.distanceFrom(player);
     	if( distance.equals(1.0)) {attack((GUnit)player, RG);}
     	else if(distance<=visionRange) {
-    		dx = this.getX()-player.getX();
-    		dy = this.getY()-player.getY();	
+    		dx = x - player.getX();
+    		dy = y - player.getY();
     		if(Math.abs(dx)>Math.abs(dy)) {
     			if(dx>0) move(-1,0);
     			else move(1,0);
@@ -47,7 +47,7 @@ public class Monster extends Enemy {
     		dx = move[0];
     		dy = move[1];
     		}
-    		while(invoke(getX()+dx ,getY()+dy ) != 1);
+    		while(invoke(x + dx ,y + dy ) != 1);
     	}
     	
     	
@@ -55,10 +55,10 @@ public class Monster extends Enemy {
 
 
     public void move(int dx, int dy) {
-    	getBoard()[getX()][getY()]= new FreeSpace(getX(),getY());
-    	getBoard()[getX()+dx][getY()+dy] = this;
-    	setX(getX()+dx);
-    	setY(getY()+dy);
+    	board[x][y]= new FreeSpace(x,y);
+    	board[x + dx][y + dy] = this;
+    	x = x + dx;
+    	y = y + dy;
 
     }
     
@@ -66,7 +66,7 @@ public class Monster extends Enemy {
     public int canMove(int dx, int dy) {
     	int output;
     	if(dx==dy)output = 0;
-    	else output = invoke(getX()+dx, getY()+dy);
+    	else output = invoke(x + dx, y + dy);
     	return output;
     	
     }

@@ -63,21 +63,20 @@ public class Trap extends Enemy {
     }
 
     private void reSpawn(RandomGenerator RG) {
-        int newX = this.getX();
-        int newY = this.getY();
+        int newX = x;
+        int newY = y;
         int interaction = 3;
         while(interaction != 1) {
-            if (RG.hasNext()) newX =this.getX() + RG.nextInt(2 * range) - range;
-            if (RG.hasNext()) newY =this.getY() + RG.nextInt(2 * range) - range;
+            if (RG.hasNext()) newX =y + RG.nextInt(2 * range) - range;
+            if (RG.hasNext()) newY =y + RG.nextInt(2 * range) - range;
             interaction = invoke(newX,newY);
         }
         wait=0;
         visible =true;
-        gameObject[][] board = getBoard();
-        board[getX()][getY()] = new FreeSpace(getY(),getY());
-        setX(newX);
-        setY(newY);
-        board[getX()][getY()] = this;
+        board[x][y] = new FreeSpace(x,y);
+        x = newX;
+        y = newY;
+        board[x][y] = this;
     }
 
 }

@@ -17,8 +17,8 @@ public class Warrior extends Player {
     @Override
     public void special(RandomGenerator RG) {
         if(remaining <= 0 ) {
-            if (getDP() * 2 + getCurrHP() <= getHP()) setCurrHP(getDP() * 2 + getHP());
-            else setCurrHP(getHP());
+            if (DP * 2 + currHP <= HP) currHP =DP * 2 + HP;
+            else currHP = HP;
             remaining = cooldown;
         }
     }
@@ -26,8 +26,8 @@ public class Warrior extends Player {
     public void levelUp(){
         super.levelUp();
         remaining = 0;
-        setHP(getHP() + 5* getLevel());
-        setDP(getDP() + getLevel());
+        HP = HP + 5* level;
+        DP = DP + level;
     }
     public String getPlayerStatus(){
         return super.getPlayerStatus() + "          Ability cooldown : " +cooldown +

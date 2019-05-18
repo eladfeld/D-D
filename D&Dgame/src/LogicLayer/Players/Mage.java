@@ -73,9 +73,9 @@ public class Mage extends Player {
     @Override
     public void levelUp() {
         super.levelUp();
-        MP = MP + 25*getLevel();
+        MP = MP + 25*level;
         currMana = Math.min(currMana+MP/4,MP);
-        spellPwr = spellPwr + 10* getLevel();
+        spellPwr = spellPwr + 10* level;
     }
 
     @Override
@@ -96,13 +96,13 @@ public class Mage extends Player {
 
     private List<gameObject> searchForEnemies() {   //need to test!!!!
         List<gameObject> output = new LinkedList<gameObject>();
-        int upperBound = Math.max(getY()-range ,0);
-        int lowerBoubd = Math.min(getY()+range,getBoard().length);
-        int leftBound = Math.max(getX()-range,0);
-        int rightBound = Math.min(getX()+range,getBoard()[0].length);
-        for (int i = upperBound;i <= lowerBoubd; i++){
+        int upperBound = Math.max(y-range ,0);
+        int lowerBound = Math.min(y+range,board.length);
+        int leftBound = Math.max(x-range,0);
+        int rightBound = Math.min(x+range,board[0].length);
+        for (int i = upperBound;i <= lowerBound; i++){
             for(int j =leftBound;j <=rightBound;j++){
-                if(invoke(j,i)==2)output.add(getBoard()[i][j]);
+                if(invoke(j,i)==2)output.add(board[i][j]);
             }
         }
 

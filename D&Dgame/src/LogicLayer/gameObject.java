@@ -3,8 +3,8 @@ package LogicLayer;
 import InterfaceLayer.Moves.RandomGenerator;
 
 public abstract class gameObject {
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
 
     //region Getters and Setters
     public int getX() {

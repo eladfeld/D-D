@@ -73,7 +73,7 @@ public class gameLogic {
                     for (int i = 0; i < width; i++) {
                         for (int j = 0; j < length; j++) {
                             c = board[i][j];
-                            gameObject GO;
+                            gameObject GO = null;
                             boolean isEnemy = false;
                             switch (c) {
                                 case '.':
@@ -139,16 +139,13 @@ public class gameLogic {
                     return output;
                 }
 
-                public void gameTick (){
-                    player.turn(playerMove ,randomNum );
+                public void gameTick () {
+                    player.turn(playerMove, RandomNum);
                     for (int i = 0; i < enemies.size(); i++) {
                         GUnit enemy = enemies.get(i);
-                        if (enemy.isAlive()) enemy.turn(randomNum);
+                        if (enemy.isAlive()) enemy.turn(RandomNum);
                         else enemies.remove(i);
                     }
                     activeGame = player.isAlive();
                 }
-            }
-        }
-    }
 }

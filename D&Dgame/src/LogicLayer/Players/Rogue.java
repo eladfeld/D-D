@@ -46,20 +46,20 @@ public class Rogue extends Player {
         else{
             currEnergy = currEnergy - cost;
             List<gameObject> enemies = searchForEnemies();
-            for (gameObject go: enemies) go.spelled(RG,RG.nextInt(getAP()));
+            for (gameObject go: enemies) go.spelled(RG,RG.nextInt(AP));
         }
 
 
     }
     private List<gameObject> searchForEnemies() {   //need to test!!!!
         List<gameObject> output = new LinkedList<gameObject>();
-        int upperBound = Math.max(getY()-1 ,0);
-        int lowerBoubd = Math.min(getY()+1,getBoard().length);
-        int leftBound = Math.max(getX()-1,0);
-        int rightBound = Math.min(getX()+1,getBoard()[0].length);
-        for (int i = upperBound;i <= lowerBoubd; i++){
+        int upperBound = Math.max(y-1 ,0);
+        int lowerBound = Math.min(y+1,board.length);
+        int leftBound = Math.max(x-1,0);
+        int rightBound = Math.min(x+1,board[0].length);
+        for (int i = upperBound;i <= lowerBound; i++){
             for(int j =leftBound;j <=rightBound;j++){
-                if((i != getY() | j!=getX()) && invoke(j,i)==2)output.add(getBoard()[i][j]);
+                if((i != y | j!=x) && invoke(j,i)==2)output.add(board[i][j]);
             }
         }
         return output;

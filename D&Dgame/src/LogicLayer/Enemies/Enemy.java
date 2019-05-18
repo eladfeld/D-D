@@ -55,8 +55,8 @@ public abstract class Enemy extends GUnit {
     }
     public abstract void turn(RandomGenerator RG);
     protected Double distanceFrom(gameObject GO) {
-    	int dx = getX()-GO.getX();
-    	int dy = getX()-GO.getY();
+    	int dx = x - GO.getX();
+    	int dy = x - GO.getY();
     	int radicand = (dx*dx)+(dy*dy);
     	return Math.sqrt(radicand);
     }
