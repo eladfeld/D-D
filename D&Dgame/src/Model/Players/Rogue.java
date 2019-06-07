@@ -1,7 +1,7 @@
-package LogicLayer.Players;
+package Model.Players;
 
-import InterfaceLayer.Moves.RandomGenerator;
-import LogicLayer.gameObject;
+import Controller.Moves.RandomGenerator;
+import Model.gameObject;
 
 import java.util.LinkedList;
 import java.util.List;

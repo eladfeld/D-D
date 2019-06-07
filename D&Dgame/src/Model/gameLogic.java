@@ -1,11 +1,11 @@
-package LogicLayer;
+package Model;
 
-import InterfaceLayer.Moves.*;
-import LogicLayer.Enemies.*;
-import LogicLayer.Players.Mage;
-import LogicLayer.Players.Player;
-import LogicLayer.Players.Rogue;
-import LogicLayer.Players.Warrior;
+import Controller.Moves.*;
+import Model.Enemies.*;
+import Model.Players.Mage;
+import Model.Players.Player;
+import Model.Players.Rogue;
+import Model.Players.Warrior;
 
 
 import java.util.LinkedList;

@@ -1,11 +1,11 @@
-package LogicLayer.Players;
+package Model.Players;
 
-import InterfaceLayer.Moves.ActionReader;
-import InterfaceLayer.Moves.RandomGenerator;
-import LogicLayer.Enemies.Enemy;
-import LogicLayer.FreeSpace;
-import LogicLayer.GUnit;
-import LogicLayer.gameObject;
+import Controller.Moves.ActionReader;
+import Controller.Moves.RandomGenerator;
+import Model.Enemies.Enemy;
+import Model.FreeSpace;
+import Model.GUnit;
+import Model.gameObject;
 
 public abstract class Player extends GUnit {
 
@@ -129,7 +129,7 @@ public abstract class Player extends GUnit {
         currHP = HP;
         AP = AP + level * 5;
         DP = DP + level * 2;
-
+        notifyObservers("Level up! details here...");
     }
 
     @Override

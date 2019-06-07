@@ -1,8 +1,9 @@
-package LogicLayer.Enemies;
+package Model.Enemies;
 
-import InterfaceLayer.Moves.RandomGenerator;
-import LogicLayer.*;
-import LogicLayer.Players.Player;
+import Controller.Moves.RandomGenerator;
+import Model.GUnit;
+import Model.Players.Player;
+import Model.gameObject;
 
 public abstract class Enemy extends GUnit {
     int expValue;

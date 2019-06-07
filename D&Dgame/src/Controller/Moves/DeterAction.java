@@ -1,6 +1,4 @@
-package InterfaceLayer.Moves;
-
-import InterfaceLayer.Moves.ActionReader;
+package Controller.Moves;
 
 public class DeterAction implements ActionReader {
     String [] Actions;

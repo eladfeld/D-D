@@ -1,6 +1,6 @@
-package LogicLayer;
+package Model;
 
-import InterfaceLayer.Moves.RandomGenerator;
+import Controller.Moves.RandomGenerator;
 
 public class Wall extends gameObject{
     int x,y;

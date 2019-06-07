@@ -1,11 +1,11 @@
-package LogicLayer;
+package Model;
 
-import InterfaceLayer.Moves.RandomGenerator;
+import Controller.Moves.RandomGenerator;
 
 public abstract class gameObject {
     protected int x;
     protected int y;
-
+    List<IObserver> observers;
     //region Getters and Setters
     public int getX() {
         return x;
@@ -39,5 +39,9 @@ public abstract class gameObject {
 
     public  void spelled(RandomGenerator RG ,int spellPwr){
 
+    }
+
+    protected void notifyObservers(String s) {
+        observers.forEach(o -> o.onEvent(s));
     }
 }

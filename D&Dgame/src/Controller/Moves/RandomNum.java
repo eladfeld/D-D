@@ -1,5 +1,4 @@
-package InterfaceLayer.Moves;
-import InterfaceLayer.Moves.RandomGenerator;
+package Controller.Moves;
 
 import java.util.Random;
 public class RandomNum implements RandomGenerator {

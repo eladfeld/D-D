@@ -1,4 +1,4 @@
-package LogicLayer;
+package Model;
 
 public class FreeSpace extends gameObject {
 

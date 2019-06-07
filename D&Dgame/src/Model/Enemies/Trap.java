@@ -1,8 +1,7 @@
-package LogicLayer.Enemies;
-import InterfaceLayer.Moves.RandomGenerator;
-import LogicLayer.FreeSpace;
-import LogicLayer.Players.Player;
-import LogicLayer.gameObject;
+package Model.Enemies;
+import Controller.Moves.RandomGenerator;
+import Model.FreeSpace;
+import Model.gameObject;
 
 public class Trap extends Enemy {
     private int range , reSpawn, visTime;

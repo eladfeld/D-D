@@ -1,11 +1,12 @@
-package LogicLayer.Enemies;
+package Model.Enemies;
 
 
-import LogicLayer.Enemies.Enemy;
-import LogicLayer.Players.Player;
-import InterfaceLayer.Moves.RandomGenerator;
+import Model.FreeSpace;
+import Model.GUnit;
+import Model.Players.Player;
+import Controller.Moves.RandomGenerator;
 
-import LogicLayer.*;
+import Model.gameObject;
 
 public class Monster extends Enemy {
 	

@@ -1,4 +1,4 @@
-package InterfaceLayer;
+package Controller;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -67,7 +67,7 @@ public class Proccesor{
             String st = br.readLine();
             int length = st.length();
             result = new char[height][length];
-            for (int i = 0; i < height; i++) {
+            for (int i = 1; i < height; i++) {
                 result[i] = st.toCharArray();
                 st = br.readLine();
             }

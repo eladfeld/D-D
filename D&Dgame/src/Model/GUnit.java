@@ -1,7 +1,6 @@
-package LogicLayer;
+package Model;
 
-import InterfaceLayer.Moves.ActionReader;
-import InterfaceLayer.Moves.RandomGenerator;
+import Controller.Moves.RandomGenerator;
 
 public abstract class GUnit extends gameObject{
     protected String name;

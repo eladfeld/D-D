@@ -1,8 +1,7 @@
-package LogicLayer.Players;
+package Model.Players;
 
-import InterfaceLayer.Moves.RandomGenerator;
-import LogicLayer.Enemies.Enemy;
-import LogicLayer.gameObject;
+import Controller.Moves.RandomGenerator;
+import Model.gameObject;
 import java.util.*;
 
 

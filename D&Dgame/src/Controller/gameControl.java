@@ -1,7 +1,7 @@
-package InterfaceLayer;
+package Controller;
 
-import InterfaceLayer.Moves.*;
-import LogicLayer.gameLogic;
+import Controller.Moves.*;
+import Model.gameLogic;
 
 import java.io.File;
 import java.io.IOException;

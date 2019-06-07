@@ -1,4 +1,4 @@
-package InterfaceLayer.Moves;
+package Controller.Moves;
 
 public class DeterNum implements RandomGenerator {
     int[] Random;
