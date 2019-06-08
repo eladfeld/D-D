@@ -61,12 +61,12 @@ public class Mage extends Player {
     public Mage(int x, int y, String name , int HP , int DP , int AP , gameObject[][] board,
                 int spellPwr , int MP, int cost , int hitTimes , int range){
         super(x,y,name,HP,DP,AP,board);
-        spellPwr=spellPwr;
-        MP=MP;
-        currMana=MP;
-        cost=cost;
-        hitTimes=hitTimes;
-        range=range;
+        this.spellPwr=spellPwr;
+        this.MP=MP;
+        this.currMana=MP;
+        this.cost=cost;
+        this.hitTimes=hitTimes;
+        this.range=range;
     }
 
     @Override
@@ -104,8 +104,6 @@ public class Mage extends Player {
                 if(invoke(j,i)==2)output.add(board[i][j]);
             }
         }
-
         return output;
-
     }
 }

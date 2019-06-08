@@ -15,7 +15,6 @@ public class FreePlay  implements ActionReader {
     public String nextAction() {
         Scanner S = new Scanner(System.in);
         String move = S.nextLine();
-        S.close();
         return move;
 
     }

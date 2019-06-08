@@ -70,15 +70,18 @@ public abstract class GUnit extends gameObject{
 
 
     public GUnit(int x, int y,String name ,int HP ,int DP , int AP , gameObject[][] board ){
-       super(x,y);
-        Alive = true;
-        name = name;
-        HP = HP;
-        currHP = HP;
-        DP = DP;
-        AP = AP;
-        board = board;
+       super(x,y );
+        this.Alive = true;
+        this.name = name;
+        this.HP = HP;
+        this.currHP = HP;
+        this.DP = DP;
+        this.AP = AP;
+        this.board = board;
     }
+
+    public abstract void turn(RandomGenerator RG);
+
     public int invoke(int x , int y){
        return board[x][y].invoked(this);
     }
@@ -87,9 +90,11 @@ public abstract class GUnit extends gameObject{
     public  void spelled(RandomGenerator RG ,int spellPwr) {
         defence(RG,spellPwr);
     }
+
     public void attack(gameObject defencer,RandomGenerator RG){
-        if(RG.hasNext())
-            defencer.defence(RG,RG.nextInt(AP));
+        if(RG.hasNext()) {
+            defencer.defence(RG, RG.nextInt(AP));
+        }
     }
 
     public void defence(RandomGenerator RG ,int attack){

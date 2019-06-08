@@ -6,11 +6,11 @@ import Model.Players.Mage;
 import Model.Players.Player;
 import Model.Players.Rogue;
 import Model.Players.Warrior;
-
+import View.MyObserver;
+import View.Presentetion;
 
 import java.util.LinkedList;
 import java.util.List;
-
 
 
 public class gameLogic {
@@ -32,7 +32,8 @@ public class gameLogic {
         playerMove = AR;
         RandomNum = RG;
         askForPlayerType(AR);
-        board = levelProccesor(level , player);
+        board = levelProccesor(level);
+        player.setBoard(board);
 
     }
 
@@ -60,92 +61,121 @@ public class gameLogic {
                 break;
             case 5:
                 player = new Rogue(0, 0, "arya stark", 150, 2, 40, board, 20);
+                break;
             case 6:
                 player = new Rogue(0, 0, "Bronn", 250, 3, 35, board, 60);
+                break;
         }
+        Presentetion.PlayerChosen(player.getPlayerStatus());
     }
 
-                private gameObject[][] levelProccesor (char[][] board, Player player){
-                    char c;
-                    int width = board.length;
-                    int length = board[0].length;
-                    gameObject[][] output = new gameObject[width][length];
-                    for (int i = 0; i < width; i++) {
-                        for (int j = 0; j < length; j++) {
-                            c = board[i][j];
-                            gameObject GO = null;
-                            boolean isEnemy = false;
-                            switch (c) {
-                                case '.':
-                                    GO = new FreeSpace(i, j);
-                                    break;
-                                case '#':
-                                    GO = new Wall(i, j);
-                                case '@':
-                                    player.setX(i);
-                                    player.setY(j);
-                                    GO = player;
-                                    break;
-                                //have function receive parameter for player so it knows how to point at it
-                                case 'X':
-                                    //need to understand what to do here!!!
-                                    break;
+    private gameObject[][] levelProccesor(char[][] board) {
+        char c;
+        int width = board.length;
+        int length = board[0].length;
+        gameObject[][] output = new gameObject[width][length];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < length; j++) {
+                c = board[i][j];
+                gameObject GO = null;
+                boolean isEnemy = false;
+                switch (c) {
+                    case '.':
+                        GO = new FreeSpace(i, j);
+                        break;
+                    case '#':
+                        GO = new Wall(i, j);
+                        break;
+                    case '@':
+                        player.x = j;
+                        player.y = i;
+                        GO = player;
+                        break;
+                    //have function receive parameter for player so it knows how to point at it
+                    case 'X':
+                        //need to understand what to do here!!!
+                        break;
 
-                                case 's':
-                                    GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output); isEnemy = true;
-                                    break;
-                                case 'k':
-                                    GO = new Monster(i, j, "Lannister Knight", 200, 8, 14, 50, c, 4, output); isEnemy = true;
-                                    break;
-                                case 'q':
-                                    GO = new Monster(i, j, "Queen's Guard", 400, 15, 20, 100, c, 5, output); isEnemy = true;
-                                    break;
-                                case 'z':
-                                    GO = new Monster(i, j, "Wright", 600, 15, 30, 100, c, 3, output); isEnemy = true;
-                                    break;
-                                case 'b':
-                                    GO = new Monster(i, j, "Bear Wright", 1000, 30, 75, 250, c, 4, output); isEnemy = true;
-                                    break;
-                                case 'g':
-                                    GO = new Monster(i, j, "Giant Wright", 1500, 40, 100, 500, c, 5, output); isEnemy = true;
-                                    break;
-                                case 'w':
-                                    GO = new Monster(i, j, " White Walker", 2000, 50, 150, 1000, c, 6, output); isEnemy = true;
-                                    break;
-                                case 'M':
-                                    GO = new Monster(i, j, "The Mountain", 1000, 25, 60, 500, c, 6, output); isEnemy = true;
-                                    break;
-                                case 'C':
-                                    GO = new Monster(i, j, "Queen Cersei", 100, 10, 10, 1000, c, 1, output); isEnemy = true;
-                                    break;
-                                case 'K':
-                                    GO = new Monster(i, j, "Night's King", 5000, 150, 300, 5000, c, 8, output); isEnemy = true;
-                                    break;
+                    case 's':
+                        GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output);
+                        isEnemy = true;
+                        break;
+                    case 'k':
+                        GO = new Monster(i, j, "Lannister Knight", 200, 8, 14, 50, c, 4, output);
+                        isEnemy = true;
+                        break;
+                    case 'q':
+                        GO = new Monster(i, j, "Queen's Guard", 400, 15, 20, 100, c, 5, output);
+                        isEnemy = true;
+                        break;
+                    case 'z':
+                        GO = new Monster(i, j, "Wright", 600, 15, 30, 100, c, 3, output);
+                        isEnemy = true;
+                        break;
+                    case 'b':
+                        GO = new Monster(i, j, "Bear Wright", 1000, 30, 75, 250, c, 4, output);
+                        isEnemy = true;
+                        break;
+                    case 'g':
+                        GO = new Monster(i, j, "Giant Wright", 1500, 40, 100, 500, c, 5, output);
+                        isEnemy = true;
+                        break;
+                    case 'w':
+                        GO = new Monster(i, j, " White Walker", 2000, 50, 150, 1000, c, 6, output);
+                        isEnemy = true;
+                        break;
+                    case 'M':
+                        GO = new Monster(i, j, "The Mountain", 1000, 25, 60, 500, c, 6, output);
+                        isEnemy = true;
+                        break;
+                    case 'C':
+                        GO = new Monster(i, j, "Queen Cersei", 100, 10, 10, 1000, c, 1, output);
+                        isEnemy = true;
+                        break;
+                    case 'K':
+                        GO = new Monster(i, j, "Night's King", 5000, 150, 300, 5000, c, 8, output);
+                        isEnemy = true;
+                        break;
 
-                                case 'B':
-                                    GO = new Trap(i, j, "Bonus Trap", 1, 1, 1,250, c, 5, 2,6, output); isEnemy = true;
-                                    break;
-                                case 'Q':
-                                    GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6,  output); isEnemy = true;
-                                    break;
-                                case 'D':
-                                    GO = new Trap(i, j, "Death Trap", 500, 20, 100, 250, c, 6, 10, 3, output); isEnemy = true;
-                                    break;
-                            }
-                            output[i][j] = GO;
-                            if (isEnemy) enemies.add((Enemy)GO); //adds to enemy list
-                        }
-                    }
-                    return output;
+                    case 'B':
+                        GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, 250, c, 5, 2, 6, output);
+                        isEnemy = true;
+                        break;
+                    case 'Q':
+                        GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6, output);
+                        isEnemy = true;
+                        break;
+                    case 'D':
+                        GO = new Trap(i, j, "Death Trap", 500, 20, 100, 250, c, 6, 10, 3, output);
+                        isEnemy = true;
+                        break;
                 }
+                output[i][j] = GO;
+                if (isEnemy) enemies.add((Enemy) GO); //adds to enemy list
+            }
+        }
+        return output;
+    }
 
-                public void gameTick () {
-                    player.turn(playerMove, RandomNum);
-                    for (int i = 0; i < enemies.size(); i++) {
-                        GUnit enemy = enemies.get(i);
-                        if (enemy.isAlive()) enemy.turn(RandomNum);
-                        else enemies.remove(i);
-                    }
-                    activeGame = player.isAlive();
-                }
+    public void gameTick() {
+        MyObserver observer = Presentetion.getInstance();
+        observer.update(boardToString(board));
+        player.turn(playerMove, RandomNum);
+        for (int i = 0; i < enemies.size(); i++) {
+            GUnit enemy = enemies.get(i);
+            if (enemy.isAlive()) enemy.turn(RandomNum);
+            else enemies.remove(i);
+        }
+        activeGame = player.isAlive();
+    }
+
+    private String boardToString(gameObject[][] board) {
+        String output = "";
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++)
+                output += board[i][j];
+            output += "\n";
+        }
+        return output;
+    }
 }

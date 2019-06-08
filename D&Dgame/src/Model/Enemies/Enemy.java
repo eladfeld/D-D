@@ -7,7 +7,6 @@ import Model.gameObject;
 
 public abstract class Enemy extends GUnit {
     int expValue;
-    private char tile;
     int inSight;
 
     //region Getters and Setters
@@ -17,14 +16,6 @@ public abstract class Enemy extends GUnit {
 
     public void setExpValue(int expValue) {
         this.expValue = expValue;
-    }
-
-    public char getTile() {
-        return tile;
-    }
-
-    public void setTile(char tile) {
-        this.tile = tile;
     }
 
     public int getInSight() {
@@ -38,9 +29,9 @@ public abstract class Enemy extends GUnit {
 
     public Enemy(int x, int y, String name , int HP , int DP , int AP , int expValue , char tile, gameObject[][] board ){
         super(x,y,name,HP,DP,AP,board);
-        expValue=expValue;
-        inSight=inSight;
-        tile=tile;
+        this.expValue=expValue;
+        this.inSight=inSight;
+        this.Tile=tile;
 
     }
 

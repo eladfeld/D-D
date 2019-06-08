@@ -33,9 +33,10 @@ public abstract class Player extends GUnit {
 
     public Player(int x, int y, String name, int HP, int DP, int AP, gameObject[][] board) {
         super(x, y, name, HP, DP, AP, board);
-        exp = 0;
-        level = 1;
+        this.exp = 0;
+        this.level = 1;
     }
+    public void turn(RandomGenerator RG){};
 
     public void turn(ActionReader AR, RandomGenerator RG) {
         String action = "";
@@ -92,14 +93,15 @@ public abstract class Player extends GUnit {
     public void moveUp(RandomGenerator RG) {
         int interaction = invoke(x, y - 1);
         switch (interaction) {
-            case 1:
-                board[x][y] = new FreeSpace(x, y);
+            case 0:
+                board[y][x] = new FreeSpace(x, y);
                 board[x][y - 1] = this;
+                y--;
                 break;
-            case 2:
+            case 1:
                 attack(board[x][y - 1], RG);
                 break;
-            case 3:
+            case 2:
                 break;
         }
     }
@@ -129,7 +131,6 @@ public abstract class Player extends GUnit {
         currHP = HP;
         AP = AP + level * 5;
         DP = DP + level * 2;
-        notifyObservers("Level up! details here...");
     }
 
     @Override

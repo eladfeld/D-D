@@ -6,6 +6,7 @@ public class Wall extends gameObject{
     int x,y;
     public Wall(int x,int y) {
         super(x,y);
+        Tile = '#';
     }
 
     @Override
@@ -15,10 +16,6 @@ public class Wall extends gameObject{
 
     @Override
     public void defence(RandomGenerator RG, int attack) {
-    }
-
-    public String toStirng(){
-        return "#";
     }
 
 }

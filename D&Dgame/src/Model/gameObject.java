@@ -5,7 +5,7 @@ import Controller.Moves.RandomGenerator;
 public abstract class gameObject {
     protected int x;
     protected int y;
-    List<IObserver> observers;
+    protected Character Tile;
     //region Getters and Setters
     public int getX() {
         return x;
@@ -24,15 +24,16 @@ public abstract class gameObject {
     }
     //endregion
 
-    public gameObject(int x,int y){
-        x=x;
-        y=y;
+    public gameObject(int x,int y ){
+        this.x = x;
+        this.y = y;
+        Tile = ',';
     }
 
     public abstract int invoked(GUnit gUnit);
 
     public String toString(){
-        return ".";
+        return Tile.toString();
     }
 
     public abstract void defence(RandomGenerator RG , int attack);
@@ -41,7 +42,4 @@ public abstract class gameObject {
 
     }
 
-    protected void notifyObservers(String s) {
-        observers.forEach(o -> o.onEvent(s));
-    }
 }

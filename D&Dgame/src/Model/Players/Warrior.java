@@ -10,8 +10,8 @@ public class Warrior extends Player {
 
     public Warrior(int x, int y, String name , int HP , int DP , int AP , gameObject[][] board,int cooldown){
         super(x,y,name,HP,DP,AP,board);
-        cooldown = cooldown;
-        remaining = cooldown;
+        this.cooldown = cooldown;
+        this.remaining = cooldown;
     }
 
     @Override
@@ -33,4 +33,5 @@ public class Warrior extends Player {
         return super.getPlayerStatus() + "          Ability cooldown : " +cooldown +
                 "           remaining : " + remaining;
     }
+
 }
