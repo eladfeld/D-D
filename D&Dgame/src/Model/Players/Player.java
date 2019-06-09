@@ -63,7 +63,7 @@ public abstract class Player extends GUnit {
     public void moveLeft(RandomGenerator RG) {
         int interaction = invoke(x - 1, y);
         switch (interaction) {
-            case 1:
+            case 0:
                 board[x][y] = new FreeSpace(x, y);
                 board[x - 1][y] = this;
                 x--;
@@ -79,7 +79,7 @@ public abstract class Player extends GUnit {
     public void moveRight(RandomGenerator RG) {
         int interaction = invoke(x + 1, y);
         switch (interaction) {
-            case 1:
+            case 0:
                 board[x][y] = new FreeSpace(x, y);
                 board[x + 1][y] = this;
                 x++;
@@ -111,7 +111,7 @@ public abstract class Player extends GUnit {
     public void moveDown(RandomGenerator RG) {
         int interaction = invoke(x, y + 1);
         switch (interaction) {
-            case 1:
+            case 0:
                 board[x][y] = new FreeSpace(x, y);
                 board[x][y + 1] = this;
                 y++;

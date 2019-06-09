@@ -5,7 +5,7 @@ import Controller.Moves.RandomGenerator;
 public abstract class GUnit extends gameObject{
     protected String name;
     protected gameObject[][] board;
-    protected int y , x ,currHP ,HP ,DP ,AP;
+    protected int currHP ,HP ,DP ,AP;
     protected boolean Alive;
 
     //region Getters and Setters

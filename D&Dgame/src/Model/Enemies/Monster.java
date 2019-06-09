@@ -3,6 +3,7 @@ package Model.Enemies;
 
 import Model.FreeSpace;
 import Model.GUnit;
+import Model.gameLogic;
 import Model.Players.Player;
 import Controller.Moves.RandomGenerator;
 import Model.gameObject;
@@ -20,21 +21,18 @@ public class Monster extends Enemy {
         return 2;
     }
 
-	@Override
-	public void turn(RandomGenerator RG) {
-
-	}
 
 	public int invoked(Enemy enemy){
         return 3;
 
     }
     
-    
-    public void turn(RandomGenerator RG, Player player) {
+    @Override   
+    public void turn(RandomGenerator RG) {
+    	Player player = gameLogic.getPlayer();
     	int dx, dy;
-    	Double distance = this.distanceFrom(player);
-    	if( distance.equals(1.0)) {attack((GUnit)player, RG);}
+    	Double distance = distanceFrom(player);
+    	if( distance<1.2) {attack((GUnit)player, RG);}
     	else if(distance<=visionRange) {
     		dx = x - player.getX();
     		dy = y - player.getY();
@@ -48,12 +46,15 @@ public class Monster extends Enemy {
     		}
     	}
     	else {
+    		int count = 0;
     		do {
-    		int[] move = XYComponents(RG.nextInt(5)%5);
+    		int[] move = XYComponents(RG.nextInt(5));
     		dx = move[0];
     		dy = move[1];
+    		count++;
     		}
-    		while(invoke(x + dx ,y + dy ) != 1);
+    		while(invoke(x + dx ,y + dy ) != 0 && count<20);
+    		move(dx, dy);
     	}
     	
     	
@@ -73,7 +74,7 @@ public class Monster extends Enemy {
     public int canMove(int dx, int dy) {
     	int output;
     	if(dx==dy)output = 0;
-    	else output = invoke(x + dx, y - dy);
+    	else output = invoke(x + dx, y + dy);
     	return output;
     	
     }
@@ -85,10 +86,10 @@ public class Monster extends Enemy {
     	output[1]=0;  
     	//represents {dx,dy}
     	switch(move) {
-    	case 1: output[0]=-1; //left
-    	case 2: output[1]=1;  //right
-    	case 3: output[0]=1;  //down
-    	case 4: output[1]=-1; //up
+    	case 1: output[0]=-1; break; //left
+    	case 2: output[0]=1;  break; //right
+    	case 3: output[1]=1;  break; //down
+    	case 4: output[1]=-1; break; //up
     	}
     	return output;
     }

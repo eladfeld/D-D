@@ -18,9 +18,12 @@ public class gameLogic {
     private RandomGenerator RandomNum;
     private gameObject[][] board;
     private List<Enemy> enemies;
-    private Player player = null;
+    private static Player player = null;
     private boolean activeGame;
 
+    public static Player getPlayer() {
+    	return player;
+    }
     public boolean isActiveGame() {
         return activeGame;
     }
@@ -87,8 +90,8 @@ public class gameLogic {
                         GO = new Wall(i, j);
                         break;
                     case '@':
-                        player.x = j;
-                        player.y = i;
+                        player.x = i;
+                        player.y = j;
                         GO = player;
                         break;
                     //have function receive parameter for player so it knows how to point at it
@@ -180,4 +183,5 @@ public class gameLogic {
         }
         return output;
     }
+    
 }

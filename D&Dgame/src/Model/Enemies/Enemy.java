@@ -37,6 +37,7 @@ public abstract class Enemy extends GUnit {
 
     @Override
     public int invoked(GUnit gUnit) {
+    	if(gUnit==this) return 3;
         return 0;
     }
     public int invoked(Enemy enemy){
