@@ -66,6 +66,7 @@ public abstract class Player extends GUnit {
             case 1:
                 board[x][y] = new FreeSpace(x, y);
                 board[x - 1][y] = this;
+                x--;
                 break;
             case 2:
                 attack(board[x - 1][y], RG);
@@ -81,6 +82,7 @@ public abstract class Player extends GUnit {
             case 1:
                 board[x][y] = new FreeSpace(x, y);
                 board[x + 1][y] = this;
+                x++;
                 break;
             case 2:
                 attack(board[x + 1][y], RG);
@@ -94,8 +96,8 @@ public abstract class Player extends GUnit {
         int interaction = invoke(x, y - 1);
         switch (interaction) {
             case 0:
-                board[y][x] = new FreeSpace(x, y);
-                board[x][y - 1] = this;
+                board[x][y] = new FreeSpace(x, y);
+                board[x][y - 1] = this;                
                 y--;
                 break;
             case 1:
@@ -112,6 +114,7 @@ public abstract class Player extends GUnit {
             case 1:
                 board[x][y] = new FreeSpace(x, y);
                 board[x][y + 1] = this;
+                y++;
                 break;
             case 2:
                 attack(board[x][y + 1], RG);

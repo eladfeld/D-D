@@ -61,32 +61,34 @@ public class Monster extends Enemy {
 
 
     public void move(int dx, int dy) {
-    	board[x][y]= new FreeSpace(x,y);
-    	board[x + dx][y + dy] = this;
-    	x = x + dx;
-    	y = y + dy;
-
+    	if(canMove(dx,dy)==0) {
+	    	board[x][y]= new FreeSpace(x,y);
+	    	board[x + dx][y + dy] = this;
+	    	x = x + dx;
+	    	y = y + dy;
+    	}
     }
     
     
     public int canMove(int dx, int dy) {
     	int output;
     	if(dx==dy)output = 0;
-    	else output = invoke(x + dx, y + dy);
+    	else output = invoke(x + dx, y - dy);
     	return output;
     	
     }
     
 
     public int[] XYComponents(int move) {
-    	int[] output = new int[2]; 
-    	//{0,0} by default   
+    	int[] output = new int[2];
+    	output[0]=0;
+    	output[1]=0;  
     	//represents {dx,dy}
     	switch(move) {
-    	case 1: output[0]=-1;
-    	case 2: output[1]=1;
-    	case 3: output[0]=1;
-    	case 4: output[1]=-1;
+    	case 1: output[0]=-1; //left
+    	case 2: output[1]=1;  //right
+    	case 3: output[0]=1;  //down
+    	case 4: output[1]=-1; //up
     	}
     	return output;
     }

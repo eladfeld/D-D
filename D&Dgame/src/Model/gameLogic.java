@@ -171,9 +171,11 @@ public class gameLogic {
 
     private String boardToString(gameObject[][] board) {
         String output = "";
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++)
+        for (int j = 0; j < board[0].length; j++) {
+        	for (int i = 0; i < board.length; i++) {
+
                 output += board[i][j];
+            }
             output += "\n";
         }
         return output;
