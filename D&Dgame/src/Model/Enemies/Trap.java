@@ -89,11 +89,11 @@ public class Trap extends Enemy {
             	if(r%2==0) newY = y+(int)dy; 
             	else newY = y-(int)dy; 
             }
-            if(isOnBoard(newX, newY)==false) reSpawn(RG);  //checks that space is within bounds
-            else if(distanceFrom(board[newX][newY]) > range) reSpawn(RG);
+            if(isOnBoard(newX, newY)==false) {reSpawn(RG);  return; }//checks that space is within bounds
+            else if(distanceFrom(board[newX][newY]) > range) { reSpawn(RG); return; }
             else {
             	 int result = invoke(newX, newY);
-            	 if(result==1 || result==3) reSpawn(RG);
+            	 if(result==1 || result==3) {reSpawn(RG); return; }
             	 else {
             		 board[x][y] = new FreeSpace(x,y);
             		 board[newX][newY] = this;

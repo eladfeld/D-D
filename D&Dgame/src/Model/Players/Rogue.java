@@ -10,6 +10,11 @@ public class Rogue extends Player {
 
     private int currEnergy;
     private int cost;
+    
+    public String SpecialStats() {
+    	String s = "Level: "+level+"     Experience: "+exp+"     Energy: "+currEnergy;
+    	return s;
+    }
 
     //region Getters and Setters
 

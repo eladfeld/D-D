@@ -36,7 +36,7 @@ public abstract class gameObject {
         return Tile.toString();
     }
 
-    public abstract void defence(RandomGenerator RG , int attack);
+    //public abstract int defence(RandomGenerator RG , int attack);
 
     public  void spelled(RandomGenerator RG ,int spellPwr){
 

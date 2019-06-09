@@ -141,7 +141,7 @@ public class gameLogic {
                         break;
 
                     case 'B':
-                        GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, 250, c, 5, 2, 6, output);
+                        GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, 250, c, 5, 6, 2, output);
                         isEnemy = true;
                         break;
                     case 'Q':
@@ -169,10 +169,10 @@ public class gameLogic {
             if (enemy.isAlive()) enemy.turn(RandomNum);
             else enemies.remove(i);
         }
-        activeGame = player.isAlive();
+        activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
     }
 
-    private String boardToString(gameObject[][] board) {
+    public static String boardToString(gameObject[][] board) {
         String output = "";
         for (int j = 0; j < board[0].length; j++) {
         	for (int i = 0; i < board.length; i++) {

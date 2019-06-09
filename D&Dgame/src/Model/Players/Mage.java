@@ -7,7 +7,9 @@ import java.util.*;
 
 public class Mage extends Player {
     private int spellPwr,MP ,currMana,cost,hitTimes, range;
-
+    public String SpecialStats() {
+    	return "Level: "+level+"     Experience: "+exp+"      Spell Power: "+spellPwr+"     Mana: "+currMana+"/"+MP;
+    }
     //region Getters and Setters
     public int getSpellPwr() {
         return spellPwr;

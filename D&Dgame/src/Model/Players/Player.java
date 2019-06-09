@@ -69,7 +69,7 @@ public abstract class Player extends GUnit {
                 x--;
                 break;
             case 2:
-                attack(board[x - 1][y], RG);
+                super.attack(board[x - 1][y], RG);
                 break;
             case 3:
                 break;
@@ -88,7 +88,7 @@ public abstract class Player extends GUnit {
                 attack(board[x + 1][y], RG);
                 break;
             case 3:
-                break;
+                break;//skips turns
         }
     }
 
@@ -100,10 +100,10 @@ public abstract class Player extends GUnit {
                 board[x][y - 1] = this;                
                 y--;
                 break;
-            case 1:
+            case 2:
                 attack(board[x][y - 1], RG);
                 break;
-            case 2:
+            case 3:
                 break;
         }
     }
@@ -156,6 +156,7 @@ public abstract class Player extends GUnit {
                 DP + '\n' + "           level: " + level + "          Experience" +
                 exp + "/" + level * 50;
     }
+    public abstract String SpecialStats();
 
 }
 

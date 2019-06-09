@@ -8,6 +8,10 @@ public class Warrior extends Player {
     private int cooldown;
     private int remaining;
 
+    public String SpecialStats() {
+    	String s="Level: "+level+"     Experience: "+exp+"     Ability Cooldown: "+cooldown+"     Remaining: "+remaining;
+    	return s;
+    }
     public Warrior(int x, int y, String name , int HP , int DP , int AP , gameObject[][] board,int cooldown){
         super(x,y,name,HP,DP,AP,board);
         this.cooldown = cooldown;

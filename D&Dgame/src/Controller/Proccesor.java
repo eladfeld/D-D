@@ -44,22 +44,6 @@ public class Proccesor{
 
 
 
-    public static String lifeBar(double HP , double currHp){
-        double Hpresentage = 100*currHp/HP;
-        String output = "";
-        for(int i = 0;i<100-Hpresentage-1;i++){
-            output = output + ".";
-        }
-        output = output + "]";
-        for(int i=0; i<Hpresentage -1;i++){
-            output = "|" + output;
-        }
-        output= "[" + output;
-        return  output.substring(0,48) + (int)Hpresentage + "%" + output.substring(51);
-
-    }
-
-
     public static char[][] boardProccesor(File level , int height) {
         char[][] result = null;
         try {

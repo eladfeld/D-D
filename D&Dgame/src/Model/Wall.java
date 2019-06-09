@@ -13,8 +13,9 @@ public class Wall extends gameObject{
         return 3;
     }
 
-    @Override
-    public void defence(RandomGenerator RG, int attack) {
+
+    public int defence(RandomGenerator RG, int attack) {
+    	return -2;
     }
 
 }

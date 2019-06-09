@@ -24,7 +24,6 @@ public class Monster extends Enemy {
 
 	public int invoked(Enemy enemy){
         return 3;
-
     }
     
     @Override   
@@ -32,7 +31,9 @@ public class Monster extends Enemy {
     	Player player = gameLogic.getPlayer();
     	int dx, dy;
     	Double distance = distanceFrom(player);
-    	if( distance<1.2) {attack((GUnit)player, RG);}
+    	if( distance<1.2) {
+    		attack((GUnit)player, RG);
+    		}
     	else if(distance<=visionRange) {
     		dx = x - player.getX();
     		dy = y - player.getY();
@@ -41,11 +42,11 @@ public class Monster extends Enemy {
     			else move(1,0);
     		}
     		else {
-    			if( dy>0) move(0,1);
-    			else move(0,-1);
+    			if( dy>0) move(0,-1);
+    			else move(0,1);
     		}
     	}
-    	else {
+    	else { //player not in range
     		int count = 0;
     		do {
     		int[] move = XYComponents(RG.nextInt(5));
@@ -55,9 +56,7 @@ public class Monster extends Enemy {
     		}
     		while(invoke(x + dx ,y + dy ) != 0 && count<20);
     		move(dx, dy);
-    	}
-    	
-    	
+    	}    	
     }
 
 
@@ -73,7 +72,7 @@ public class Monster extends Enemy {
     
     public int canMove(int dx, int dy) {
     	int output;
-    	if(dx==dy)output = 0;
+    	if(dx==dy)output = 3;
     	else output = invoke(x + dx, y + dy);
     	return output;
     	
