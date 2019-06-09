@@ -71,7 +71,20 @@ public class Proccesor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
+        return transpose(result);
     }
+    
+    private static char[][] transpose(char[][] input){
+    	char[][] output = new char[input[0].length][input.length];
+    	for(int i=0 ; i<input.length ; i++) {
+    		for( int j=0 ; j<input[0].length ; j++) {
+    			output[j][i] = input[i][j];
+    		}
+    	}
+    	return output;
+    }
+    
+
+    
 
 }
