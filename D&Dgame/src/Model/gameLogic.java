@@ -197,14 +197,13 @@ public class gameLogic {
         activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
     }
 
+
     public static String boardToString(gameObject[][] board) {
         String output = "";
         gameObject GO;
         for (int j = 0; j < board[0].length; j++) {
         	for (int i = 0; i < board.length; i++) {
-                if(board[i][j].isVisible())
                 	output = output + board[i][j];
-                else output = output + ".";
             }
             output += "\n";
         }

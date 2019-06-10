@@ -5,6 +5,8 @@ import Model.gameLogic;
 import Model.gameObject;
 import Model.Players.Player;
 
+import java.util.Scanner;
+
 public class Presentetion implements MyObserver{
 
 	private static String message="";
@@ -87,8 +89,14 @@ public class Presentetion implements MyObserver{
     	return s;
     }
 
-    public void GameOver() {
-    	System.out.println("GAME OVER");
+    public String GameOver() {
+    	System.out.println("GAME OVER!\n" +
+                "do you wish to play again?\n" +
+                "insert Y - yes , N - no \n" +
+                " Y/N ?");
+        Scanner S = new Scanner(System.in);
+        String ans = S.nextLine();
+        return ans;
     }
 
 	@Override

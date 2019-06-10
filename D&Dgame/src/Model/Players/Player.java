@@ -139,7 +139,7 @@ public abstract class Player extends GUnit {
     }
 
     @Override
-    public int invoked(GUnit gUnit) {
+    public int invoked(gameObject gUnit) {
         return 0;
     }
 

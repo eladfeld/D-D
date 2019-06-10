@@ -31,20 +31,14 @@ public abstract class gameObject {
         Tile = ',';
     }
 
-    public abstract int invoked(GUnit gUnit);
-    
-    public boolean isVisible() {
-    	return true;
-    }
+    public abstract int invoked( gameObject gameObject);
+
+    public abstract int defence(RandomGenerator RG , int attack);
 
     public String toString(){
         return Tile.toString();
     }
 
-    //public abstract int defence(RandomGenerator RG , int attack);
-
-    public  void spelled(RandomGenerator RG ,int spellPwr){
-
-    }
+    public abstract void spelled(RandomGenerator RG ,int spellPwr);
 
 }

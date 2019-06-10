@@ -9,13 +9,17 @@ public class Wall extends gameObject{
     }
 
     @Override
-    public int invoked(GUnit gUnit) {
+    public int invoked(gameObject gUnit) {
         return 3;
     }
 
 
     public int defence(RandomGenerator RG, int attack) {
     	return -2;
+    }
+
+    @Override
+    public void spelled(RandomGenerator RG, int spellPwr) {
     }
 
 }

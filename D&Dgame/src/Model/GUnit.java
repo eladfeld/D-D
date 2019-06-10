@@ -98,7 +98,7 @@ public abstract class GUnit extends gameObject implements MyObservable{
     public void attack(gameObject defender,RandomGenerator RG){
         if(RG.hasNext()) {
         	int attack = RG.nextInt(AP);
-            int defence = ((GUnit)defender).defence(RG, attack);
+            int defence = defender.defence(RG, attack);
             notify(VIEW ,this,defender, attack, defence);
         }
     }
