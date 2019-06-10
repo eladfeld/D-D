@@ -6,6 +6,7 @@ public abstract class gameObject {
     protected int x;
     protected int y;
     protected Character Tile;
+
     //region Getters and Setters
     public int getX() {
         return x;
@@ -31,12 +32,16 @@ public abstract class gameObject {
     }
 
     public abstract int invoked(GUnit gUnit);
+    
+    public boolean isVisible() {
+    	return true;
+    }
 
     public String toString(){
         return Tile.toString();
     }
 
-    public abstract void defence(RandomGenerator RG , int attack);
+    //public abstract int defence(RandomGenerator RG , int attack);
 
     public  void spelled(RandomGenerator RG ,int spellPwr){
 

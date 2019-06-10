@@ -58,18 +58,19 @@ public abstract class Player extends GUnit {
                 special(RG);
                 break;
         }
+        personalEndOfTurn();
     }
 
     public void moveLeft(RandomGenerator RG) {
         int interaction = invoke(x - 1, y);
         switch (interaction) {
-            case 1:
+            case 0:
                 board[x][y] = new FreeSpace(x, y);
                 board[x - 1][y] = this;
                 x--;
                 break;
             case 2:
-                attack(board[x - 1][y], RG);
+                super.attack(board[x - 1][y], RG);
                 break;
             case 3:
                 break;
@@ -79,7 +80,7 @@ public abstract class Player extends GUnit {
     public void moveRight(RandomGenerator RG) {
         int interaction = invoke(x + 1, y);
         switch (interaction) {
-            case 1:
+            case 0:
                 board[x][y] = new FreeSpace(x, y);
                 board[x + 1][y] = this;
                 x++;
@@ -88,7 +89,7 @@ public abstract class Player extends GUnit {
                 attack(board[x + 1][y], RG);
                 break;
             case 3:
-                break;
+                break;//skips turns
         }
     }
 
@@ -100,10 +101,10 @@ public abstract class Player extends GUnit {
                 board[x][y - 1] = this;                
                 y--;
                 break;
-            case 1:
+            case 2:
                 attack(board[x][y - 1], RG);
                 break;
-            case 2:
+            case 3:
                 break;
         }
     }
@@ -111,7 +112,7 @@ public abstract class Player extends GUnit {
     public void moveDown(RandomGenerator RG) {
         int interaction = invoke(x, y + 1);
         switch (interaction) {
-            case 1:
+            case 0:
                 board[x][y] = new FreeSpace(x, y);
                 board[x][y + 1] = this;
                 y++;
@@ -128,12 +129,13 @@ public abstract class Player extends GUnit {
     public abstract void special(RandomGenerator RG);
 
     public void levelUp() {
-        exp = exp - level * 50;
+        exp = exp - (level * 50);
         level++;
         HP = HP + 10 * level;
         currHP = HP;
         AP = AP + level * 5;
         DP = DP + level * 2;
+        personalLevelUp();
     }
 
     @Override
@@ -156,6 +158,10 @@ public abstract class Player extends GUnit {
                 DP + '\n' + "           level: " + level + "          Experience" +
                 exp + "/" + level * 50;
     }
+    public abstract String SpecialStats();
+    public abstract void personalEndOfTurn();
+    public abstract void personalLevelUp();
+
 
 }
 

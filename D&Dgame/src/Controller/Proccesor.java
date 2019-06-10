@@ -3,7 +3,6 @@ package Controller;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -56,8 +55,7 @@ public class Proccesor {
 
     }
 
-
-    public static char[][] boardProccesor(File level, int height) {
+    public static char[][] boardProccesor(File level , int height) {
         char[][] result = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(level));

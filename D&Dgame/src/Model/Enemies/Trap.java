@@ -1,12 +1,13 @@
 package Model.Enemies;
 import Controller.Moves.RandomGenerator;
 import Model.FreeSpace;
+import Model.gameLogic;
 import Model.gameObject;
 
 public class Trap extends Enemy {
     private int range , reSpawn, visTime;
     private int wait = 0;
-    private boolean visible;
+   // private boolean visible;
 
     //region Getters and Setters
     public int getRange() {
@@ -42,22 +43,21 @@ public class Trap extends Enemy {
         this.range=range;
         this.reSpawn=reSpawn;
         this.visTime=visTime;
-        visible = true;
+//        visible = true;
     }
 
     @Override
     public void turn(RandomGenerator RG) {
-        if(wait >= visTime)visible = false;
-        int[] AP = adjacentPlayer();
-        if (AP[0] != 0 || AP[1] != 0 ) attack(board[x+AP[0]][y+AP[1]], RG);
-        else if(wait == reSpawn){
-            visible = true;
+        //if(wait >= visTime)visible = false;
+        if(distanceFrom(gameLogic.getPlayer())<2) attack(gameLogic.getPlayer(), RG);
+        else if(wait == 0){
+            //visible = true;
             reSpawn(RG);
         }
         wait = (wait+1) % reSpawn;        
     }
     
-    
+    //   **not in use**
     //returns relative position of adjacent player
     //returns {0,0} if no player is adjacent
     private int[] adjacentPlayer() {
@@ -69,8 +69,7 @@ public class Trap extends Enemy {
     				output[1]=dy;
     			}
     		}
-    	}
-    		
+    	}    		
     	return output;
     }
     public int invoked(Enemy enemy){
@@ -81,20 +80,27 @@ public class Trap extends Enemy {
         int newX = x;
         int newY = y;
         boolean hasSpawned = false;;
-        while(hasSpawned == false) {
-        	if (RG.hasNext()) newX =y + RG.nextInt(2 * range) - range;
-            if (RG.hasNext()) newY =y + RG.nextInt(2 * range) - range;
-            if(isOnBoard(newX, newY)==false) reSpawn(RG);            
+        while(hasSpawned == false) { //randomly selects space within range
+        	if (RG.hasNext()) newX =x + RG.nextInt(2 * range) - range;
+            if (RG.hasNext()) {
+            	int r =RG.nextInt(range);
+            	int dx = x-newX;
+            	double dy = Math.sqrt((r*r)-(dx*dx));
+            	if(r%2==0) newY = y+(int)dy; 
+            	else newY = y-(int)dy; 
+            }
+            if(isOnBoard(newX, newY)==false) {reSpawn(RG);  return; }//checks that space is within bounds
+            else if(distanceFrom(board[newX][newY]) > range) { reSpawn(RG); return; }
             else {
             	 int result = invoke(newX, newY);
-            	 if(result==1 || result==3) reSpawn(RG);
+            	 if(result==1 || result==3) {reSpawn(RG); return; }
             	 else {
             		 board[x][y] = new FreeSpace(x,y);
             		 board[newX][newY] = this;
             		 x = newX;
             		 y = newY;
             		 hasSpawned = true;
-            		 visible = true;
+            		 //visible = true;
             		 wait = 0;
             	 }
             	 
@@ -106,15 +112,20 @@ public class Trap extends Enemy {
             //interaction = invoke(newX,newY);
         }
         wait=0;
-        visible =true;
+        //visible =true;
         board[x][y] = new FreeSpace(x,y);
         x = newX;
         y = newY;
         board[x][y] = this;
     }
     
+    //returns true iff the coordinate (0,0) is on the game board
     private boolean isOnBoard(int x, int y) {
-    	return (y>=0 && y<board.length && x>=0 && x<board[0].length);
+    	return (x>=0 & x<board.length & y>=0 & y<board[0].length);
+    }
+    @Override
+    public boolean isVisible() {
+    	return wait <= visTime;
     }
 
 }

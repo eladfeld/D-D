@@ -1,12 +1,16 @@
 package Model;
 
-import Controller.Moves.RandomGenerator;
 
-public abstract class GUnit extends gameObject{
+import Controller.Moves.RandomGenerator;
+import View.MyObserver;
+import View.Presentetion;
+
+public abstract class GUnit extends gameObject implements MyObservable{
     protected String name;
     protected gameObject[][] board;
-    protected int y , x ,currHP ,HP ,DP ,AP;
+    protected int currHP ,HP ,DP ,AP;
     protected boolean Alive;
+    protected final MyObserver VIEW = Presentetion.getInstance();
 
     //region Getters and Setters
     public gameObject[][] getBoard() {
@@ -64,7 +68,7 @@ public abstract class GUnit extends gameObject{
     public void setAP(int AP) {
         this.AP = AP;
     }
-
+    
 
     //endregion
 
@@ -91,16 +95,26 @@ public abstract class GUnit extends gameObject{
         defence(RG,spellPwr);
     }
 
-    public void attack(gameObject defencer,RandomGenerator RG){
+    public void attack(gameObject defender,RandomGenerator RG){
         if(RG.hasNext()) {
-            defencer.defence(RG, RG.nextInt(AP));
+        	int attack = RG.nextInt(AP);
+            int defence = ((GUnit)defender).defence(RG, attack);
+            notify(VIEW ,this,defender, attack, defence);
         }
     }
-
-    public void defence(RandomGenerator RG ,int attack){
-        currHP = currHP -(RG.nextInt(DP)-attack);
-        if(currHP <= 0 )Alive = false;
+    public void notify(MyObserver observer, GUnit assailant, gameObject defender, int atk, int def) {
+    	observer.update(assailant, defender, atk, def);
     }
+
+    public int defence(RandomGenerator RG ,int attack){
+    	int defence = RG.nextInt(DP);
+    	if(defence<attack) setCurrHP(currHP - attack + defence);
+        if(currHP <= 0 )Alive = false;
+        return defence;
+
+    }
+    
+
 
 
 }

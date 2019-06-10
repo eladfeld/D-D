@@ -1,10 +1,19 @@
 package View;
 
+import Model.GUnit;
+import Model.gameLogic;
+import Model.gameObject;
+import Model.Players.Player;
+
 public class Presentetion implements MyObserver{
 
-    private String status;
+	private static String message="";
+
 
     private Presentetion(){}
+    public void playerChoseError(){
+        System.out.println("You need to insert a digits to select your right Player");
+    }
 
 
     public void GameStart(){
@@ -39,6 +48,63 @@ public class Presentetion implements MyObserver{
 
     @Override
     public void update(String update) {
+//    	message = message + update;
         System.out.println(update);
+    }
+
+    public void update(GUnit assailant, GUnit defender, int atk, int def) {
+        update(battleReport(assailant, defender, atk, def));
+    }
+    private String stats(GUnit g) {
+    	String s = g.getName()+" :     Health: "+g.getCurrHP() +"/" +g.getHP() +"     Attack: "+g.getAP()+"     Defence: "+g.getDP() ;
+    	return s;
+    }
+
+    private String playerStats() {
+    	return gameLogic.getPlayer().SpecialStats();
+    }
+    private String battleReport(GUnit assailant, GUnit defender, int attack, int defence) {
+    	String s = assailant.getName() +" engaged in battle with " + defender.getName()+" :"+'\n';
+    	s = s+stats(assailant)+'\n'+ stats(defender)+ '\n';
+    	s = s+ playerStats()+'\n';
+    	s  = s + assailant.getName() + " rolled " +attack +" attack points." + '\n';
+    	s = s + defender.getName() + " rolled " + defence + " defence ponits" + '\n';
+    	int damage = attack - defence;
+    	if (damage < 0) damage = 0;
+    	s = s + assailant.getName() + " hit " + defender.getName() + "  for " + damage +  " damage."+'\n';
+    	if(defender.isAlive()==false) s=s+defender.getName()+ " has died.";
+    	return s;
+    }
+
+    public void GameOver() {
+    	System.out.println("GAME OVER");
+    }
+
+	@Override
+	public void update(GUnit assailant, gameObject defender, int atk, int def) {
+		// TODO Auto-generated method stub
+		update(assailant, (GUnit)defender, atk, def);
+		
+	}
+	
+	public void ShowGame() {
+		Player p = gameLogic.getPlayer();
+		System.out.println(lifeBar(p.getCurrHP(), p.getHP()));
+		//System.out.println(gameLogic.boardToString(p.getBoard()));
+		System.out.println(stats(p)+ playerStats());
+	}
+    public static String lifeBar(int currHP , int HP){
+        int Hpresentage = (100*currHP)/HP;
+        String output = "";
+        for(int i = 0;i<100-Hpresentage-1;i++){
+            output = output + ".";
+        }
+        output = output + "]";
+        for(int i=0; i<Hpresentage -1;i++){
+            output = "|" + output;
+        }
+        output= "[" + output;
+        return  output.substring(0,48) + (int)Hpresentage + "%" + output.substring(51);
+
     }
 }

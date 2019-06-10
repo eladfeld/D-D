@@ -10,6 +10,11 @@ public class Rogue extends Player {
 
     private int currEnergy;
     private int cost;
+    
+    public String SpecialStats() {
+    	String s = "Level: "+level+"     Experience: "+exp+"     Energy: "+currEnergy;
+    	return s;
+    }
 
     //region Getters and Setters
 
@@ -46,8 +51,15 @@ public class Rogue extends Player {
             List<gameObject> enemies = searchForEnemies();
             for (gameObject go : enemies) go.spelled(RG, RG.nextInt(AP));
         }
-
-
+    }
+    @Override
+    public void personalEndOfTurn() {
+    	currEnergy = Math.min(currEnergy + 10, 100);
+    }
+    @Override
+    public void personalLevelUp() {
+    	currEnergy = 100;
+    	AP = AP + (3*level);
     }
 
     private List<gameObject> searchForEnemies() {   //need to test!!!!

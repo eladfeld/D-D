@@ -9,7 +9,7 @@ public class FreePlay  implements ActionReader {
 
     // https://www.youtube.com/watch?v=bWHYjLJZswQ
     // a very good tutorial about key event and event handler within the game!
-    //try to implement it in out game!!
+    //try to implement it in game!!
 
     @Override
     public String nextAction() {

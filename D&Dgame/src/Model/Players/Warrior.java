@@ -5,9 +5,13 @@ import Model.gameObject;
 
 public class Warrior extends Player {
 
-    private int cooldown;
+    private final int cooldown;
     private int remaining;
 
+    public String SpecialStats() {
+    	String s="Level: "+level+"     Experience: "+exp+"     Ability Cooldown: "+cooldown+"     Remaining: "+remaining;
+    	return s;
+    }
     public Warrior(int x, int y, String name , int HP , int DP , int AP , gameObject[][] board,int cooldown){
         super(x,y,name,HP,DP,AP,board);
         this.cooldown = cooldown;
@@ -17,10 +21,22 @@ public class Warrior extends Player {
     @Override
     public void special(RandomGenerator RG) {
         if(remaining <= 0 ) {
-            if (DP * 2 + currHP <= HP) currHP =DP * 2 + HP;
-            else currHP = HP;
+            currHP = Math.min(HP, currHP + (2*DP));
             remaining = cooldown;
         }
+        //
+        //notify somehow
+        //
+    }
+    @Override
+    public void personalEndOfTurn() {
+    	remaining--;
+    }
+    @Override
+    public void personalLevelUp() {
+    	remaining = 0;
+    	HP = HP + (5*level);
+    	DP = DP + level;
     }
 
     public void levelUp(){

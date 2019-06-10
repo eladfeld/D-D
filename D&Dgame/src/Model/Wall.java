@@ -3,7 +3,6 @@ package Model;
 import Controller.Moves.RandomGenerator;
 
 public class Wall extends gameObject{
-    int x,y;
     public Wall(int x,int y) {
         super(x,y);
         Tile = '#';
@@ -14,8 +13,9 @@ public class Wall extends gameObject{
         return 3;
     }
 
-    @Override
-    public void defence(RandomGenerator RG, int attack) {
+
+    public int defence(RandomGenerator RG, int attack) {
+    	return -2;
     }
 
 }

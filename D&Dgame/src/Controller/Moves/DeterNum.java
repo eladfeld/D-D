@@ -10,7 +10,7 @@ public class DeterNum implements RandomGenerator {
 
     public int nextInt(int n) {
         index++;
-        return Random[index];
+        return Random[index]%n;
     }
 
     @Override
