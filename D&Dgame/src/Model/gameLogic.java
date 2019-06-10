@@ -40,6 +40,16 @@ public class gameLogic {
         board = levelProccesor(level);
         player.setBoard(board);
     }
+    public gameLogic(ActionReader AR, RandomGenerator RG, char[][] level, Player player) {
+        observer = Presentetion.getInstance();
+        enemies = new LinkedList<Enemy>();
+        activeGame = true;
+        this.player = player;
+        playerMove = AR;
+        RandomNum = RG;
+        board = levelProccesor(level);
+        player.setBoard(board);
+    }
 
     private void askForPlayerType(ActionReader ar) {
         int choose = 0;

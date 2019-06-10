@@ -11,6 +11,17 @@ public class Presentetion implements MyObserver{
 
 
     private Presentetion(){}
+
+    public static void gameFinishd() {
+        System.out.println(
+                "you have finish the game!\n" +
+                "credits: \n" +
+                "Script writing : Elad Feldman \n" +
+                "Graphic disign : Tzuri Tesuba \n" +
+                "Logic and architecture : Tzuri Teshuba\n" + "" +
+                "                         Elad Feldman");
+    }
+
     public void playerChoseError(){
         System.out.println("You need to insert a digits to select your right Player");
     }

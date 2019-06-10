@@ -23,7 +23,7 @@ public class gameControl {
         RandomGenerator RandomNums = new RandomNum();
         Presentetion presentetion = (Presentetion)Presentetion.getInstance();
         presentetion.GameStart();
-
+        gameLogic GL = null;
         while (hasAnotherLevel) {
             String locetion = dir + "\\level " + levelNum + ".txt";
             try {
@@ -35,14 +35,12 @@ public class gameControl {
                     PlayerActions = new DeterAction(Proccesor.moveProccesor(dir + "\\user_actions:txt"));
                 }
             } catch (IOException e) {
-                System.out.println("Level " + levelNum + " does not exist" + '\n' + e.getCause());
-                e.printStackTrace();
+                break;
             }
             char[][] board = Proccesor.boardProccesor(level, (int) lineCount);
-            gameLogic GL;
             //change levelNum==1 before submitting
-            if(levelNum<1) GL = new gameLogic(PlayerActions, RandomNums, board);
-            else GL  = new gameLogic(PlayerActions, RandomNums, board);
+            if(GL == null) GL = new gameLogic(PlayerActions, RandomNums, board);
+            else GL  = new gameLogic(PlayerActions, RandomNums, board ,GL.getPlayer());
             while (GL.isActiveGame()) {
             	presentetion.ShowGame();
                 GL.gameTick();
@@ -53,6 +51,7 @@ public class gameControl {
             }
             else levelNum++;
         }
+        Presentetion.gameFinishd();
     }
 
 }
