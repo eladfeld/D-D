@@ -51,8 +51,15 @@ public class Rogue extends Player {
             List<gameObject> enemies = searchForEnemies();
             for (gameObject go : enemies) go.spelled(RG, RG.nextInt(AP));
         }
-
-
+    }
+    @Override
+    public void personalEndOfTurn() {
+    	currEnergy = Math.min(currEnergy + 10, 100);
+    }
+    @Override
+    public void personalLevelUp() {
+    	currEnergy = 100;
+    	AP = AP + (3*level);
     }
 
     private List<gameObject> searchForEnemies() {   //need to test!!!!

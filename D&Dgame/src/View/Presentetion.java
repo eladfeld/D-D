@@ -87,11 +87,11 @@ public class Presentetion implements MyObserver{
 	public void ShowGame() {
 		Player p = gameLogic.getPlayer();
 		System.out.println(lifeBar(p.getCurrHP(), p.getHP()));
-		System.out.println(gameLogic.boardToString(p.getBoard()));
+		//System.out.println(gameLogic.boardToString(p.getBoard()));
 		System.out.println(stats(p)+ playerStats());
 	}
-    public static String lifeBar(double HP , double currHp){
-        double Hpresentage = 100*currHp/HP;
+    public static String lifeBar(int currHP , int HP){
+        int Hpresentage = (100*currHP)/HP;
         String output = "";
         for(int i = 0;i<100-Hpresentage-1;i++){
             output = output + ".";

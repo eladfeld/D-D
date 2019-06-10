@@ -31,6 +31,10 @@ public abstract class gameObject {
     }
 
     public abstract int invoked(GUnit gUnit);
+    
+    public boolean isVisible() {
+    	return true;
+    }
 
     public String toString(){
         return Tile.toString();

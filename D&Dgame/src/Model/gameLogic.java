@@ -39,6 +39,16 @@ public class gameLogic {
         player.setBoard(board);
 
     }
+    public gameLogic(ActionReader AR, RandomGenerator RG, char[][] level, Player player) {
+        enemies = new LinkedList<Enemy>();
+        activeGame = true;
+        playerMove = AR;
+        RandomNum = RG;
+        gameLogic.player = player;
+        board = levelProccesor(level);
+        player.setBoard(board);
+
+    }
 
     private void askForPlayerType(ActionReader ar) {
         int choose = 0;
@@ -49,6 +59,11 @@ public class gameLogic {
         }
         switch (choose) {
 
+        	//case 0 for testing purposes
+        	case 0:
+	            player = new Warrior(0, 0, "T-Baby", 100, 10, 500, board, 60);
+	            break;
+        	
             case 1:
                 player = new Warrior(0, 0, "Jon Snow", 300, 4, 30, board, 6);
                 break;
@@ -167,21 +182,28 @@ public class gameLogic {
         for (int i = 0; i < enemies.size(); i++) {
             GUnit enemy = enemies.get(i);
             if (enemy.isAlive()) enemy.turn(RandomNum);
-            else enemies.remove(i);
+            else {
+            	board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
+            	enemies.remove(i);
+            }
+        
         }
         activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
     }
 
     public static String boardToString(gameObject[][] board) {
         String output = "";
+        gameObject GO;
         for (int j = 0; j < board[0].length; j++) {
-        	for (int i = 0; i < board.length; i++) {
-
-                output += board[i][j];
+        	for (int i = 0; i < board.length; i++) {	
+                if(board[i][j].isVisible()) 
+                	output = output + board[i][j];
+                else output = output + ".";
             }
             output += "\n";
         }
         return output;
     }
+    
     
 }

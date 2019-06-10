@@ -72,8 +72,7 @@ public class Mage extends Player {
     }
 
     @Override
-    public void levelUp() {
-        super.levelUp();
+    public void personalLevelUp() {
         MP = MP + 25*level;
         currMana = Math.min(currMana+MP/4,MP);
         spellPwr = spellPwr + 10* level;
@@ -92,7 +91,11 @@ public class Mage extends Player {
             if(RG.hasNext())toHit =RG.nextInt(enemies.size())-1;
             enemies.get(toHit).spelled(RG ,spellPwr);
         }
-
+        //check function
+    }
+    @Override
+    public void personalEndOfTurn() {
+    	currMana = Math.min(MP, currMana + 1);
     }
 
     private List<gameObject> searchForEnemies() {   //need to test!!!!

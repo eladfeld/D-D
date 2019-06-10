@@ -15,7 +15,9 @@ public class gameControl {
         String dir = args[0];
         long lineCount = 0;
         boolean hasAnotherLevel = true;
-        int levelNum = 1;
+        //change levelNum back to 1 before submision
+        //level 0 for testing purposes
+        int levelNum = 0;
         File level = null;
         ActionReader PlayerActions = new FreePlay();
         RandomGenerator RandomNums = new RandomNum();
@@ -37,7 +39,10 @@ public class gameControl {
                 e.printStackTrace();
             }
             char[][] board = Proccesor.boardProccesor(level, (int) lineCount);
-            gameLogic GL = new gameLogic(PlayerActions, RandomNums, board);
+            gameLogic GL;
+            //change levelNum==1 before submitting
+            if(levelNum<1) GL = new gameLogic(PlayerActions, RandomNums, board);
+            else GL  =new gameLogic(PlayerActions, RandomNums, board, gameLogic.getPlayer());
             while (GL.isActiveGame()) {
             	presentetion.ShowGame();
                 GL.gameTick();
