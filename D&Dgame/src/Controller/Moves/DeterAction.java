@@ -4,7 +4,7 @@ public class DeterAction implements ActionReader {
     String [] Actions;
     int index;
     public DeterAction(String[] Actions) {
-        Actions = Actions;
+        this.Actions = Actions;
         index = -1;
     }
     @Override

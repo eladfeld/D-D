@@ -38,7 +38,7 @@ public class Rogue extends Player {
 
     public Rogue(int x, int y, String name, int HP, int DP, int AP, gameObject[][] board, int cost) {
         super(x, y, name, HP, DP, AP, board);
-        cost = cost;
+        this.cost = cost;
         currEnergy = 100;
     }
 

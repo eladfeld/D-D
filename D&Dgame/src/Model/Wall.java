@@ -9,7 +9,7 @@ public class Wall extends gameObject{
     }
 
     @Override
-    public int invoked(gameObject gUnit) {
+    public int invoked(GUnit gUnit) {
         return 3;
     }
 

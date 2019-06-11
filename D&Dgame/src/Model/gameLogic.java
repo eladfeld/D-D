@@ -44,7 +44,7 @@ public class gameLogic {
         observer = Presentetion.getInstance();
         enemies = new LinkedList<Enemy>();
         activeGame = true;
-        this.player = player;
+        gameLogic.player = player;
         playerMove = AR;
         RandomNum = RG;
         board = levelProccesor(level);
@@ -89,8 +89,7 @@ public class gameLogic {
         observer.update(player.getPlayerStatus());
     }
 
-    private gameObject[][] levelProccesor(char[][] board) {
-        char c;
+    private gameObject[][] levelProccesor(char[][] board) {        
         int width = board.length;
         int length = board[0].length;
         gameObject[][] output = new gameObject[width][length];
@@ -184,23 +183,36 @@ public class gameLogic {
     }
 
     public void gameTick() {
+        removeDeadEnemies();
         observer.update(boardToString(board));
         player.turn(playerMove, RandomNum);
         for (int i = 0; i < enemies.size(); i++) {
             GUnit enemy = enemies.get(i);
-            if (enemy.isAlive()) enemy.turn(RandomNum);
-            else {
-            	board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
-            	enemies.remove(i);
-            }
+            enemy.turn(RandomNum);
         }
         activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
+    }
+    
+    private void removeDeadEnemies() {
+    	for(int i=0 ; i<enemies.size() ; i++) {
+    		Enemy enemy = enemies.get(i);
+    		if(enemy.isAlive()==false) {    			
+    			enemies.remove(enemy);
+    			board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
+    		}    			
+    	}
+    		
+    	for(Enemy enemy : enemies){
+    		if(enemy.isAlive()==false) {
+    			enemies.remove(enemy);
+    			board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
+    		}
+    	}
     }
 
 
     public static String boardToString(gameObject[][] board) {
         String output = "";
-        gameObject GO;
         for (int j = 0; j < board[0].length; j++) {
         	for (int i = 0; i < board.length; i++) {
                 	output = output + board[i][j];

@@ -47,14 +47,10 @@ public class Monster extends Enemy {
     		}
     	}
     	else { //player not in range
-    		int count = 0;
-    		do {
     		int[] move = XYComponents(RG.nextInt(5));
     		dx = move[0];
     		dy = move[1];
-    		count++;
-    		}
-    		while(invoke(x + dx ,y + dy ) != 0 && count<20);
+    		//if(invoke(x + dx ,y + dy ) != 0);
     		move(dx, dy);
     	}    	
     }

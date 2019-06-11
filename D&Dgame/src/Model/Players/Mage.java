@@ -1,4 +1,5 @@
 package Model.Players;
+import Model.GUnit;
 
 import Controller.Moves.RandomGenerator;
 import Model.gameObject;
@@ -87,9 +88,11 @@ public class Mage extends Player {
             int hits = 0;
             int toHit = -1;
             List<gameObject> enemies= searchForEnemies();
-            while(hits<hitTimes & enemies.size()>0)
-            if(RG.hasNext())toHit =RG.nextInt(enemies.size())-1;
+            while(hits<hitTimes & enemies.size()>0) {
+            if(RG.hasNext()) toHit = RG.nextInt(enemies.size()-1);
             enemies.get(toHit).spelled(RG ,spellPwr);
+            hits++;
+            }
         }
         //check function
     }
@@ -106,7 +109,9 @@ public class Mage extends Player {
         int rightBound = Math.min(x+range,board[0].length);
         for (int i = upperBound;i <= lowerBound; i++){
             for(int j =leftBound;j <=rightBound;j++){
-                if(invoke(j,i)==2)output.add(board[i][j]);
+                if(invoke(j,i)==2 && ((GUnit)board[j][i]).isAlive())output.add(board[i][j]);
+                //invoke=2  <===> enemy ==>GUnit
+                //necesary casting!
             }
         }
         return output;

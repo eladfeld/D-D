@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Presentetion implements MyObserver{
 
-	private static String message="";
+	//private static String message="";
 
 
     private Presentetion(){}
@@ -96,6 +96,7 @@ public class Presentetion implements MyObserver{
                 " Y/N ?");
         Scanner S = new Scanner(System.in);
         String ans = S.nextLine();
+        S.close();
         return ans;
     }
 

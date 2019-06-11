@@ -30,13 +30,13 @@ public abstract class Enemy extends GUnit {
     public Enemy(int x, int y, String name , int HP , int DP , int AP , int expValue , char tile, gameObject[][] board ){
         super(x,y,name,HP,DP,AP,board);
         this.expValue=expValue;
-        this.inSight=inSight;
+        //this.inSight=inSight;
         this.Tile=tile;
 
     }
 
     @Override
-    public int invoked(gameObject gUnit) {//assuming player (possibly for no reason)
+    public int invoked(GUnit gUnit) {//assuming player (possibly for no reason)
     	if(gUnit==this) return 3;
         return 2;
     }

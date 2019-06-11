@@ -83,7 +83,7 @@ public class Trap extends Enemy {
         int  bottomBound = Math.min(y + range, board[0].length - 1);
         int leftBound = Math.max(x - range, 0);
         int rightBound = Math.min(x + range, board.length - 1);
-        List<int[]> freeSpaces = new LinkedList();
+        List<int[]> freeSpaces = new LinkedList<int[]>();
         for (int i = topBound; i <= bottomBound; i++)
             for (int j = leftBound; j <= rightBound; j++)
                 if (invoke(j, i) == 0) freeSpaces.add(new int[]{j, i});

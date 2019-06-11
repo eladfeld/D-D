@@ -18,6 +18,7 @@ public class Proccesor {
             BufferedReader br = new BufferedReader(new FileReader(file));
             output = new int[(int) lines];
             for (int i = 0; i < lines; i++) output[i] = Integer.parseInt(br.readLine());
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,6 +34,7 @@ public class Proccesor {
             BufferedReader br = new BufferedReader(new FileReader(file));
             output = new String[(int) lines];
             for (int i = 0; i < lines; i++) output[i] = br.readLine();
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,6 +68,7 @@ public class Proccesor {
                 result[i] = st.toCharArray();
                 st = br.readLine();
             }
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

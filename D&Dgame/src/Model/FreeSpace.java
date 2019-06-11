@@ -19,7 +19,8 @@ public class FreeSpace extends gameObject {
     public void spelled(RandomGenerator RG, int spellPwr) {
     }
 
-    @Override
+    //@Override
+    //should not be overriden, invoked is abstract method for gameObject
 	public int invoked(GUnit gUnit) {
 		// TODO Auto-generated method stub
 		return 0;
