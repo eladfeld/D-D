@@ -31,7 +31,7 @@ public class Monster extends Enemy {
     	Player player = gameLogic.getPlayer();
     	int dx, dy;
     	Double distance = distanceFrom(player);
-    	if( distance<1.2) {
+    	if( distance.equals(1.0)) {
     		attack((GUnit)player, RG);
     		}
     	else if(distance<=visionRange) {
@@ -50,7 +50,6 @@ public class Monster extends Enemy {
     		int[] move = XYComponents(RG.nextInt(5));
     		dx = move[0];
     		dy = move[1];
-    		//if(invoke(x + dx ,y + dy ) != 0);
     		move(dx, dy);
     	}    	
     }

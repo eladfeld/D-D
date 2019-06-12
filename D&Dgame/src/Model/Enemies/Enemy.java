@@ -30,9 +30,12 @@ public abstract class Enemy extends GUnit {
     public Enemy(int x, int y, String name , int HP , int DP , int AP , int expValue , char tile, gameObject[][] board ){
         super(x,y,name,HP,DP,AP,board);
         this.expValue=expValue;
-        //this.inSight=inSight;
         this.Tile=tile;
 
+    }
+    
+    public int invoke(int x, int y) {
+    	return board[x][y].invoked(this);
     }
 
     @Override
@@ -47,6 +50,7 @@ public abstract class Enemy extends GUnit {
         return 2;
     }
     public abstract void turn(RandomGenerator RG);
+    
     protected Double distanceFrom(gameObject GO) {
     	int dx = x - GO.getX();
     	int dy = y - GO.getY();

@@ -17,7 +17,7 @@ public class gameLogic {
     private RandomGenerator RandomNum;
     private gameObject[][] board;
     private List<Enemy> enemies;
-    private static Player player = null;
+    private static Player player;
     private boolean activeGame;
     private MyObserver observer;
 
@@ -95,13 +95,13 @@ public class gameLogic {
         gameObject[][] output = new gameObject[width][length];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < length; j++) {
-                creatGameObject(board[i][j] , i , j ,output);
+                createGameObject(board[i][j] , i , j ,output);
             }
         }
         return output;
     }
 
-    private void creatGameObject(char c , int i , int j ,gameObject[][] output) {
+    private void createGameObject(char c , int i , int j ,gameObject[][] output) {
         gameObject GO = null;
         boolean isEnemy = false;
         //region cases
@@ -118,11 +118,6 @@ public class gameLogic {
                 player.y = j;
                 GO = player;
                 break;
-            //have function receive parameter for player so it knows how to point at it
-            case 'X':
-                //need to understand what to do here!!!
-                break;
-
             case 's':
                 GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output);
                 isEnemy = true;
@@ -183,9 +178,9 @@ public class gameLogic {
     }
 
     public void gameTick() {
-        removeDeadEnemies();
         observer.update(boardToString(board));
         player.turn(playerMove, RandomNum);
+        removeDeadEnemies();
         for (int i = 0; i < enemies.size(); i++) {
             GUnit enemy = enemies.get(i);
             enemy.turn(RandomNum);
@@ -200,13 +195,6 @@ public class gameLogic {
     			enemies.remove(enemy);
     			board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
     		}    			
-    	}
-    		
-    	for(Enemy enemy : enemies){
-    		if(enemy.isAlive()==false) {
-    			enemies.remove(enemy);
-    			board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
-    		}
     	}
     }
 

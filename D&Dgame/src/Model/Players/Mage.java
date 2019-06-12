@@ -83,6 +83,7 @@ public class Mage extends Player {
     public void special(RandomGenerator RG) {
         if(currMana < cost){
             //generate an aproprate message here!!
+        	VIEW.update("you dont got enough mana to perform Blizzard!");
         }else{
             currMana = currMana - cost;
             int hits = 0;
@@ -109,9 +110,7 @@ public class Mage extends Player {
         int rightBound = Math.min(x+range,board[0].length);
         for (int i = upperBound;i <= lowerBound; i++){
             for(int j =leftBound;j <=rightBound;j++){
-                if(invoke(j,i)==2 && ((GUnit)board[j][i]).isAlive())output.add(board[i][j]);
-                //invoke=2  <===> enemy ==>GUnit
-                //necesary casting!
+                if(invoke(j,i)==2)output.add(board[i][j]);
             }
         }
         return output;

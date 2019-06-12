@@ -9,8 +9,6 @@ public class FreeSpace extends gameObject {
        Tile = '.';
     }
 
-
-
     public int defence(RandomGenerator RG, int attack) {
     	return -1;
     }
@@ -19,10 +17,8 @@ public class FreeSpace extends gameObject {
     public void spelled(RandomGenerator RG, int spellPwr) {
     }
 
-    //@Override
-    //should not be overriden, invoked is abstract method for gameObject
+    @Override
 	public int invoked(GUnit gUnit) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

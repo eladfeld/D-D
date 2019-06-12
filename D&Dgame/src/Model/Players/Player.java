@@ -137,10 +137,8 @@ public abstract class Player extends GUnit {
         DP = DP + level * 2;
         personalLevelUp();
     }
-
-    @Override
-    public int invoked(GUnit gUnit) {
-        return 0;
+    public int invoke(int x, int y) {
+    	return board[x][y].invoked(this);
     }
 
     public int invoked(Enemy enemy) {
@@ -150,6 +148,10 @@ public abstract class Player extends GUnit {
     public String toString() {
         if (Alive) return "@";
         return "X";
+    }
+    @Override
+    public int invoked(GUnit gUnit) {
+        return 0;
     }
 
     public String getPlayerStatus() {

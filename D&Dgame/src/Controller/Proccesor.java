@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 public class Proccesor {
 
+	//receives file path and returns array of numbers
     public static int[] tickProccesor(String path) {
         Path P = Paths.get(path);
         File file = new File(path);
@@ -24,7 +25,7 @@ public class Proccesor {
         }
         return output;
     }
-
+	//receives file path and returns array of strings
     public static String[] moveProccesor(String path) {
         Path P = Paths.get(path);
         File file = new File(path);
@@ -54,9 +55,8 @@ public class Proccesor {
         }
         output = "[" + output;
         return output.substring(0, 48) + (int) Hpresentage + "%" + output.substring(51);
-
     }
-
+    //recives a file and return array represent a board
     public static char[][] boardProccesor(File level , int height) {
         char[][] result = null;
         try {

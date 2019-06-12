@@ -89,15 +89,8 @@ public class Presentetion implements MyObserver{
     	return s;
     }
 
-    public String GameOver() {
-    	System.out.println("GAME OVER!\n" +
-                "do you wish to play again?\n" +
-                "insert Y - yes , N - no \n" +
-                " Y/N ?");
-        Scanner S = new Scanner(System.in);
-        String ans = S.nextLine();
-        S.close();
-        return ans;
+    public void GameOver() {
+    	System.out.println("Game Over!");
     }
 
 	@Override

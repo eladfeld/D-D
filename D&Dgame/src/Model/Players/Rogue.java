@@ -45,7 +45,7 @@ public class Rogue extends Player {
     @Override
     public void special(RandomGenerator RG) {
         if (currEnergy < cost) {
-            //generate an aproprate message here!!
+        	VIEW.update(name + "yused fan of knives!");
         } else {
             currEnergy = currEnergy - cost;
             List<gameObject> enemies = searchForEnemies();

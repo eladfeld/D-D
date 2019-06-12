@@ -3,7 +3,6 @@ package Controller;
 import Controller.Moves.*;
 import Model.gameLogic;
 import View.Presentetion;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,11 +17,11 @@ public class gameControl {
         boolean hasAnotherLevel = true;
         //change levelNum back to 1 before submision
         //level 0 for testing purposes
-        int levelNum = 1;
+        int levelNum = 0;
         File level = null;
         RandomGenerator RandomNums;
         ActionReader PlayerActions;
-        if (args.length > 1) {
+        if (args.length>1 && args[1].equals("-D")) {
             RandomNums = new DeterNum(Proccesor.tickProccesor(dir + "\\random_numbers.txt"));
             PlayerActions = new DeterAction(Proccesor.moveProccesor(dir + "\\user_actions.txt"));
         }else {
@@ -42,7 +41,7 @@ public class gameControl {
                     lineCount = Files.lines(path).count();
                     level = new File(locetion);
                 } catch (IOException e) {
-                    break;
+                	hasAnotherLevel = false;
                 }
                 char[][] board = Proccesor.boardProccesor(level, (int) lineCount);
                 //change levelNum==1 before submitting
@@ -53,12 +52,10 @@ public class gameControl {
                     GL.gameTick();
                 }
                 if (!gameLogic.getPlayer().isAlive()) {
-//                    playAgain = presentetion.GameOver();
                 	presentetion.GameOver();
                     break;
                 } else levelNum++;
             }
-//        }   //(closer bracket from the while loop asking to play again)
         Presentetion.gameFinishd();
     }
 }

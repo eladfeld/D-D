@@ -12,7 +12,8 @@ public class keyInput extends KeyAdapter {
     }
 
     public void keyPressed(KeyEvent event){
-        char key = event.getKeyChar();
+        //char key = 
+        		event.getKeyChar();
 
     }
 

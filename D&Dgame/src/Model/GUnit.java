@@ -10,7 +10,7 @@ public abstract class GUnit extends gameObject implements MyObservable{
     protected gameObject[][] board;
     protected int currHP ,HP ,DP ,AP;
     protected boolean Alive;
-    protected final MyObserver VIEW = Presentetion.getInstance();
+    protected static final MyObserver VIEW = Presentetion.getInstance();
 
     //region Getters and Setters
     public gameObject[][] getBoard() {
@@ -86,9 +86,10 @@ public abstract class GUnit extends gameObject implements MyObservable{
 
     public abstract void turn(RandomGenerator RG);
 
-    public int invoke(int x , int y){
-       return board[x][y].invoked(this);
-    }
+    public abstract int invoke(int x , int y);
+//    {
+//       return board[x][y].invoked(this);
+//    }
 
     @Override
     public  void spelled(RandomGenerator RG ,int spellPwr) {
@@ -105,11 +106,16 @@ public abstract class GUnit extends gameObject implements MyObservable{
     public void notify(MyObserver observer, GUnit assailant, gameObject defender, int atk, int def) {
     	observer.update(assailant, defender, atk, def);
     }
+    public void notify(MyObserver observer, String s){
+    	observer.update(s);
+    }
 
     public int defence(RandomGenerator RG ,int attack){
     	int defence = RG.nextInt(DP);
     	if(defence<attack) setCurrHP(currHP - attack + defence);
-        if(currHP <= 0 )Alive = false;
+        if(currHP <= 0 ) {
+        	Alive = false;
+        }
         return defence;
 
     }

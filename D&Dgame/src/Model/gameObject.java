@@ -30,7 +30,6 @@ public abstract class gameObject {
         this.y = y;
         Tile = ',';
     }
-    //changed signature to GUnit, only GUnits can invoke
     public abstract int invoked( GUnit gUnit);
 
     public abstract int defence(RandomGenerator RG , int attack);
