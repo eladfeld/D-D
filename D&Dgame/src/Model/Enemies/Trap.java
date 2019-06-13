@@ -53,7 +53,7 @@ public class Trap extends Enemy {
         int[] enemy;
         if ((enemy = EnemyNear()) != null)
             attack(board[enemy[0]][enemy[1]], RG);
-        else if (tickCount == reSpawn) {
+        else if (tickCount >= reSpawn) {
             reSpawn(RG);
             tickCount = 0;
         } else tickCount++;
@@ -74,18 +74,18 @@ public class Trap extends Enemy {
     }
 
     public int invoked(Enemy enemy) {
-        return 1;
+        return 3;
     }
 
     private void reSpawn(RandomGenerator RG) {
-        int  topBound = Math.max(y - range, 0);
-        int  bottomBound = Math.min(y + range, board[0].length - 1);
+        int topBound = Math.max(y - range, 0);
+        int bottomBound = Math.min(y + range, board[0].length - 1);
         int leftBound = Math.max(x - range, 0);
         int rightBound = Math.min(x + range, board.length - 1);
-        List<int[]> freeSpaces = new LinkedList();
+        List<int[]> freeSpaces = new LinkedList<int[]>();
         for (int i = topBound; i <= bottomBound; i++)
             for (int j = leftBound; j <= rightBound; j++)
-                if (invoke(j, i) == 0) freeSpaces.add(new int[]{j, i});
+                if (distanceFrom(board[j][i]) <= range & invoke(j, i) == 1) freeSpaces.add(new int[]{j, i});
         int[] newPlace = freeSpaces.get(RG.nextInt(freeSpaces.size()));
         int newX = newPlace[0];
         int newY = newPlace[1];

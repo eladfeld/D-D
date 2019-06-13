@@ -21,7 +21,6 @@ public class FreeSpace extends gameObject {
         return 1;
     }
 
-
     public int defence(RandomGenerator RG, int attack) {
     	return -1;
     }
@@ -29,6 +28,7 @@ public class FreeSpace extends gameObject {
     @Override
     public void spelled(RandomGenerator RG, int spellPwr) {
     }
+
 
 
 }

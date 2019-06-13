@@ -38,14 +38,14 @@ public class Rogue extends Player {
 
     public Rogue(int x, int y, String name, int HP, int DP, int AP, gameObject[][] board, int cost) {
         super(x, y, name, HP, DP, AP, board);
-        cost = cost;
+        this.cost = cost;
         currEnergy = 100;
     }
 
     @Override
     public void special(RandomGenerator RG) {
         if (currEnergy < cost) {
-            //generate an aproprate message here!!
+        	VIEW.update(name + "yused fan of knives!");
         } else {
             currEnergy = currEnergy - cost;
             List<gameObject> enemies = searchForEnemies();

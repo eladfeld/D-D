@@ -17,7 +17,7 @@ public class gameLogic {
     private RandomGenerator RandomNum;
     private gameObject[][] board;
     private List<Enemy> enemies;
-    private static Player player = null;
+    private static Player player;
     private boolean activeGame;
     private MyObserver observer;
 
@@ -44,7 +44,7 @@ public class gameLogic {
         observer = Presentetion.getInstance();
         enemies = new LinkedList<Enemy>();
         activeGame = true;
-        this.player = player;
+        gameLogic.player = player;
         playerMove = AR;
         RandomNum = RG;
         board = levelProccesor(level);
@@ -89,20 +89,19 @@ public class gameLogic {
         observer.update(player.getPlayerStatus());
     }
 
-    private gameObject[][] levelProccesor(char[][] board) {
-        char c;
+    private gameObject[][] levelProccesor(char[][] board) {        
         int width = board.length;
         int length = board[0].length;
         gameObject[][] output = new gameObject[width][length];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < length; j++) {
-                creatGameObject(board[i][j] , i , j ,output);
+                createGameObject(board[i][j] , i , j ,output);
             }
         }
         return output;
     }
 
-    private void creatGameObject(char c , int i , int j ,gameObject[][] output) {
+    private void createGameObject(char c , int i , int j ,gameObject[][] output) {
         gameObject GO = null;
         boolean isEnemy = false;
         //region cases
@@ -119,11 +118,6 @@ public class gameLogic {
                 player.y = j;
                 GO = player;
                 break;
-            //have function receive parameter for player so it knows how to point at it
-            case 'X':
-                //need to understand what to do here!!!
-                break;
-
             case 's':
                 GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output);
                 isEnemy = true;
@@ -170,7 +164,7 @@ public class gameLogic {
                 isEnemy = true;
                 break;
             case 'Q':
-                GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6, output);
+                GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 10, 6, output);
                 isEnemy = true;
                 break;
             case 'D':
@@ -186,21 +180,27 @@ public class gameLogic {
     public void gameTick() {
         observer.update(boardToString(board));
         player.turn(playerMove, RandomNum);
+        removeDeadEnemies();
         for (int i = 0; i < enemies.size(); i++) {
             GUnit enemy = enemies.get(i);
-            if (enemy.isAlive()) enemy.turn(RandomNum);
-            else {
-            	board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
-            	enemies.remove(i);
-            }
+            enemy.turn(RandomNum);
         }
         activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
+    }
+    
+    private void removeDeadEnemies() {
+    	for(int i=0 ; i<enemies.size() ; i++) {
+    		Enemy enemy = enemies.get(i);
+    		if(enemy.isAlive()==false) {    			
+    			enemies.remove(enemy);
+    			board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
+    		}    			
+    	}
     }
 
 
     public static String boardToString(gameObject[][] board) {
         String output = "";
-        gameObject GO;
         for (int j = 0; j < board[0].length; j++) {
         	for (int i = 0; i < board.length; i++) {
                 	output = output + board[i][j];

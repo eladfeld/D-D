@@ -17,9 +17,8 @@ public class Wall extends gameObject{
 
     @Override
     public int invoked(Enemy enemy) {
-        return 3;
+        return  3;
     }
-
 
     public int defence(RandomGenerator RG, int attack) {
     	return -2;

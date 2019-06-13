@@ -3,7 +3,6 @@ package Controller;
 import Controller.Moves.*;
 import Model.gameLogic;
 import View.Presentetion;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,40 +19,43 @@ public class gameControl {
         //level 0 for testing purposes
         int levelNum = 0;
         File level = null;
-        ActionReader PlayerActions = new FreePlay();
-        RandomGenerator RandomNums = new RandomNum();
+        RandomGenerator RandomNums;
+        ActionReader PlayerActions;
+        if (args.length>1 && args[1].equals("-D")) {
+            RandomNums = new DeterNum(Proccesor.tickProccesor(dir + "\\random_numbers.txt"));
+            PlayerActions = new DeterAction(Proccesor.moveProccesor(dir + "\\user_actions.txt"));
+        }else {
+	        RandomNums = new RandomNum();
+	        PlayerActions = new FreePlay();
+        }
         Presentetion presentetion = (Presentetion) Presentetion.getInstance();
-        String playAgain = "Y";
-        while (playAgain == "Y") {
-            presentetion.GameStart();
-            gameLogic GL = null;
+        presentetion.GameStart();
+//Deterministic mode does not account for being asked to play again        
+//        String playAgain = "y";
+//        while (playAgain.equalsIgnoreCase("y")) {
+        	gameLogic GL = null;
             while (hasAnotherLevel) {
                 String locetion = dir + "\\level " + levelNum + ".txt";
                 try {
                     Path path = Paths.get(locetion);
                     lineCount = Files.lines(path).count();
                     level = new File(locetion);
-                    if (args.length > 1) {
-                        RandomNums = new DeterNum(Proccesor.tickProccesor(dir + "\\random_numberts:txt"));
-                        PlayerActions = new DeterAction(Proccesor.moveProccesor(dir + "\\user_actions:txt"));
-                    }
                 } catch (IOException e) {
-                    break;
+                	hasAnotherLevel = false;
                 }
                 char[][] board = Proccesor.boardProccesor(level, (int) lineCount);
                 //change levelNum==1 before submitting
                 if (GL == null) GL = new gameLogic(PlayerActions, RandomNums, board);
-                else GL = new gameLogic(PlayerActions, RandomNums, board, GL.getPlayer());
+                else GL = new gameLogic(PlayerActions, RandomNums, board, gameLogic.getPlayer());
                 while (GL.isActiveGame()) {
                     presentetion.ShowGame();
                     GL.gameTick();
                 }
-                if (!GL.getPlayer().isAlive()) {
-                    playAgain = presentetion.GameOver();
+                if (!gameLogic.getPlayer().isAlive()) {
+                	presentetion.GameOver();
                     break;
                 } else levelNum++;
             }
-        }
         Presentetion.gameFinishd();
     }
 }

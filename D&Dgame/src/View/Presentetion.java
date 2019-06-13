@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Presentetion implements MyObserver{
 
-	private static String message="";
+	//private static String message="";
 
 
     private Presentetion(){}
@@ -90,14 +90,8 @@ public class Presentetion implements MyObserver{
     	return s;
     }
 
-    public String GameOver() {
-    	System.out.println("GAME OVER!\n" +
-                "do you wish to play again?\n" +
-                "insert Y - yes , N - no \n" +
-                " Y/N ?");
-        Scanner S = new Scanner(System.in);
-        String ans = S.nextLine();
-        return ans;
+    public void GameOver() {
+    	System.out.println("Game Over!");
     }
 
 	@Override

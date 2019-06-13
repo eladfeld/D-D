@@ -4,7 +4,7 @@ public class DeterNum implements RandomGenerator {
     private int[] Random;
     private int index;
     public DeterNum(int[] Random){
-        Random=Random;
+        this.Random=Random;
         index=-1;
     }
 

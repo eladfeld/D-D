@@ -17,20 +17,22 @@ public class Warrior extends Player {
         this.cooldown = cooldown;
         this.remaining = cooldown;
     }
-
+    
     @Override
     public void special(RandomGenerator RG) {
         if(remaining <= 0 ) {
             currHP = Math.min(HP, currHP + (2*DP));
             remaining = cooldown;
+            VIEW.update(name +" healed");
+        }else {
+        	VIEW.update("you most cool down before healing !");
         }
-        //
-        //notify somehow
-        //
+
     }
+    
     @Override
     public void personalEndOfTurn() {
-    	remaining--;
+    	if( remaining > 0) remaining--;
     }
     @Override
     public void personalLevelUp() {

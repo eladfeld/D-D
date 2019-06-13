@@ -24,9 +24,9 @@ public abstract class Enemy extends GUnit {
         this.Tile=tile;
 
     }
-
-    public int invoke(int x , int y){
-        return board[x][y].invoked(this);
+    
+    public int invoke(int x, int y) {
+    	return board[x][y].invoked(this);
     }
 
     @Override
