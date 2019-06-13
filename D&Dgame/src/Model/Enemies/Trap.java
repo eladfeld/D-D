@@ -11,7 +11,6 @@ public class Trap extends Enemy {
     private int range, reSpawn, visTime;
     private int tickCount = 0;
     private char T;
-    // private boolean visible;
 
     //region Getters and Setters
     public int getRange() {
@@ -95,5 +94,6 @@ public class Trap extends Enemy {
         y = newY;
         board[x][y] = this;
     }
+
 
 }

@@ -1,8 +1,8 @@
 package Controller.Moves;
 
 public class DeterNum implements RandomGenerator {
-    int[] Random;
-    int index;
+    private int[] Random;
+    private int index;
     public DeterNum(int[] Random){
         Random=Random;
         index=-1;

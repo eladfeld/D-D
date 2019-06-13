@@ -86,9 +86,7 @@ public abstract class GUnit extends gameObject implements MyObservable{
 
     public abstract void turn(RandomGenerator RG);
 
-    public int invoke(int x , int y){
-       return board[x][y].invoked(this);
-    }
+    public abstract int invoke(int x , int y);
 
     @Override
     public  void spelled(RandomGenerator RG ,int spellPwr) {
@@ -113,10 +111,6 @@ public abstract class GUnit extends gameObject implements MyObservable{
         return defence;
 
     }
-    
-
-
-
 }
 
 

@@ -76,6 +76,7 @@ public class Presentetion implements MyObserver{
     private String playerStats() {
     	return gameLogic.getPlayer().SpecialStats();
     }
+
     private String battleReport(GUnit assailant, GUnit defender, int attack, int defence) {
     	String s = assailant.getName() +" engaged in battle with " + defender.getName()+" :"+'\n';
     	s = s+stats(assailant)+'\n'+ stats(defender)+ '\n';
@@ -101,7 +102,6 @@ public class Presentetion implements MyObserver{
 
 	@Override
 	public void update(GUnit assailant, gameObject defender, int atk, int def) {
-		// TODO Auto-generated method stub
 		update(assailant, (GUnit)defender, atk, def);
 		
 	}

@@ -1,6 +1,8 @@
 package Model;
 
 import Controller.Moves.RandomGenerator;
+import Model.Enemies.Enemy;
+import Model.Players.Player;
 
 public class Wall extends gameObject{
     public Wall(int x,int y) {
@@ -9,7 +11,12 @@ public class Wall extends gameObject{
     }
 
     @Override
-    public int invoked(gameObject gUnit) {
+    public int invoked(Player player) {
+        return 3;
+    }
+
+    @Override
+    public int invoked(Enemy enemy) {
         return 3;
     }
 
