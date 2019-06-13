@@ -56,7 +56,7 @@ public class Monster extends Enemy {
 
 
     public void move(int dx, int dy) {
-    	if(canMove(dx,dy)==0) {
+    	if(canMove(dx,dy)==1) {
 	    	board[x][y]= new FreeSpace(x,y);
 	    	board[x + dx][y + dy] = this;
 	    	x = x + dx;

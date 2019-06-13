@@ -1,9 +1,9 @@
 package Model.Players;
-import Model.GUnit;
-
 import Controller.Moves.RandomGenerator;
 import Model.gameObject;
-import java.util.*;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Mage extends Player {
@@ -73,7 +73,7 @@ public class Mage extends Player {
     }
 
     @Override
-    public void personalLevelUp() {
+    public void levelUp() {
         MP = MP + 25*level;
         currMana = Math.min(currMana+MP/4,MP);
         spellPwr = spellPwr + 10* level;
@@ -82,7 +82,6 @@ public class Mage extends Player {
     @Override
     public void special(RandomGenerator RG) {
         if(currMana < cost){
-            //generate an aproprate message here!!
         	VIEW.update("you dont got enough mana to perform Blizzard!");
         }else{
             currMana = currMana - cost;
@@ -91,15 +90,19 @@ public class Mage extends Player {
             List<gameObject> enemies= searchForEnemies();
             while(hits<hitTimes & enemies.size()>0) {
             if(RG.hasNext()) toHit = RG.nextInt(enemies.size()-1);
+            VIEW.update(name + "use Blizzard : ");
             enemies.get(toHit).spelled(RG ,spellPwr);
             hits++;
             }
         }
         //check function
     }
+
     @Override
-    public void personalEndOfTurn() {
-    	currMana = Math.min(MP, currMana + 1);
+    public void turn(RandomGenerator RG) {
+        super.turn(RG);
+        currMana = Math.min(MP, currMana + 1);
+
     }
 
     private List<gameObject> searchForEnemies() {   //need to test!!!!

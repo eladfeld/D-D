@@ -16,7 +16,7 @@ public class gameLogic {
     private ActionReader playerMove;
     private RandomGenerator RandomNum;
     private gameObject[][] board;
-    private List<Enemy> enemies;
+    private static List<Enemy> enemies;
     private static Player player;
     private boolean activeGame;
     private MyObserver observer;
@@ -25,6 +25,11 @@ public class gameLogic {
     public static Player getPlayer() {
     	return player;
     }
+
+    public static List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     public boolean isActiveGame() {
         return activeGame;
     }

@@ -36,6 +36,23 @@ public abstract class Player extends GUnit {
         this.exp = 0;
         this.level = 1;
     }
+
+    @Override
+    public int lost() {
+        return -1;
+    }
+
+    @Override
+    public void attack(gameObject defender, RandomGenerator RG) {
+        super.attack(defender, RG);
+        int enemyLost = defender.lost();
+        if(enemyLost > -1){
+            exp = enemyLost;
+            while(exp >= 50 * level)
+                levelUp();
+        }
+    }
+
     public void turn(RandomGenerator RG){};
 
     public int invoke(int x , int y){
@@ -71,7 +88,6 @@ public abstract class Player extends GUnit {
                 special(RG);
                 break;
         }
-        personalEndOfTurn();
     }
 
     public void moveLeft(RandomGenerator RG) {
@@ -83,7 +99,7 @@ public abstract class Player extends GUnit {
                 x--;
                 break;
             case 2:
-                super.attack(board[x - 1][y], RG);
+                attack(board[x - 1][y], RG);
                 break;
             case 3:
                 break;
@@ -142,13 +158,13 @@ public abstract class Player extends GUnit {
     public abstract void special(RandomGenerator RG);
 
     public void levelUp() {
+        VIEW.update(name + " leveled up from level " + level +" to " + (level+1));
         exp = exp - (level * 50);
         level++;
         HP = HP + 10 * level;
         currHP = HP;
         AP = AP + level * 5;
         DP = DP + level * 2;
-        personalLevelUp();
     }
 
 
@@ -164,9 +180,6 @@ public abstract class Player extends GUnit {
                 exp + "/" + level * 50;
     }
     public abstract String SpecialStats();
-    public abstract void personalEndOfTurn();
-    public abstract void personalLevelUp();
-
 
 }
 

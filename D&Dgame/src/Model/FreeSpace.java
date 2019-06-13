@@ -26,6 +26,11 @@ public class FreeSpace extends gameObject {
     }
 
     @Override
+    public int lost() {
+        return -1;
+    }
+
+    @Override
     public void spelled(RandomGenerator RG, int spellPwr) {
     }
 

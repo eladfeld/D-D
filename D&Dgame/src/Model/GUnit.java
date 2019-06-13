@@ -88,7 +88,8 @@ public abstract class GUnit extends gameObject implements MyObservable{
 
     @Override
     public  void spelled(RandomGenerator RG ,int spellPwr) {
-        defence(RG,spellPwr);
+        int defence = defence(RG,spellPwr);
+        VIEW.update(name + "was hit with " + Math.max(0, spellPwr - defence) );
     }
 
     public void attack(gameObject defender,RandomGenerator RG){

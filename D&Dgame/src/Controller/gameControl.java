@@ -42,19 +42,23 @@ public class gameControl {
                     level = new File(locetion);
                 } catch (IOException e) {
                 	hasAnotherLevel = false;
+                }if(hasAnotherLevel) {
+                    char[][] board = Proccesor.boardProccesor(level, (int) lineCount);
+                    //change levelNum==1 before submitting
+                    if (GL == null) GL = new gameLogic(PlayerActions, RandomNums, board);
+                    else GL = new gameLogic(PlayerActions, RandomNums, board, gameLogic.getPlayer());
+                    while (GL.isActiveGame()) {
+                        presentetion.ShowGame();
+                        GL.gameTick();
+                    }
+                    if (!gameLogic.getPlayer().isAlive()) {
+                        presentetion.GameOver();
+                        break;
+                    } else {
+                        levelNum++;
+                        presentetion.levelUp(levelNum);
+                    }
                 }
-                char[][] board = Proccesor.boardProccesor(level, (int) lineCount);
-                //change levelNum==1 before submitting
-                if (GL == null) GL = new gameLogic(PlayerActions, RandomNums, board);
-                else GL = new gameLogic(PlayerActions, RandomNums, board, gameLogic.getPlayer());
-                while (GL.isActiveGame()) {
-                    presentetion.ShowGame();
-                    GL.gameTick();
-                }
-                if (!gameLogic.getPlayer().isAlive()) {
-                	presentetion.GameOver();
-                    break;
-                } else levelNum++;
             }
         Presentetion.gameFinishd();
     }
