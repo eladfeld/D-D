@@ -7,10 +7,14 @@ import Model.gameObject;
 
 public class Presentetion implements MyObserver{
 
-	//private static String message="";
-
-
     private Presentetion(){}
+
+    private final static Presentetion INSTANCE = new Presentetion();
+
+    public static MyObserver getInstance() {
+        return INSTANCE;
+    }
+
 
     public static void gameFinishd() {
         System.out.println(
@@ -49,18 +53,13 @@ public class Presentetion implements MyObserver{
         System.out.println("You have finish level " + (levelNum-1) + " level " + levelNum + " begin");
     }
 
-    private static class PresentetionHolder {
-        private final static Presentetion INSTANCE = new Presentetion();
-    }
+
     public static void PlayerChosen(String name){
         System.out.println("You have chosen to play with: "  + name +
                             "\n Use w/s/a/d to move.\n" +
                                     "Use e for special ability or q to pass.");
     }
 
-    public static MyObserver getInstance() {
-        return PresentetionHolder.INSTANCE;
-    }
 
     @Override
     public void update(String update) {

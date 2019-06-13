@@ -26,10 +26,8 @@ public class gameLogic {
     	return player;
     }
 
-    public static List<Enemy> getEnemies() {
-        return enemies;
-    }
-
+    public static void setPlayer(Player player) {gameLogic.player = player; }
+    public static List<Enemy> getEnemies(){return enemies; }
     public boolean isActiveGame() {
         return activeGame;
     }
@@ -70,7 +68,7 @@ public class gameLogic {
         	case 0:
 	            player = new Warrior(0, 0, "T-Baby", 100, 10, 500, board, 60);
 	            break;
-
+	            	//(x,y, name, HP, DP, AP, board, 6)
             case 1:
                 player = new Warrior(0, 0, "Jon Snow", 300, 4, 30, board, 6);
                 break;
@@ -89,6 +87,9 @@ public class gameLogic {
                 break;
             case 6:
                 player = new Rogue(0, 0, "Bronn", 250, 3, 35, board, 60);
+                break;
+            case 7:
+                player = new Rogue(0, 0, "TestPlayer", 100, 50, 50, board, 60);
                 break;
         }
         observer.update(player.getPlayerStatus());
@@ -174,6 +175,10 @@ public class gameLogic {
                 break;
             case 'D':
                 GO = new Trap(i, j, "Death Trap", 500, 20, 100, 250, c, 6, 10, 3, output);
+                isEnemy = true;
+                break;
+            case 'L':
+                GO = new Monster(i, j, "TestMonster", 100, 50, 50, 5000, c, 8, output);
                 isEnemy = true;
                 break;
         }

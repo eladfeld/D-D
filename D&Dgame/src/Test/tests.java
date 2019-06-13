@@ -1,21 +1,20 @@
-package Model.Players;
+package Test;
 
 import Controller.Moves.ActionReader;
 import Controller.Moves.DeterAction;
 import Controller.Moves.DeterNum;
 import Controller.Moves.RandomGenerator;
 import Model.Enemies.Enemy;
+import Model.Players.Player;
 import Model.gameLogic;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RogueTest {
-
+public class tests {
     //tests battle between player and enemy
-    gameLogic GL = null;
 
     @Test
-    public  void testAttack() {
+    public void testAttack() {
         //@Before
         char[][] level = {{'@', '.'}, {'L', '.'}};
         int[] numbers = {20, 10, 30, 5};
@@ -37,8 +36,9 @@ public class RogueTest {
         //@After
 
     }
+
     @Test
-    public  void testMove() {
+    public void testMove() {
         //@Before
         char[][] level = {{'@', '.'}, {'L', '.'}};
         int[] numbers = {0, 0, 0, 0};
@@ -59,37 +59,5 @@ public class RogueTest {
             System.out.println("Move Test Failed");
         }
     }
-
-
-    @Test
-    public void specialStats() {
-    }
-
-    @Test
-    public void getCurrEnerg() {
-    }
-
-    @Test
-    public void setCurrEnerg() {
-    }
-
-    @Test
-    public void getCost() {
-    }
-
-    @Test
-    public void setCost() {
-    }
-
-    @Test
-    public void special() {
-    }
-
-    @Test
-    public void turn() {
-    }
-
-    @Test
-    public void levelUp() {
-    }
 }
+
