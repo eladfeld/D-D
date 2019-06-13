@@ -169,7 +169,7 @@ public class gameLogic {
                 isEnemy = true;
                 break;
             case 'Q':
-                GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 5, 6, output);
+                GO = new Trap(i, j, "Queen's Trap", 250, 10, 50, 100, c, 4, 10, 6, output);
                 isEnemy = true;
                 break;
             case 'D':

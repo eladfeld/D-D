@@ -1,6 +1,8 @@
 package Model;
 
 import Controller.Moves.RandomGenerator;
+import Model.Enemies.Enemy;
+import Model.Players.Player;
 
 public abstract class gameObject {
     protected int x;
@@ -30,7 +32,10 @@ public abstract class gameObject {
         this.y = y;
         Tile = ',';
     }
-    public abstract int invoked( GUnit gUnit);
+
+    public abstract int invoked(Player player);
+
+    public abstract int invoked(Enemy enemy);
 
     public abstract int defence(RandomGenerator RG , int attack);
 

@@ -11,7 +11,6 @@ public class Trap extends Enemy {
     private int range, reSpawn, visTime;
     private int tickCount = 0;
     private char T;
-    // private boolean visible;
 
     //region Getters and Setters
     public int getRange() {
@@ -86,7 +85,7 @@ public class Trap extends Enemy {
         List<int[]> freeSpaces = new LinkedList<int[]>();
         for (int i = topBound; i <= bottomBound; i++)
             for (int j = leftBound; j <= rightBound; j++)
-                if (distanceFrom(board[j][i]) <= range & invoke(j, i) == 0) freeSpaces.add(new int[]{j, i});
+                if (distanceFrom(board[j][i]) <= range & invoke(j, i) == 1) freeSpaces.add(new int[]{j, i});
         int[] newPlace = freeSpaces.get(RG.nextInt(freeSpaces.size()));
         int newX = newPlace[0];
         int newY = newPlace[1];
@@ -95,5 +94,6 @@ public class Trap extends Enemy {
         y = newY;
         board[x][y] = this;
     }
+
 
 }

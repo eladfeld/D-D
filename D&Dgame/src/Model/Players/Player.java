@@ -38,6 +38,19 @@ public abstract class Player extends GUnit {
     }
     public void turn(RandomGenerator RG){};
 
+    public int invoke(int x , int y){
+        return board[x][y].invoked(this);
+    }
+    @Override
+    public int invoked(Player player){
+        return 3;
+    }
+
+    @Override
+    public int invoked(Enemy enemy){
+        return 2;
+    }
+
     public void turn(ActionReader AR, RandomGenerator RG) {
         String action = "";
         if (AR.hasNext()) action = AR.nextAction();
@@ -64,7 +77,7 @@ public abstract class Player extends GUnit {
     public void moveLeft(RandomGenerator RG) {
         int interaction = invoke(x - 1, y);
         switch (interaction) {
-            case 0:
+            case 1:
                 board[x][y] = new FreeSpace(x, y);
                 board[x - 1][y] = this;
                 x--;
@@ -80,7 +93,7 @@ public abstract class Player extends GUnit {
     public void moveRight(RandomGenerator RG) {
         int interaction = invoke(x + 1, y);
         switch (interaction) {
-            case 0:
+            case 1:
                 board[x][y] = new FreeSpace(x, y);
                 board[x + 1][y] = this;
                 x++;
@@ -96,7 +109,7 @@ public abstract class Player extends GUnit {
     public void moveUp(RandomGenerator RG) {
         int interaction = invoke(x, y - 1);
         switch (interaction) {
-            case 0:
+            case 1:
                 board[x][y] = new FreeSpace(x, y);
                 board[x][y - 1] = this;                
                 y--;
@@ -112,7 +125,7 @@ public abstract class Player extends GUnit {
     public void moveDown(RandomGenerator RG) {
         int interaction = invoke(x, y + 1);
         switch (interaction) {
-            case 0:
+            case 1:
                 board[x][y] = new FreeSpace(x, y);
                 board[x][y + 1] = this;
                 y++;
@@ -137,21 +150,11 @@ public abstract class Player extends GUnit {
         DP = DP + level * 2;
         personalLevelUp();
     }
-    public int invoke(int x, int y) {
-    	return board[x][y].invoked(this);
-    }
 
-    public int invoked(Enemy enemy) {
-        return 2;
-    }
 
     public String toString() {
         if (Alive) return "@";
         return "X";
-    }
-    @Override
-    public int invoked(GUnit gUnit) {
-        return 0;
     }
 
     public String getPlayerStatus() {

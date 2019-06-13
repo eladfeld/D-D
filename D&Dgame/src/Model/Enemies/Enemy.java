@@ -7,7 +7,6 @@ import Model.gameObject;
 
 public abstract class Enemy extends GUnit {
     int expValue;
-    int inSight;
 
     //region Getters and Setters
     public int getExpValue() {
@@ -16,14 +15,6 @@ public abstract class Enemy extends GUnit {
 
     public void setExpValue(int expValue) {
         this.expValue = expValue;
-    }
-
-    public int getInSight() {
-        return inSight;
-    }
-
-    public void setInSight(int inSight) {
-        this.inSight = inSight;
     }
     //endregion
 
@@ -39,18 +30,17 @@ public abstract class Enemy extends GUnit {
     }
 
     @Override
-    public int invoked(GUnit gUnit) {//assuming player (possibly for no reason)
-    	if(gUnit==this) return 3;
-        return 2;
-    }
     public int invoked(Enemy enemy){
         return 3;
     }
+
+    @Override
     public int invoked(Player player){
         return 2;
     }
+
     public abstract void turn(RandomGenerator RG);
-    
+
     protected Double distanceFrom(gameObject GO) {
     	int dx = x - GO.getX();
     	int dy = y - GO.getY();
