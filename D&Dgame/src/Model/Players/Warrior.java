@@ -25,7 +25,7 @@ public class Warrior extends Player {
             int tmp = currHP;
             currHP = Math.min(HP, currHP + (2*DP));
             remaining = cooldown;
-            VIEW.update(name +" healed " + (currHP - tmp) + "health points" );
+            VIEW.update(name +" healed " + (currHP - tmp) + " health points" );
         }else {
         	VIEW.update("you most cool down before healing !");
         }

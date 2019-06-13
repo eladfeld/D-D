@@ -31,7 +31,8 @@ public class FreeSpace extends gameObject {
     }
 
     @Override
-    public void spelled(RandomGenerator RG, int spellPwr) {
+    public boolean spelled(RandomGenerator RG, int spellPwr) {
+	    return false;
     }
 
 

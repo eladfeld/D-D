@@ -47,7 +47,8 @@ public abstract class Player extends GUnit {
         super.attack(defender, RG);
         int enemyLost = defender.lost();
         if(enemyLost > -1){
-            exp = enemyLost;
+            exp = exp + enemyLost;
+            VIEW.update(name + " gained " + enemyLost + " EXP!");
             while(exp >= 50 * level)
                 levelUp();
         }
@@ -180,6 +181,10 @@ public abstract class Player extends GUnit {
                 exp + "/" + level * 50;
     }
     public abstract String SpecialStats();
+
+    protected double ocDistance(int Ex , int Ey){
+        return Math.sqrt((x-Ex)*(x-Ex) + (y-Ey)*(y-Ey));
+    }
 
 }
 

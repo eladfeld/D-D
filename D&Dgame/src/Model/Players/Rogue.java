@@ -46,10 +46,11 @@ public class Rogue extends Player {
     @Override
     public void special(RandomGenerator RG) {
         if (currEnergy < cost) {
-        	VIEW.update(name + " fan of knives!");
+        	VIEW.update("Need to gain more energy before performing fan of knives!");
         } else {
             currEnergy = currEnergy - cost;
             List<gameObject> enemies = searchForEnemies();
+            VIEW.update(name + " use fan of knives : ");
             for (gameObject go : enemies) go.spelled(RG, RG.nextInt(AP));
         }
     }
