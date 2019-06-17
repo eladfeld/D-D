@@ -63,18 +63,17 @@ public class gameLogic {
         }
         switch (choose) {
 
-        	//case 0 for testing purposes
         	case 0:
 	            player = new Warrior(0, 0, "T-Baby", 100, 10, 500, board, 60);
 	            break;
-	            	//(x,y, name, HP, DP, AP, board, 6)
+	            //(x,y, name, HP, DP, AP, board, 6)
             case 1:
                 player = new Warrior(0, 0, "Jon Snow", 300, 4, 30, board, 6);
                 break;
             case 2:
                 player = new Warrior(0, 0, "The hound", 400, 6, 20, board, 4);
                 break;
-
+                //(x, y, name, HP, DP, AP, board,spellPwr , MP, cost , hitTimes , range)
             case 3:
                 player = new Mage(0, 0, "Malisandre", 160, 1, 10, board, 40, 300, 30, 5, 6);
                 break;
@@ -123,6 +122,7 @@ public class gameLogic {
                 player.y = j;
                 GO = player;
                 break;
+                		//(x, y, name, HP, DP, AP, expValue, tile, visionRange, board)
             case 's':
                 GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output);
                 isEnemy = true;
@@ -164,6 +164,7 @@ public class gameLogic {
                 isEnemy = true;
                 break;
 
+                //(x, y, name, HP, DP, AP, expValue, tile, range, reSpawn, visTime, board)
             case 'B':
                 GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, 250, c, 5, 6, 2, output);
                 isEnemy = true;
