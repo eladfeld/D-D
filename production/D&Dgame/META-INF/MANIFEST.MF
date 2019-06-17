@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: C:\Users\elad\Desktop\D-D\D&Dgame\src
+Main-Class: Controller.gameControl
+
