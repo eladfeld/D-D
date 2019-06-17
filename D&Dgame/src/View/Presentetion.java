@@ -1,10 +1,5 @@
 package View;
 
-import Model.GUnit;
-import Model.Players.Player;
-import Model.gameLogic;
-import Model.gameObject;
-
 public class Presentetion implements MyObserver{
 
     private Presentetion(){}
@@ -46,19 +41,11 @@ public class Presentetion implements MyObserver{
                 "\t\tLevel: 1\t\tExperience: 0/50\t\tEnergy: 100/100\n" +
                 "6. Bronn\t\tHealth: 250\t\tAttack damage: 35\t\tDefense: 3\n" +
                 "\t\tLevel: 1\t\tExperience: 0/50\t\tEnergy: 100/100";
-
         System.out.println(choosePlayer);
     }
 
     public void levelUp(int levelNum) {
         System.out.println("You have finish level " + (levelNum-1) + " level " + levelNum + " begin");
-    }
-
-    //confirms to user the player he chose and what the game controls are
-    public static void PlayerChosen(String name){
-        System.out.println("You have chosen to play with: "  + name +
-                            "\n Use w/s/a/d to move.\n" +
-                                    "Use e for special ability or q to pass.");
     }
 
 
@@ -67,53 +54,32 @@ public class Presentetion implements MyObserver{
         System.out.println(update);
     }
 
-    //updates the user of battle stats
-    public void update(GUnit assailant, GUnit defender, int atk, int def) {
-        update(battleReport(assailant, defender, atk, def));
-    }
-
-    @Override    //updates the user of battle stats
-    public void update(GUnit assailant, gameObject defender, int atk, int def) {
-        update(assailant, (GUnit)defender, atk, def);
-
-    }
-    //notifies the user of his current stats
-    private String stats(GUnit g) {
-    	String s = g.getName()+" :     Health: "+g.getCurrHP() +"/" +g.getHP() +"     Attack: "+g.getAP()+"     Defence: "+g.getDP() ;
-    	return s;
-    }
-    //notifies user of his current stats specific to his player choice
-    private String playerStats() {
-    	return gameLogic.getPlayer().SpecialStats();
-    }
-
     //returns string describing the events that took place during a battle
-    private String battleReport(GUnit assailant, GUnit defender, int attack, int defence) {
-    	String s = assailant.getName() +" engaged in battle with " + defender.getName()+" :"+'\n';
-    	s = s+stats(assailant)+'\n'+ stats(defender)+ '\n';
-    	s = s+ playerStats()+'\n';
-    	s  = s + assailant.getName() + " rolled " +attack +" attack points." + '\n';
-    	s = s + defender.getName() + " rolled " + defence + " defence ponits" + '\n';
+    public void battleReport(String assailant, String defender,String assailantStats , String defenderStats, int attack, int defence) {
+    	String s = assailant + " engaged in battle with " + defender+ " :"+'\n';
+    	s = s + assailantStats + '\n'+ defenderStats+ '\n';
+    	s  = s + assailant + " rolled " +attack +" attack points." + '\n';
+    	s = s + defender + " rolled " + defence + " defence ponits" + '\n';
     	int damage = attack - defence;
     	if (damage < 0) damage = 0;
-    	s = s + assailant.getName() + " hit " + defender.getName() + "  for " + damage +  " damage."+'\n';
-    	if(defender.isAlive()==false) s=s+defender.getName()+ " has died.";
-    	return s;
+    	s = s + assailant + " hit " + defender + "  for " + damage +  " damage."+'\n';
+        System.out.println(s);
     }
-    
+
+    @Override
+    //confirms to user the player he chose and what the game controls are
+    public void playerChosen(String player) {
+        String s = "You have selected:\n";
+        s = s + "You have chosen to play with: \n"  + player +
+                "\n\n Use w/s/a/d to move.\n" +
+                "Use e for special ability or q to pass. \n" ;
+        System.out.println(s);
+    }
+
     //Game over!
     public void GameOver() {
     	System.out.println("Game Over!");
     }
-
-
-
-	public void ShowGame() {
-		Player p = gameLogic.getPlayer();
-		System.out.println(lifeBar(p.getCurrHP(), p.getHP()));
-		//System.out.println(gameLogic.boardToString(p.getBoard()));
-		System.out.println(stats(p)+ playerStats());
-	}
 	
 	//returns a visually comfortable representation of the players currHP/HP
     public static String lifeBar(int currHP , int HP){

@@ -97,18 +97,20 @@ public abstract class GUnit extends gameObject implements MyObservable{
     //attacking another game Unit
     public void attack(gameObject defender,RandomGenerator RG){
         if(RG.hasNext()) {
+            String defenderPreAttackState = defender.toString();
         	int attack = RG.nextInt(AP);
             int defence = defender.defence(RG, attack);
-            notify(VIEW ,this,defender, attack, defence);
+            battleReport(this,defender,defenderPreAttackState, attack, defence);
+            if(defender.lost() != -1) notify(defender.getName() + " have died!");
         }
     }
     //notifies observer of battle information
-    public void notify(MyObserver observer, GUnit assailant, gameObject defender, int atk, int def) {
-    	observer.update(assailant, defender, atk, def);
+    public void battleReport( GUnit assailant, gameObject defender,String defenderState, int atk, int def) {
+    	VIEW.battleReport(assailant.name, defender.getName() ,assailant.toString() , defenderState, atk, def);
     }
     //notifies observer with relevent message
-    public void notify(MyObserver observer, String s){
-    	observer.update(s);
+    public void notify(String s){
+    	VIEW.update(s);
     }
 
     //defends game unit from attack and returns how much of the attack it defended itself from
@@ -120,7 +122,10 @@ public abstract class GUnit extends gameObject implements MyObservable{
         	currHP=0;
         }
         return defence;
-
+    }
+    public String toString(){
+        return name + "\t\tHealth: " + currHP +"/"+HP + "\t\tAttack damage: " +AP
+                + "\t\tDefense: " + DP;
     }
 }
 

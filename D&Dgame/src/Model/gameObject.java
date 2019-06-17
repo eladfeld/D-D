@@ -50,4 +50,7 @@ public abstract class gameObject {
 
     public abstract boolean spelled(RandomGenerator RG ,int spellPwr);
 
+    protected  String getName(){
+        return Tile.toString();
+    }
 }

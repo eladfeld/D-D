@@ -11,11 +11,11 @@ public class Rogue extends Player {
 
     private int currEnergy;
     private int cost;
-    
+
     //returns players current stats
-    public String SpecialStats() {
-    	String s = "Level: "+level+"     Experience: "+exp+"     Energy: "+currEnergy;
-    	return s;
+    public String toString() {
+        String s = super.toString() + "     Energy: " + currEnergy + "/" + 100;
+        return s;
     }
 
     //region Getters and Setters
@@ -47,11 +47,11 @@ public class Rogue extends Player {
     @Override //activates Rogue's special ability fan of knives
     public void special(RandomGenerator RG) {
         if (currEnergy < cost) {
-        	notify(VIEW,"Need to gain more energy before performing fan of knives!");
+            notify("Need to gain more energy before performing fan of knives!");
         } else {
             currEnergy = currEnergy - cost;
             List<gameObject> enemies = searchForEnemies();
-            notify(VIEW,name + " use fan of knives : ");
+            notify(name + " use fan of knives : ");
             for (gameObject go : enemies) go.spelled(RG, RG.nextInt(AP));
         }
     }
@@ -65,12 +65,12 @@ public class Rogue extends Player {
 
     @Override //updates players stats upon leveling up
     public void levelUp() {
-    	super.levelUp();
-    	int energyGained = 100 - currEnergy;
-    	currEnergy = 100;
-    	AP = AP + (3*level);
-        notify(VIEW, "Level Up: +"+(10*level)+" HP     +"+(8*level)+" attack     +"+(2*level)+" defence     +"
-        		+ energyGained+" Energy");
+        super.levelUp();
+        int energyGained = 100 - currEnergy;
+        currEnergy = 100;
+        AP = AP + (3 * level);
+        notify("Level Up: +" + (10 * level) + " HP     +" + (8 * level) + " attack     +" + (2 * level) + " defence     +"
+                + energyGained + " Energy");
     }
 
     //returns list of all enemies within striking range for special ability

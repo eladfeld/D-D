@@ -26,9 +26,9 @@ public class Warrior extends Player {
             int tmp = currHP;
             currHP = Math.min(HP, currHP + (2*DP));
             remaining = cooldown;
-            notify(VIEW, name +" healed " + (currHP - tmp) + " health points" );
+            notify( name +" healed " + (currHP - tmp) + " health points" );
         }else {
-        	notify(VIEW,"you most cool down before healing !");
+        	notify("you most cool down before healing !");
         }
 
     }
@@ -42,18 +42,15 @@ public class Warrior extends Player {
     //updates the players stats
     public void levelUp(){
         super.levelUp();
-        int prev = remaining;
         remaining = 0;
         HP = HP + 5* level;
-        currHP = HP; //didnt say to do...
         DP = DP + level;
-        notify(VIEW, "Level Up: +"+(15*level)+" HP     +"+(5*level)+" attack     +"+(3*level)+" defence     -"
-        		+ prev+" remaining");
+        notify( "Level Up: +"+(15*level)+" HP     +"+(5*level)+" attack     +"+(3*level)+" defence  ");
     }
 
     //returns the players stats
-    public String getPlayerStatus(){
-        return super.getPlayerStatus() + "          Ability cooldown : " +cooldown +
+    public String toString(){
+        return super.toString() + "          Ability cooldown : " +cooldown +
                 "           remaining : " + remaining;
     }
 }

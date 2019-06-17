@@ -1,12 +1,11 @@
 package View;
-import Model.GUnit;
-import Model.gameObject;
-
 public interface MyObserver {
 
 	//receives message 
-    public  void update(String update);
+    void update(String update);
+    void playerChoseError();
     //receives the relevent information regarding a battle
-    public void update (GUnit assailant, gameObject defender, int atk, int def);
-    public void playerChoseError();
+    void battleReport(String name, String name1, String toString, String toString1, int atk, int def);
+
+    void playerChosen(String name);
 }

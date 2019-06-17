@@ -93,7 +93,7 @@ public class gameLogic {
                 player = new Rogue(0, 0, "TestPlayer", 100, 50, 50, board, 60);
                 break;
         }
-        observer.update(player.getPlayerStatus());
+        observer.playerChosen(player.toString());
     }
 
     //receives a board of chars and returns the game level that it represents
@@ -106,6 +106,7 @@ public class gameLogic {
                 createGameObject(board[i][j] , i , j ,output);
             }
         }
+        observer.update(boardToString(output));
         return output;
     }
 
@@ -190,19 +191,21 @@ public class gameLogic {
         }
         //endregion
         output[i][j] = GO;
-        if (isEnemy) enemies.add((Enemy) GO); //adds to enemy list
+        if (isEnemy) enemies.add((Enemy)GO); //adds to enemy list
     }
 
     // cycle of gameplay for each round of turns(gameTick)
     public void gameTick() {
-        observer.update(boardToString(board));
+        observer.update(player.toString());
         player.turn(playerMove, RandomNum);
         removeDeadEnemies();
         for (int i = 0; i < enemies.size(); i++) {
-            GUnit enemy = enemies.get(i);
+            Enemy enemy = enemies.get(i);
             enemy.turn(RandomNum);
         }
         activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
+        observer.update(boardToString(board));
+
     }
     
     //removes dead enemies from the list of enemies
@@ -221,7 +224,7 @@ public class gameLogic {
         String output = "";
         for (int j = 0; j < board[0].length; j++) {
         	for (int i = 0; i < board.length; i++) {
-                	output = output + board[i][j];
+                	output = output + board[i][j].Tile;
             }
             output += "\n";
         }

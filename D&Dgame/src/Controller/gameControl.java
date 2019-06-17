@@ -48,7 +48,6 @@ public class gameControl {
                     if (GL == null) GL = new gameLogic(PlayerActions, RandomNums, board);
                     else GL = new gameLogic(PlayerActions, RandomNums, board, gameLogic.getPlayer());
                     while (GL.isActiveGame()) {
-                        presentetion.ShowGame();
                         GL.gameTick();
                     }
                     if (!gameLogic.getPlayer().isAlive()) {
