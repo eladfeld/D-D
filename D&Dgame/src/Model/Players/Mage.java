@@ -93,8 +93,7 @@ public class Mage extends Player {
         } else {
             currMana = currMana - cost;
             int hits = 0;
-            int toHit = -1;
-            gameObject enemy = null;
+            gameObject enemy ;
             List<gameObject> enemies = searchForEnemies();
             notify(name + " used Blizzard : ");
             while (hits < hitTimes & enemies.size() > 0) {
@@ -114,7 +113,6 @@ public class Mage extends Player {
                 hits++;
             }
         }
-        //check function
     }
 
     @Override //requests input from user/generator and performs game move accordingly

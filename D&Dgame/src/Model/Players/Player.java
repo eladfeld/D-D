@@ -178,7 +178,6 @@ public abstract class Player extends GUnit {
     }
 
 
-    //returns general player stats
     public String toString() {
         return super.toString() +
                  '\n' + "           level: " + level + "          Experience" +

@@ -3,7 +3,6 @@ package Model.Enemies;
 import Controller.Moves.RandomGenerator;
 import Model.FreeSpace;
 import Model.gameObject;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -74,7 +73,7 @@ public class Trap extends Enemy {
         if (invoke(x, y - 1) == 2) return new int[]{x, y - 1};
         return null;
     }
-    
+
     //returns value representing the consequences of an enemy attempting to step into the trap
     public int invoked(Enemy enemy) {
         return 3;
@@ -89,8 +88,8 @@ public class Trap extends Enemy {
         List<int[]> freeSpaces = new LinkedList<int[]>();
         for (int i = topBound; i <= bottomBound; i++)
             for (int j = leftBound; j <= rightBound; j++)
-                if (distanceFrom(board[j][i]) <= range & invoke(j, i) == 1) freeSpaces.add(new int[]{j, i});
-        int[] newPlace = {x,y};
+                if (distanceFrom(j,i) <= range & invoke(j, i) == 1) freeSpaces.add(new int[]{j, i});
+        int[] newPlace = {x, y};
         if (freeSpaces.size() > 0)
             newPlace = freeSpaces.get(RG.nextInt(freeSpaces.size()));
         int newX = newPlace[0];
@@ -100,6 +99,4 @@ public class Trap extends Enemy {
         y = newY;
         board[x][y] = this;
     }
-
-
 }

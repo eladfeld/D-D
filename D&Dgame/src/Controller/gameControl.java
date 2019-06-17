@@ -15,9 +15,7 @@ public class gameControl {
         String dir = args[0];
         long lineCount = 0;
         boolean hasAnotherLevel = true;
-        //change levelNum back to 1 before submision
-        //level 0 for testing purposes
-        int levelNum = 0;
+        int levelNum = 1;
         File level = null;
         RandomGenerator RandomNums;
         ActionReader PlayerActions;
@@ -30,9 +28,6 @@ public class gameControl {
         }
         Presentetion presentetion = (Presentetion) Presentetion.getInstance();
         presentetion.GameStart();
-//Deterministic mode does not account for being asked to play again        
-//        String playAgain = "y";
-//        while (playAgain.equalsIgnoreCase("y")) {
         	gameLogic GL = null;
             while (hasAnotherLevel) {
                 String locetion = dir + "\\level " + levelNum + ".txt";
@@ -44,7 +39,6 @@ public class gameControl {
                 	hasAnotherLevel = false;
                 }if(hasAnotherLevel) {
                     char[][] board = Proccesor.boardProccesor(level, (int) lineCount);
-                    //change levelNum==1 before submitting
                     if (GL == null) GL = new gameLogic(PlayerActions, RandomNums, board);
                     else GL = new gameLogic(PlayerActions, RandomNums, board, gameLogic.getPlayer());
                     while (GL.isActiveGame()) {

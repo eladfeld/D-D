@@ -42,9 +42,9 @@ public abstract class Enemy extends GUnit {
     public abstract void turn(RandomGenerator RG);
 
     //returns the euclidean distance between this and the given gameObject
-    protected Double distanceFrom(gameObject GO) {
-        int dx = x - GO.getX();
-        int dy = y - GO.getY();
+    protected Double distanceFrom(int Px , int Py) {
+        int dx = x - Px;
+        int dy = y - Py;
         int radicand = (dx * dx) + (dy * dy);
         return Math.sqrt(radicand);
     }

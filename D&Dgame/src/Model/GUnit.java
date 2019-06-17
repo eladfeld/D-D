@@ -89,7 +89,7 @@ public abstract class GUnit extends gameObject implements MyObservable{
     @Override //when attacked by Mage with special
     public  void spelled(RandomGenerator RG ,int spellPwr) {
         int defence = defence(RG,spellPwr);
-        VIEW.update(name + " was hit with " + Math.max(0, spellPwr - defence) + " points");
+        notify(name + " was hit with " + Math.max(0, spellPwr - defence) + " points");
     }
 
     //attacking another game Unit

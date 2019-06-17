@@ -8,6 +8,7 @@ import Model.Players.Rogue;
 import Model.Players.Warrior;
 import View.MyObserver;
 import View.Presentetion;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,11 +24,17 @@ public class gameLogic {
 
 
     public static Player getPlayer() {
-    	return player;
+        return player;
     }
 
-    public static void setPlayer(Player player) {gameLogic.player = player; }
-    public static List<Enemy> getEnemies(){return enemies; }
+    public static void setPlayer(Player player) {
+        gameLogic.player = player;
+    }
+
+    public static List<Enemy> getEnemies() {
+        return enemies;
+    }
+
     public boolean isActiveGame() {
         return activeGame;
     }
@@ -43,6 +50,7 @@ public class gameLogic {
         board = levelProccesor(level);
         player.setBoard(board);
     }
+
     public gameLogic(ActionReader AR, RandomGenerator RG, char[][] level, Player player) {
         observer = Presentetion.getInstance();
         enemies = new LinkedList<Enemy>();
@@ -65,18 +73,18 @@ public class gameLogic {
         }
         switch (choose) {
 
-        	//case 0 & 7 for testing purposes
-        	case 0:
-	            player = new Warrior(0, 0, "T-Baby", 100, 10, 500, board, 60);
-	            break;
-	            //(x,y, name, HP, DP, AP, board, 6)
+            //case 0 & 7 for testing purposes
+            case 0:
+                player = new Warrior(0, 0, "T-Baby", 100, 10, 500, board, 60);
+                break;
+            //(x,y, name, HP, DP, AP, board, 6)
             case 1:
                 player = new Warrior(0, 0, "Jon Snow", 300, 4, 30, board, 6);
                 break;
             case 2:
                 player = new Warrior(0, 0, "The hound", 400, 6, 20, board, 4);
                 break;
-                //(x, y, name, HP, DP, AP, board,spellPwr , MP, cost , hitTimes , range)
+            //(x, y, name, HP, DP, AP, board,spellPwr , MP, cost , hitTimes , range)
             case 3:
                 player = new Mage(0, 0, "Malisandre", 160, 1, 10, board, 40, 300, 30, 5, 6);
                 break;
@@ -97,13 +105,13 @@ public class gameLogic {
     }
 
     //receives a board of chars and returns the game level that it represents
-    private gameObject[][] levelProccesor(char[][] board) {        
+    private gameObject[][] levelProccesor(char[][] board) {
         int width = board.length;
         int length = board[0].length;
         gameObject[][] output = new gameObject[width][length];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < length; j++) {
-                createGameObject(board[i][j] , i , j ,output);
+                createGameObject(board[i][j], i, j, output);
             }
         }
         observer.update(boardToString(output));
@@ -112,7 +120,7 @@ public class gameLogic {
 
     //creates the proper game object and puts it in its place in the level
     //adds enemies to the list of enemies along the way
-    private void createGameObject(char c , int i , int j ,gameObject[][] output) {
+    private void createGameObject(char c, int i, int j, gameObject[][] output) {
         gameObject GO = null;
         boolean isEnemy = false;
         //region cases
@@ -129,7 +137,6 @@ public class gameLogic {
                 player.y = j;
                 GO = player;
                 break;
-                		//(x, y, name, HP, DP, AP, expValue, tile, visionRange, board)
             case 's':
                 GO = new Monster(i, j, "Lannister Soldier", 80, 3, 8, 25, c, 3, output);
                 isEnemy = true;
@@ -170,8 +177,6 @@ public class gameLogic {
                 GO = new Monster(i, j, "Night's King", 5000, 150, 300, 5000, c, 8, output);
                 isEnemy = true;
                 break;
-
-                //(x, y, name, HP, DP, AP, expValue, tile, range, reSpawn, visTime, board)
             case 'B':
                 GO = new Trap(i, j, "Bonus Trap", 1, 1, 1, 250, c, 5, 6, 2, output);
                 isEnemy = true;
@@ -191,7 +196,7 @@ public class gameLogic {
         }
         //endregion
         output[i][j] = GO;
-        if (isEnemy) enemies.add((Enemy)GO); //adds to enemy list
+        if (isEnemy) enemies.add((Enemy) GO); //adds to enemy list
     }
 
     // cycle of gameplay for each round of turns(gameTick)
@@ -203,28 +208,28 @@ public class gameLogic {
             Enemy enemy = enemies.get(i);
             enemy.turn(RandomNum);
         }
-        activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
-        if(!player.isAlive())player.Tile = 'X';
+        activeGame = player.isAlive() & enemies.size() > 0; //player is alive and enemies are also alive
+        if (!player.isAlive()) player.Tile = 'X';
         observer.update(boardToString(board));
     }
-    
+
     //removes dead enemies from the list of enemies
     private void removeDeadEnemies() {
-    	for(int i=0 ; i<enemies.size() ; i++) {
-    		Enemy enemy = enemies.get(i);
-    		if(enemy.isAlive()==false) {    			
-    			enemies.remove(enemy);
-    			board[enemy.getX()][enemy.getY()]=new FreeSpace(enemy.getX(),enemy.getY());
-    		}    			
-    	}
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy enemy = enemies.get(i);
+            if (enemy.isAlive() == false) {
+                enemies.remove(enemy);
+                board[enemy.getX()][enemy.getY()] = new FreeSpace(enemy.getX(), enemy.getY());
+            }
+        }
     }
 
     //returns string representation of the game board
     public static String boardToString(gameObject[][] board) {
         String output = "";
         for (int j = 0; j < board[0].length; j++) {
-        	for (int i = 0; i < board.length; i++) {
-                	output = output + board[i][j].Tile;
+            for (int i = 0; i < board.length; i++) {
+                output = output + board[i][j].Tile;
             }
             output += "\n";
         }
