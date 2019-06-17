@@ -18,36 +18,41 @@ public abstract class Enemy extends GUnit {
     }
     //endregion
 
-    public Enemy(int x, int y, String name , int HP , int DP , int AP , int expValue , char tile, gameObject[][] board ){
-        super(x,y,name,HP,DP,AP,board);
-        this.expValue=expValue;
-        this.Tile=tile;
+    public Enemy(int x, int y, String name, int HP, int DP, int AP, int expValue, char tile, gameObject[][] board) {
+        super(x, y, name, HP, DP, AP, board);
+        this.expValue = expValue;
+        this.Tile = tile;
 
     }
-    
+
     public int invoke(int x, int y) {
-    	return board[x][y].invoked(this);
+        return board[x][y].invoked(this);
     }
 
     @Override
-    public int invoked(Enemy enemy){
+    public int invoked(Enemy enemy) {
         return 3;
     }
 
     @Override
-    public int invoked(Player player){
+    public int invoked(Player player) {
         return 2;
     }
 
     public abstract void turn(RandomGenerator RG);
 
     protected Double distanceFrom(gameObject GO) {
-    	int dx = x - GO.getX();
-    	int dy = y - GO.getY();
-    	int radicand = (dx*dx)+(dy*dy);
-    	return Math.sqrt(radicand);
+        int dx = x - GO.getX();
+        int dy = y - GO.getY();
+        int radicand = (dx * dx) + (dy * dy);
+        return Math.sqrt(radicand);
     }
 
+    @Override
+    public int lost() {
+        if(currHP > 0)return -1;
+        else return expValue;
+    }
 }
 
 

@@ -39,10 +39,12 @@ public abstract class gameObject {
 
     public abstract int defence(RandomGenerator RG , int attack);
 
+    public abstract  int lost();
+
     public String toString(){
         return Tile.toString();
     }
 
-    public abstract void spelled(RandomGenerator RG ,int spellPwr);
+    public abstract boolean spelled(RandomGenerator RG ,int spellPwr);
 
 }

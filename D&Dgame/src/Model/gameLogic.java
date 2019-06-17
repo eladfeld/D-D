@@ -25,6 +25,7 @@ public class gameLogic {
     public static Player getPlayer() {
     	return player;
     }
+
     public static void setPlayer(Player player) {gameLogic.player = player; }
     public static List<Enemy> getEnemies(){return enemies; }
     public boolean isActiveGame() {

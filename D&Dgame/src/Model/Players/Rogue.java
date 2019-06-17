@@ -1,5 +1,6 @@
 package Model.Players;
 
+import Controller.Moves.ActionReader;
 import Controller.Moves.RandomGenerator;
 import Model.gameObject;
 
@@ -45,19 +46,24 @@ public class Rogue extends Player {
     @Override
     public void special(RandomGenerator RG) {
         if (currEnergy < cost) {
-        	VIEW.update(name + "yused fan of knives!");
+        	VIEW.update("Need to gain more energy before performing fan of knives!");
         } else {
             currEnergy = currEnergy - cost;
             List<gameObject> enemies = searchForEnemies();
+            VIEW.update(name + " use fan of knives : ");
             for (gameObject go : enemies) go.spelled(RG, RG.nextInt(AP));
         }
     }
+
+
     @Override
-    public void personalEndOfTurn() {
-    	currEnergy = Math.min(currEnergy + 10, 100);
+    public void turn(ActionReader AR, RandomGenerator RG) {
+        super.turn(AR, RG);
+        currEnergy = Math.min(currEnergy + 10, 100);
     }
+
     @Override
-    public void personalLevelUp() {
+    public void levelUp() {
     	currEnergy = 100;
     	AP = AP + (3*level);
     }

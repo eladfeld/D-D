@@ -10,6 +10,7 @@ public class Wall extends gameObject{
         Tile = '#';
     }
 
+
     @Override
     public int invoked(Player player) {
         return 3;
@@ -25,7 +26,13 @@ public class Wall extends gameObject{
     }
 
     @Override
-    public void spelled(RandomGenerator RG, int spellPwr) {
+    public int lost() {
+        return -1;
+    }
+
+    @Override
+    public boolean spelled(RandomGenerator RG, int spellPwr) {
+        return false;
     }
 
 }

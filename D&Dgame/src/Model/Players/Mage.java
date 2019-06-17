@@ -1,9 +1,9 @@
 package Model.Players;
-import Model.GUnit;
-
 import Controller.Moves.RandomGenerator;
 import Model.gameObject;
-import java.util.*;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Mage extends Player {
@@ -73,7 +73,7 @@ public class Mage extends Player {
     }
 
     @Override
-    public void personalLevelUp() {
+    public void levelUp() {
         MP = MP + 25*level;
         currMana = Math.min(currMana+MP/4,MP);
         spellPwr = spellPwr + 10* level;
@@ -82,35 +82,38 @@ public class Mage extends Player {
     @Override
     public void special(RandomGenerator RG) {
         if(currMana < cost){
-            //generate an aproprate message here!!
         	VIEW.update("you dont got enough mana to perform Blizzard!");
         }else{
             currMana = currMana - cost;
             int hits = 0;
             int toHit = -1;
             List<gameObject> enemies= searchForEnemies();
-            while(hits<hitTimes & enemies.size()>0) {
-            if(RG.hasNext()) toHit = RG.nextInt(enemies.size()-1);
-            enemies.get(toHit).spelled(RG ,spellPwr);
+            VIEW.update(name + " used Blizzard : ");
+            while(hits < hitTimes & enemies.size() > 0) {
+            if(RG.hasNext() & enemies.size() > 0) toHit = RG.nextInt(enemies.size());
+            if(!enemies.get(toHit).spelled(RG ,spellPwr))enemies.remove(toHit);
             hits++;
             }
         }
         //check function
     }
+
     @Override
-    public void personalEndOfTurn() {
-    	currMana = Math.min(MP, currMana + 1);
+    public void turn(RandomGenerator RG) {
+        super.turn(RG);
+        currMana = Math.min(MP, currMana + 1);
+
     }
 
     private List<gameObject> searchForEnemies() {   //need to test!!!!
         List<gameObject> output = new LinkedList<gameObject>();
-        int upperBound = Math.max(y-range ,0);
-        int lowerBound = Math.min(y+range,board.length);
-        int leftBound = Math.max(x-range,0);
-        int rightBound = Math.min(x+range,board[0].length);
-        for (int i = upperBound;i <= lowerBound; i++){
+        int topBound = Math.max(y - range, 0);
+        int bottomBound = Math.min(y + range, board[0].length - 1);
+        int leftBound = Math.max(x - range, 0);
+        int rightBound = Math.min(x + range, board.length - 1);
+        for (int i = topBound;i <= bottomBound; i++){
             for(int j =leftBound;j <=rightBound;j++){
-                if(invoke(j,i)==2)output.add(board[i][j]);
+                if(ocDistance(j , i) <= range & invoke(j,i) == 2 )output.add(board[j][i]);
             }
         }
         return output;

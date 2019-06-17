@@ -86,10 +86,12 @@ public class Trap extends Enemy {
         for (int i = topBound; i <= bottomBound; i++)
             for (int j = leftBound; j <= rightBound; j++)
                 if (distanceFrom(board[j][i]) <= range & invoke(j, i) == 1) freeSpaces.add(new int[]{j, i});
-        int[] newPlace = freeSpaces.get(RG.nextInt(freeSpaces.size()));
+        int[] newPlace = {x,y};
+        if (freeSpaces.size() > 0)
+            newPlace = freeSpaces.get(RG.nextInt(freeSpaces.size()));
         int newX = newPlace[0];
         int newY = newPlace[1];
-        board[x][y] = new FreeSpace(x,y);
+        board[x][y] = new FreeSpace(x, y);
         x = newX;
         y = newY;
         board[x][y] = this;

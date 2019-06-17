@@ -1,18 +1,20 @@
 package View;
 
 import Model.GUnit;
+import Model.Players.Player;
 import Model.gameLogic;
 import Model.gameObject;
-import Model.Players.Player;
-
-import java.util.Scanner;
 
 public class Presentetion implements MyObserver{
 
-	//private static String message="";
-
-
     private Presentetion(){}
+
+    private final static Presentetion INSTANCE = new Presentetion();
+
+    public static MyObserver getInstance() {
+        return INSTANCE;
+    }
+
 
     public static void gameFinishd() {
         System.out.println(
@@ -46,28 +48,34 @@ public class Presentetion implements MyObserver{
 
         System.out.println(choosePlayer);
     }
-    private static class PresentetionHolder {
-        private final static Presentetion INSTANCE = new Presentetion();
+
+    public void levelUp(int levelNum) {
+        System.out.println("You have finish level " + (levelNum-1) + " level " + levelNum + " begin");
     }
+
+
     public static void PlayerChosen(String name){
         System.out.println("You have chosen to play with: "  + name +
                             "\n Use w/s/a/d to move.\n" +
                                     "Use e for special ability or q to pass.");
     }
 
-    public static MyObserver getInstance() {
-        return PresentetionHolder.INSTANCE;
-    }
 
     @Override
     public void update(String update) {
-//    	message = message + update;
         System.out.println(update);
     }
 
     public void update(GUnit assailant, GUnit defender, int atk, int def) {
         update(battleReport(assailant, defender, atk, def));
     }
+
+    @Override
+    public void update(GUnit assailant, gameObject defender, int atk, int def) {
+        update(assailant, (GUnit)defender, atk, def);
+
+    }
+
     private String stats(GUnit g) {
     	String s = g.getName()+" :     Health: "+g.getCurrHP() +"/" +g.getHP() +"     Attack: "+g.getAP()+"     Defence: "+g.getDP() ;
     	return s;
@@ -94,11 +102,7 @@ public class Presentetion implements MyObserver{
     	System.out.println("Game Over!");
     }
 
-	@Override
-	public void update(GUnit assailant, gameObject defender, int atk, int def) {
-		update(assailant, (GUnit)defender, atk, def);
-		
-	}
+
 	
 	public void ShowGame() {
 		Player p = gameLogic.getPlayer();
