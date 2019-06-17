@@ -72,23 +72,27 @@ public class Mage extends Player {
         this.range=range;
     }
 
-    @Override
+    @Override //updates players stats upon leveling up
     public void levelUp() {
+    	super.levelUp();
         MP = MP + 25*level;
+        int prev = currMana;
         currMana = Math.min(currMana+MP/4,MP);
         spellPwr = spellPwr + 10* level;
+        notify(VIEW, "Level Up: +"+(10*level)+" HP     +"+(5*level)+" attack     +"+(2*level)+" defence     +"
+        		+ (level*25)+"Mana Pool     +"+(currMana-prev)+" Mana");
     }
 
-    @Override
+    @Override //activates Mage's special ability Blizzard
     public void special(RandomGenerator RG) {
         if(currMana < cost){
-        	VIEW.update("you dont got enough mana to perform Blizzard!");
+        	notify(VIEW,"you dont got enough mana to perform Blizzard!");
         }else{
             currMana = currMana - cost;
             int hits = 0;
             int toHit = -1;
             List<gameObject> enemies= searchForEnemies();
-            VIEW.update(name + " used Blizzard : ");
+            notify(VIEW, name + " used Blizzard : ");
             while(hits < hitTimes & enemies.size() > 0) {
             if(RG.hasNext() & enemies.size() > 0) toHit = RG.nextInt(enemies.size());
             if(!enemies.get(toHit).spelled(RG ,spellPwr))enemies.remove(toHit);
@@ -98,13 +102,13 @@ public class Mage extends Player {
         //check function
     }
 
-    @Override
+    @Override //requests input from user/generator and performs game move accordingly
     public void turn(RandomGenerator RG) {
         super.turn(RG);
         currMana = Math.min(MP, currMana + 1);
 
     }
-
+    //returns list of enemies within striking range of blizzard
     private List<gameObject> searchForEnemies() {   //need to test!!!!
         List<gameObject> output = new LinkedList<gameObject>();
         int topBound = Math.max(y - range, 0);

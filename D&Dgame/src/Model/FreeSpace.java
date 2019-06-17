@@ -5,7 +5,7 @@ import Model.Enemies.Enemy;
 import Model.Players.Player;
 
 public class FreeSpace extends gameObject {
-
+	//represents and empty space on the board
 	public FreeSpace(int x, int y){
        super(x,y);
        Tile = '.';

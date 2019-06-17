@@ -86,7 +86,7 @@ public abstract class GUnit extends gameObject implements MyObservable{
 
     public abstract void turn(RandomGenerator RG);
 
-    @Override
+    @Override //when attacked by Mage with special
     public  boolean spelled(RandomGenerator RG ,int spellPwr) {
         int defence = defence(RG,spellPwr);
         VIEW.update(name + " was hit with " + Math.max(0, spellPwr - defence) + " points");
@@ -94,6 +94,7 @@ public abstract class GUnit extends gameObject implements MyObservable{
         return isAlive();
     }
 
+    //attacking another game Unit
     public void attack(gameObject defender,RandomGenerator RG){
         if(RG.hasNext()) {
         	int attack = RG.nextInt(AP);
@@ -101,18 +102,22 @@ public abstract class GUnit extends gameObject implements MyObservable{
             notify(VIEW ,this,defender, attack, defence);
         }
     }
+    //notifies observer of battle information
     public void notify(MyObserver observer, GUnit assailant, gameObject defender, int atk, int def) {
     	observer.update(assailant, defender, atk, def);
     }
+    //notifies observer with relevent message
     public void notify(MyObserver observer, String s){
     	observer.update(s);
     }
 
+    //defends game unit from attack and returns how much of the attack it defended itself from
     public int defence(RandomGenerator RG ,int attack){
     	int defence = RG.nextInt(DP);
     	if(defence<attack) setCurrHP(currHP - attack + defence);
         if(currHP <= 0 ) {
         	Alive = false;
+        	currHP=0;
         }
         return defence;
 

@@ -33,10 +33,13 @@ public abstract class gameObject {
         Tile = ',';
     }
 
+    //returns value representing the consequences of a player attempting to step into this's place
     public abstract int invoked(Player player);
-
+   
+    //returns value representing the consequences of an enemy attempting to step into this's place
     public abstract int invoked(Enemy enemy);
 
+    //defends this in response to an attack and returns how strong the defense was
     public abstract int defence(RandomGenerator RG , int attack);
 
     public abstract  int lost();

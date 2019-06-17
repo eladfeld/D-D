@@ -1,5 +1,6 @@
 package Controller.Moves;
 
+//represents predetermined list of pseudo-random numbers
 public class DeterNum implements RandomGenerator {
     private int[] Random;
     private int index;
@@ -7,7 +8,8 @@ public class DeterNum implements RandomGenerator {
         this.Random=Random;
         index=-1;
     }
-
+    
+    //returns next  predetermined "random" number
     public int nextInt(int n) {
         index++;
         return Random[index]%n;

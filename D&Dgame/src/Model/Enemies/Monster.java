@@ -10,23 +10,23 @@ import Model.gameObject;
 
 public class Monster extends Enemy {
 	
-	int visionRange;
+	int visionRange; //how far away the monster can see a player
 	
     public Monster(int x, int y, String name, int HP, int DP, int AP, int expValue, char tile, int visionRange, gameObject[][] board) {
         super(x, y, name, HP, DP, AP,expValue, tile, board);
         this.visionRange=visionRange;
     }
-
+    //returns a value determing the consequences of a player stepping into this monster's place
     public int invoked(Player player){
         return 2;
     }
 
-
+    //returns a value determing the consequences of an enemy stepping into this monster's place
 	public int invoked(Enemy enemy){
         return 3;
     }
     
-    @Override   
+    @Override   //determines the proper move for the monster
     public void turn(RandomGenerator RG) {
     	Player player = gameLogic.getPlayer();
     	int dx, dy;
@@ -54,7 +54,7 @@ public class Monster extends Enemy {
     	}    	
     }
 
-
+    //moves the monster
     public void move(int dx, int dy) {
     	if(canMove(dx,dy)==1) {
 	    	board[x][y]= new FreeSpace(x,y);
@@ -64,7 +64,7 @@ public class Monster extends Enemy {
     	}
     }
     
-    
+    //determines if move is legal
     public int canMove(int dx, int dy) {
     	int output;
     	if(dx==dy)output = 3;
@@ -73,7 +73,7 @@ public class Monster extends Enemy {
     	
     }
     
-
+    //receives a number 0-4 and returns an ordered pair (x,y)
     public int[] XYComponents(int move) {
     	int[] output = new int[2];
     	output[0]=0;

@@ -24,23 +24,24 @@ public abstract class Enemy extends GUnit {
         this.Tile = tile;
 
     }
-
+    //retruns value determing the consequeces of stepping into another place on the game board
     public int invoke(int x, int y) {
         return board[x][y].invoked(this);
     }
 
-    @Override
+    @Override //returns value representing the consequences of an enemy stepping into this's place
     public int invoked(Enemy enemy) {
         return 3;
     }
 
-    @Override
+    @Override //returns value representing the consequences of a player stepping into this's place
     public int invoked(Player player) {
         return 2;
     }
 
     public abstract void turn(RandomGenerator RG);
 
+    //returns the euclidean distance between this and the given gameObject
     protected Double distanceFrom(gameObject GO) {
         int dx = x - GO.getX();
         int dy = y - GO.getY();

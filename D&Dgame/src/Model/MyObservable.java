@@ -2,6 +2,8 @@ package Model;
 import View.MyObserver;
 
 public interface MyObservable {
-	//public void notify(String s);
+	//message notification
+	public void notify(MyObserver observer, String s);
+	//battle notification
 	public void notify(MyObserver observer, GUnit assailant, gameObject defender, int atk, int def);
 }

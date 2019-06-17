@@ -54,6 +54,7 @@ public class gameLogic {
         player.setBoard(board);
     }
 
+    //asks for int representing a player and sets the player accordingly
     private void askForPlayerType(ActionReader ar) {
         int choose = 0;
         try {
@@ -95,6 +96,7 @@ public class gameLogic {
         observer.update(player.getPlayerStatus());
     }
 
+    //receives a board of chars and returns the game level that it represents
     private gameObject[][] levelProccesor(char[][] board) {        
         int width = board.length;
         int length = board[0].length;
@@ -107,6 +109,8 @@ public class gameLogic {
         return output;
     }
 
+    //creates the proper game object and puts it in its place in the level
+    //adds enemies to the list of enemies along the way
     private void createGameObject(char c , int i , int j ,gameObject[][] output) {
         gameObject GO = null;
         boolean isEnemy = false;
@@ -189,6 +193,7 @@ public class gameLogic {
         if (isEnemy) enemies.add((Enemy) GO); //adds to enemy list
     }
 
+    // cycle of gameplay for each round of turns(gameTick)
     public void gameTick() {
         observer.update(boardToString(board));
         player.turn(playerMove, RandomNum);
@@ -200,6 +205,7 @@ public class gameLogic {
         activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
     }
     
+    //removes dead enemies from the list of enemies
     private void removeDeadEnemies() {
     	for(int i=0 ; i<enemies.size() ; i++) {
     		Enemy enemy = enemies.get(i);
@@ -210,7 +216,7 @@ public class gameLogic {
     	}
     }
 
-
+    //returns string representation of the game board
     public static String boardToString(gameObject[][] board) {
         String output = "";
         for (int j = 0; j < board[0].length; j++) {

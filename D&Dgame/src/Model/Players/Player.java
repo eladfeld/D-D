@@ -3,6 +3,7 @@ package Model.Players;
 import Controller.Moves.ActionReader;
 import Controller.Moves.RandomGenerator;
 import Model.Enemies.Enemy;
+import View.MyObserver;
 import Model.FreeSpace;
 import Model.GUnit;
 import Model.gameObject;
@@ -48,7 +49,7 @@ public abstract class Player extends GUnit {
         int enemyLost = defender.lost();
         if(enemyLost > -1){
             exp = exp + enemyLost;
-            VIEW.update(name + " gained " + enemyLost + " EXP!");
+            notify(VIEW, name + " gained " + enemyLost + " EXP!");
             while(exp >= 50 * level)
                 levelUp();
         }
@@ -56,19 +57,22 @@ public abstract class Player extends GUnit {
 
     public void turn(RandomGenerator RG){};
 
+    //returns a value that determines the consequences of stepping into a space
     public int invoke(int x , int y){
         return board[x][y].invoked(this);
     }
-    @Override
+    
+    @Override    //returns a value that determines the consequences of another player stepping into this's spot
     public int invoked(Player player){
         return 3;
     }
 
-    @Override
+    @Override //returns a value that determines the consequences of an enemy stepping into the player's spot
     public int invoked(Enemy enemy){
         return 2;
     }
 
+    //receives a move input from user/generator and plays the corresponding move
     public void turn(ActionReader AR, RandomGenerator RG) {
         String action = "";
         if (AR.hasNext()) action = AR.nextAction();
@@ -91,6 +95,7 @@ public abstract class Player extends GUnit {
         }
     }
 
+    //move left
     public void moveLeft(RandomGenerator RG) {
         int interaction = invoke(x - 1, y);
         switch (interaction) {
@@ -107,6 +112,7 @@ public abstract class Player extends GUnit {
         }
     }
 
+    //move right
     public void moveRight(RandomGenerator RG) {
         int interaction = invoke(x + 1, y);
         switch (interaction) {
@@ -123,6 +129,7 @@ public abstract class Player extends GUnit {
         }
     }
 
+    //move up
     public void moveUp(RandomGenerator RG) {
         int interaction = invoke(x, y - 1);
         switch (interaction) {
@@ -138,7 +145,8 @@ public abstract class Player extends GUnit {
                 break;
         }
     }
-
+    
+    //move down
     public void moveDown(RandomGenerator RG) {
         int interaction = invoke(x, y + 1);
         switch (interaction) {
@@ -154,12 +162,13 @@ public abstract class Player extends GUnit {
                 break;
         }
     }
-
-
+    
+    //activates player's special ability
     public abstract void special(RandomGenerator RG);
 
+    //updates player's stats upon leveling up
     public void levelUp() {
-        VIEW.update(name + " leveled up from level " + level +" to " + (level+1));
+       // VIEW.update(name + " leveled up from level " + level +" to " + (level+1));
         exp = exp - (level * 50);
         level++;
         HP = HP + 10 * level;
@@ -168,23 +177,28 @@ public abstract class Player extends GUnit {
         DP = DP + level * 2;
     }
 
-
+    
     public String toString() {
         if (Alive) return "@";
         return "X";
     }
 
+    //returns general player stats
     public String getPlayerStatus() {
         return name + "             Health: " + currHP +
                 "          Attack damage:" + AP + "         Defence:" +
                 DP + '\n' + "           level: " + level + "          Experience" +
                 exp + "/" + level * 50;
     }
+    //returns stats specific to the type of player
     public abstract String SpecialStats();
 
+    //returns the Euclidean distance between 2 game spaces
     protected double ocDistance(int Ex , int Ey){
         return Math.sqrt((x-Ex)*(x-Ex) + (y-Ey)*(y-Ey));
     }
+    //notifies an observer with relevent information
+    public void notify(MyObserver observer, String update) { super.notify(observer, update);}
 
 }
 
