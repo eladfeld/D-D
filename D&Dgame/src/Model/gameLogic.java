@@ -63,6 +63,7 @@ public class gameLogic {
         }
         switch (choose) {
 
+        	//case 0 & 7 for testing purposes
         	case 0:
 	            player = new Warrior(0, 0, "T-Baby", 100, 10, 500, board, 60);
 	            break;
