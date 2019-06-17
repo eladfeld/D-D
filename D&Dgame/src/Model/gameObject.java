@@ -48,7 +48,7 @@ public abstract class gameObject {
         return Tile.toString();
     }
 
-    public abstract boolean spelled(RandomGenerator RG ,int spellPwr);
+    public abstract void spelled(RandomGenerator RG ,int spellPwr);
 
     protected  String getName(){
         return Tile.toString();

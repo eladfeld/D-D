@@ -52,7 +52,17 @@ public class Rogue extends Player {
             currEnergy = currEnergy - cost;
             List<gameObject> enemies = searchForEnemies();
             notify(name + " use fan of knives : ");
-            for (gameObject go : enemies) go.spelled(RG, RG.nextInt(AP));
+            for (gameObject go : enemies){
+                go.spelled(RG, AP);
+                int enemyLost = go.lost();
+                if(enemyLost > -1){
+                    exp = exp + enemyLost;
+                    notify("and died!");
+                    notify(name + " gained " + enemyLost + " EXP!");
+                    while (exp >= 50 * level)
+                        levelUp();
+                }
+            }
         }
     }
 
@@ -66,25 +76,21 @@ public class Rogue extends Player {
     @Override //updates players stats upon leveling up
     public void levelUp() {
         super.levelUp();
-        int energyGained = 100 - currEnergy;
         currEnergy = 100;
         AP = AP + (3 * level);
-        notify("Level Up: +" + (10 * level) + " HP     +" + (8 * level) + " attack     +" + (2 * level) + " defence     +"
-                + energyGained + " Energy");
+        notify("Level Up: +" + (10 * level) + " HP     +" + (8 * level) + " attack     +" + (2 * level) + " defence");
     }
 
     //returns list of all enemies within striking range for special ability
     private List<gameObject> searchForEnemies() {   //need to test!!!!
         List<gameObject> output = new LinkedList<gameObject>();
-        int upperBound = Math.max(y - 1, 0);
-        int lowerBound = Math.min(y + 1, board.length);
+        int topBound = Math.max(y - 1, 0);
+        int bottomBound = Math.min(y + 1, board[0].length - 1);
         int leftBound = Math.max(x - 1, 0);
-        int rightBound = Math.min(x + 1, board[0].length);
-        for (int i = upperBound; i <= lowerBound; i++) {
-            for (int j = leftBound; j <= rightBound; j++) {
-                if ((i != y | j != x) && invoke(j, i) == 2) output.add(board[i][j]);
-            }
-        }
+        int rightBound = Math.min(x + 1, board.length - 1);
+        for (int i = topBound; i <= bottomBound ; i++)
+            for (int j = leftBound; j <= rightBound; j++)
+                if ((i != y | j != x) && invoke(j, i) == 2) output.add(board[j][i]);
         return output;
     }
 }

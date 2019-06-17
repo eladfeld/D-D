@@ -204,8 +204,8 @@ public class gameLogic {
             enemy.turn(RandomNum);
         }
         activeGame = player.isAlive() & enemies.size()>0; //player is alive and enemies are also alive
+        if(!player.isAlive())player.Tile = 'X';
         observer.update(boardToString(board));
-
     }
     
     //removes dead enemies from the list of enemies

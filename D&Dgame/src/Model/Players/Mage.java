@@ -94,11 +94,23 @@ public class Mage extends Player {
             currMana = currMana - cost;
             int hits = 0;
             int toHit = -1;
+            gameObject enemy = null;
             List<gameObject> enemies = searchForEnemies();
             notify(name + " used Blizzard : ");
             while (hits < hitTimes & enemies.size() > 0) {
-                if (RG.hasNext() & enemies.size() > 0) toHit = RG.nextInt(enemies.size());
-                if (!enemies.get(toHit).spelled(RG, spellPwr)) enemies.remove(toHit);
+                if (RG.hasNext() & enemies.size() > 0) {
+                    enemy = enemies.get(RG.nextInt(enemies.size()));
+                    enemy.spelled(RG, spellPwr);
+                    int enemyLost =enemy.lost();
+                    if ( exp > -1){
+                        enemies.remove(enemy);
+                        exp = exp + enemyLost;
+                        notify("and died!");
+                        notify(name + " gained " + enemyLost + " EXP!");
+                        while (exp >= 50 * level)
+                            levelUp();
+                    }
+                }
                 hits++;
             }
         }

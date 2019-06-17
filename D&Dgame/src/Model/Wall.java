@@ -31,8 +31,7 @@ public class Wall extends gameObject{
     }
 
     @Override
-    public boolean spelled(RandomGenerator RG, int spellPwr) {
-        return false;
+    public void spelled(RandomGenerator RG, int spellPwr) {
     }
 
 }
