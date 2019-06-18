@@ -7,13 +7,12 @@ public class keyInput extends KeyAdapter {
 
     FreePlay freePlay;
 
-    public keyInput(FreePlay freePlay){
-        this.freePlay = freePlay;
+    public keyInput() {
     }
 
-    public void keyPressed(KeyEvent event){
-        		event.getKeyChar();
-
+    public void keyPressed(KeyEvent event) {
+        int key = event.getKeyCode();
+        System.out.println(key);
     }
 
 }

@@ -28,7 +28,7 @@ public class Presentetion implements MyObserver{
 
     //shows player select screen
     public void GameStart(){
-        String choosePlayer = "Select player:\n" +
+        String choosePlayer = "WELCOME TO Dungeons & Dragons!\n Select player:\n" +
                 "1. Jon Snow\t\tHealth: 300\t\tAttack damage: 30\t\tDefense: 4\n" +
                 "\t\tLevel: 1\t\tExperience: 0/50\t\tAbility cooldown: 6\t\tRemaining: 0\n" +
                 "2. The Hound\t\tHealth: 400\t\tAttack damage: 20\t\tDefense: 6\n" +
